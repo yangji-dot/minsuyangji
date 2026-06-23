@@ -5,23 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>조민수 ∙ 김양지 모바일 초대장</title>
   
-  <!-- 서체 세팅: 고딕 서체 및 이미지 느낌의 손글씨 폰트 -->
+  <!-- 서체 세팅: 메인 본문용 프리텐다드 및 인트로 영문 필기체 다운로드 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg-base: #fefdfb;       /* 전체 배경: 깨끗하고 화사한 밀크 아이보리 */
       --bg-card: #ffffff;       /* 카드 내부: 순백색 */
       --bg-soft: #faf7f2;       /* 세션 배경: 은은한 베이지 미색 */
+      --bg-cover: #f5f4f0;      /* 고급스러운 린넨 미색 배경 */
       --text-main: #222120;     /* 메인 글씨: 모던 다크 그레이 */
       --text-sub: #757069;      /* 서브 글씨: 토프 애쉬 그레이 */
       --color-accent: #5a6856;  /* 포인트 컬러: 세련된 딥 세이지 그린 */
-      --font-eng: 'Montserrat', sans-serif;
-      --font-kor: 'Pretendard', sans-serif;
-      --font-hand: 'Nanum Pen Script', cursive; 
+      --color-heart: #b88b88;   /* ✨ image_0b1aff.png 하트의 따뜻한 로즈 브라운 톤 반영 */
+      --font-kor: 'Pretendard', sans-serif;       /* ✨ [수정] 본문 기본 글씨체 프리텐다드로 고정 */
+      --font-serif: 'Gowun Batang', serif;    
+      --font-script: 'Alex Brush', cursive;       
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; letter-spacing: -0.5px; }
@@ -31,40 +33,42 @@
       overflow-x: hidden;
     }
 
-    /* ✨ 프리미엄 풀스크린 인트로 (다운로드.jpg 배경 소프트 필터 처리) */
+    /* 프리미엄 인트로 효과 */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      /* [변경] 다운로드.jpg 이미지를 깔고 위에 반투명 아이보리 레이어를 겹쳐 연하고 화사하게 연출 */
-      background: linear-gradient(rgba(254, 253, 251, 0.65), rgba(254, 253, 251, 0.65)), url('다운로드.jpg') no-repeat center center / cover;
-      z-index: 9999;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+      background: linear-gradient(rgba(20, 23, 28, 0.48), rgba(20, 23, 28, 0.48)), url('다운로드.jpg') no-repeat center center / cover;
+      z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .intro-box { text-align: center; padding: 0 20px; }
     
-    /* [변경] 연해진 배경 위에서 가장 예쁘게 돋보이는 딥 세이지 그린 컬러 적용 */
-    .intro-title {
-      font-family: var(--font-hand); font-size: 3.4rem; color: var(--color-accent);
-      line-height: 1.4; min-height: 60px; word-break: keep-all;
-      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.4); /* 글자가 더 선명해 보이도록 은은한 뒤편 음영 추가 */
+    .intro-title { 
+      font-family: var(--font-serif); 
+      font-size: 2.1rem; 
+      color: #ffffff; 
+      line-height: 1.5; 
+      min-height: 60px; 
+      word-break: keep-all; 
+      font-weight: 400;
+      letter-spacing: 2px; 
+      text-shadow: 0 2px 25px rgba(0, 0, 0, 0.25); 
     }
-    .intro-title span {
-      opacity: 0; display: inline-block; transform: translateY(12px);
-      animation: letterFadeIn 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    }
-    /* [변경] 하단 영문 이름도 톤을 맞춰 가독성 확보 */
-    .intro-names {
-      font-family: var(--font-eng); font-size: 0.85rem; font-weight: 500; letter-spacing: 4px; color: var(--text-sub);
-      opacity: 0; transform: translateY(15px); margin-top: 25px;
-      animation: introFadeUp 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 1.8s;
+    .intro-title span { opacity: 0; display: inline-block; transform: translateY(12px); animation: letterFadeIn 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+    
+    .intro-names { 
+      font-family: var(--font-script); 
+      font-size: 1.8rem; 
+      font-weight: 400; 
+      letter-spacing: 2px; 
+      color: rgba(255, 255, 255, 0.85); 
+      opacity: 0; 
+      transform: translateY(12px); 
+      margin-top: 15px; 
+      animation: introFadeUp 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards 1.4s; 
     }
     
-    @keyframes letterFadeIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes introFadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes letterFadeIn { to { opacity: 1; transform: translateY(0); } }
+    @keyframes introFadeUp { to { opacity: 0.85; transform: translateY(0); } }
 
     /* 스마트폰 프레임 */
     .phone-container {
@@ -87,22 +91,56 @@
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     section { padding: 80px 28px; text-align: center; position: relative; }
-    .section-title { font-family: var(--font-eng); font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; color: var(--color-accent); margin-bottom: 45px; text-transform: uppercase; display: inline-block; position: relative; }
-    .section-title::after { content: ''; display: block; width: 12px; height: 1px; background: var(--color-accent); margin: 8px auto 0 auto; }
 
-    /* 메인 커버 */
-    .cover-section { padding: 60px 28px 50px 28px; background: var(--bg-soft); }
-    .cover-date { font-family: var(--font-eng); font-size: 1.1rem; font-weight: 500; letter-spacing: 5px; color: var(--color-accent); margin-bottom: 25px; }
-    .cover-arch { width: 85%; aspect-ratio: 1 / 1.35; margin: 0 auto 35px auto; overflow: hidden; border-radius: 200px 200px 0 0; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 4px solid var(--bg-card); }
-    .cover-arch img { width: 100%; height: 100%; object-fit: cover; }
-    .cover-names { font-family: var(--font-kor); font-size: 1.45rem; font-weight: 600; letter-spacing: 2px; color: var(--text-main); }
-    .cover-names span { font-size: 1rem; color: #dcd7ce; margin: 0 12px; font-weight: 300; }
-    .cover-line { width: 1px; height: 35px; background: #e8e3da; margin: 20px auto; }
-    .cover-info { font-size: 0.95rem; color: var(--text-sub); line-height: 1.7; font-weight: 400; }
+    /* ✨ [추가] image_0b1aff.png의 감성을 담은 SVG 하트 드로잉 애니메이션 스타일 */
+    .heart-svg-container {
+      width: 70px;
+      height: 50px;
+      margin: 0 auto 35px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .heart-path {
+      stroke: var(--color-heart);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      /* 하트 패스의 총 길이에 맞춰 Dash 설정 */
+      stroke-dasharray: 250;
+      stroke-dasharray: 250;
+      stroke-dashoffset: 250;
+    }
+    /* 스크롤로 섹션이 활성화되면 하트가 그려짐 */
+    .fade-up.visible .heart-path {
+      animation: drawHeart 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes drawHeart {
+      to { stroke-dashoffset: 0; }
+    }
 
-    /* 초대글 */
+    /* 메인 커버 섹션 */
+    .cover-section { padding: 50px 0 60px 0; background: var(--bg-cover); text-align: center; }
+    .cover-top-sub { font-size: 0.75rem; font-weight: 500; letter-spacing: 4px; color: #8a857c; margin-bottom: 12px; text-transform: uppercase; }
+    .cover-top-names { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 400; color: #1a1a1a; margin-bottom: 35px; letter-spacing: 1px; }
+    
+    .cover-image-box { width: 100%; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+    .cover-image-box img { width: 100%; display: block; object-fit: cover; }
+    
+    .cover-bottom-script { font-family: var(--font-script); font-size: 2.4rem; color: #555e52; margin-bottom: 18px; font-weight: 400; letter-spacing: 0px; }
+    .cover-bottom-date { font-family: var(--font-serif); font-size: 1.05rem; color: #383735; letter-spacing: 0px; font-weight: 400; }
+
+    /* ✨ [수정] 초대글 세션: 가독성이 좋은 프리텐다드 본문 폰트 베이스 */
     .greeting-section { background-color: var(--bg-card); }
-    .greeting-text { font-family: var(--font-kor); font-size: 0.95rem; line-height: 2.1; color: #333; margin-bottom: 50px; font-weight: 400; }
+    .greeting-text { 
+      font-size: 0.93rem; 
+      line-height: 2.2; 
+      color: #333333; 
+      margin-bottom: 50px; 
+      font-weight: 400; 
+      word-break: keep-all;
+    }
     .family-table { display: inline-block; text-align: left; font-size: 0.95rem; color: var(--text-main); }
     .family-row { margin-bottom: 12px; }
     .family-row span.role { color: var(--text-sub); font-size: 0.85rem; margin: 0 10px; display: inline-block; width: 45px; text-align: center; }
@@ -110,16 +148,18 @@
 
     /* 달력 & 디데이 */
     .calendar-section { background-color: var(--bg-soft); border-top: 1px solid #f5ede2; border-bottom: 1px solid #f5ede2; }
-    .cal-title { font-family: var(--font-kor); font-size: 1.05rem; margin-bottom: 30px; font-weight: 500; color: #333; }
+    .section-title { font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; color: var(--color-accent); margin-bottom: 45px; text-transform: uppercase; display: inline-block; position: relative; }
+    .section-title::after { content: ''; display: block; width: 12px; height: 1px; background: var(--color-accent); margin: 8px auto 0 auto; }
+    .cal-title { font-size: 1.05rem; margin-bottom: 30px; font-weight: 500; color: #333; }
     .calendar-box { background: var(--bg-card); padding: 30px 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.01); max-width: 320px; margin: 0 auto 30px auto; }
-    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px 0; font-size: 0.85rem; font-family: var(--font-eng); }
-    .cal-header { font-family: var(--font-kor); font-weight: 600; color: var(--text-sub); font-size: 0.75rem; padding-bottom: 12px; letter-spacing: 1px; }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px 0; font-size: 0.85rem; }
+    .cal-header { font-weight: 600; color: var(--text-sub); font-size: 0.75rem; padding-bottom: 12px; letter-spacing: 1px; }
     .cal-header.sun, .cal-day.sun { color: #c45a5a; }
     .cal-day { padding: 4px 0; color: var(--text-main); position: relative; display: flex; justify-content: center; align-items: center; font-weight: 400; }
     .cal-day.wedding-active::after { content: ''; position: absolute; width: 28px; height: 28px; border: 1.5px dashed var(--color-accent); border-radius: 50%; z-index: 1; animation: rotateCircle 15s linear infinite; }
     .cal-day.wedding-active { font-weight: 600; color: var(--color-accent) !important; }
     .dday-badge { background: linear-gradient(135deg, #f5ede2 0%, #ebe2d5); padding: 11px 24px; border-radius: 30px; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #444; font-weight: 400; }
-    .dday-badge strong { color: var(--color-accent); font-weight: 600; font-family: var(--font-eng); }
+    .dday-badge strong { color: var(--color-accent); font-weight: 600; }
 
     /* 오시는 길 */
     .map-section { background-color: var(--bg-soft); }
@@ -129,7 +169,7 @@
 
     /* 축의금 아코디언 */
     .account-card { width: 100%; max-width: 350px; background: var(--bg-soft); border: 1px solid #e5dfd5; border-radius: 8px; margin: 0 auto 12px auto; overflow: hidden; }
-    .account-header { width: 100%; padding: 18px; background: var(--bg-card); border: none; font-family: var(--font-kor); font-size: 0.9rem; color: #333; font-weight: 500; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+    .account-header { width: 100%; padding: 18px; background: var(--bg-card); border: none; font-size: 0.9rem; color: #333; font-weight: 500; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: var(--font-kor); }
     .account-header span.arrow { color: var(--color-accent); font-size: 0.75rem; transition: transform 0.3s; }
     .account-body { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: var(--bg-soft); }
     .account-info-box { padding: 18px; text-align: left; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f5ede2; }
@@ -149,37 +189,43 @@
   <div id="intro-overlay">
     <div class="intro-box">
       <div class="intro-title">우리 결혼합니다</div>
-      <div class="intro-names">MINSU & YANGJI</div>
+      <div class="intro-names">Minsu & Yangji</div>
     </div>
   </div>
 
   <div class="phone-container">
     <div class="petal-container" id="petal-box"></div>
 
-    <!-- 메인 커버 섹션 -->
+    <!-- 메인 커버 섹션 영역 -->
     <section class="cover-section">
-      <div class="cover-date">2026 . 10 . 18</div>
-      <div class="cover-arch">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" alt="Wedding Main">
+      <div class="cover-top-sub">The New Beginning</div>
+      <h1 class="cover-top-names">조민수 그리고 김양지</h1>
+      
+      <div class="cover-image-box">
+        <img src="다운로드.jpg" alt="Wedding Main">
       </div>
-      <h1 class="cover-names">조민수<span>|</span>김양지</h1>
-      <div class="cover-line"></div>
-      <p class="cover-info">
-        2026년 10월 18일 일요일 낮 12시 50분<br>
-        상주 마리앙스
-      </p>
+      
+      <div class="cover-bottom-script">We are getting married</div>
+      <div class="cover-bottom-date">2026년 10월 18일 일요일 낮 12시 50분</div>
     </section>
 
-    <!-- 초대글 섹션 -->
+    <!-- ✨ [수정] 초대글 섹션: "Invitation" 문구 대신 image_0b1aff.png 디자인 기반 하트 드로잉 애니메이션 적용 -->
     <section class="greeting-section fade-up">
-      <div class="section-title">Invitation</div>
+      <div class="heart-svg-container">
+        <!-- 자연스러운 손그림 하트 궤적을 그리도록 벡터 설계 -->
+        <svg viewBox="0 0 100 80" width="100%" height="100%">
+          <path class="heart-path" d="M 50,37 C 40,15 15,20 22,45 C 28,62 45,72 50,75 C 55,72 72,62 78,45 C 85,20 60,15 50,37 Z" />
+        </svg>
+      </div>
+
+      <!-- 요청하신 신규 문구 반영 -->
       <div class="greeting-text">
-        서로 다른 색으로 살아온 두 사람이<br>
-        사랑이라는 하나의 빛을 켜고<br>
-        새로운 첫발을 내딛고자 합니다.<br><br>
-        저희의 뜻깊은 시작의 자리에<br>
-        함께하시어 축복해 주시면<br>
-        더없는 기쁨으로 간직하겠습니다.
+        두 사람이 하나 되어 아름다운 가정을 꾸려나가는<br>
+        소중한 시작을 함께 축복해주시면 감사하겠습니다.<br><br>
+        바쁘신 와중에도 귀한 발걸음으로 참석해주시는<br>
+        모든 분들께 진심으로 감사드립니다.<br><br>
+        저희 두 사람의 앞날에<br>
+        따뜻한 격려와 축복을 부탁드립니다.
       </div>
       
       <div class="family-table">
@@ -264,7 +310,7 @@
   </div>
 
   <script>
-    // 1. ✨ 인트로 타이핑 효과 및 배경 연출 제어
+    // 1. 인트로 텍스트 한 글자씩 순차 재생 스크립트
     window.addEventListener('DOMContentLoaded', () => {
       const titleContainer = document.querySelector('.intro-title');
       const originalHTML = titleContainer.innerHTML;
@@ -284,7 +330,6 @@
             } else {
               span.innerText = text[i];
             }
-            // 천천히 순차적으로 나타나도록 0.16초 단위로 딜레이 설정
             span.style.animationDelay = `${letterDelay * 0.16}s`;
             titleContainer.appendChild(span);
             letterDelay++;
@@ -292,7 +337,6 @@
         }
       });
 
-      // 글자가 다 나타난 뒤, 아름다운 여운을 남기고 화면이 걷히도록 타이밍 설정
       setTimeout(() => {
         const overlay = document.getElementById('intro-overlay');
         overlay.style.opacity = '0';
@@ -323,7 +367,7 @@
       setTimeout(() => { petal.remove(); }, duration * 1000);
     }
 
-    // 3. 디데이 연산
+    // 3. 디데이 연산 (2026년 10월 18일 고정)
     function ddayCal() {
       const target = new Date("2026-10-18T12:50:00+09:00");
       const today = new Date();
@@ -354,7 +398,7 @@
       navigator.clipboard.writeText(val).then(() => { alert("계좌번호가 정상적으로 복사되었습니다."); });
     }
 
-    // 6. 스크롤 애니메이션 효과
+    // 6. 스크롤 애니메이션 효과 및 하트 드로잉 트리거 관찰
     const itemsToFade = document.querySelectorAll('.fade-up');
     const itemObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
