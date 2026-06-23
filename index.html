@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>손의한 ∙ 홍길순 모바일 초대장</title>
+  
+  <!-- 필카드 스타일 폰트: 깔끔한 고딕(Pretendard) & 모던 세리프 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    /* 필카드 특유의 톤 & 매너 (화이트, 소프트 그레이, 차분한 포인트 단색) */
+    :root {
+      --bg-white: #ffffff;
+      --bg-light: #f8f9fa;
+      --text-dark: #222222;
+      --text-gray: #666666;
+      --point-color: #9a8c7d; /* 은은한 웜 그레이시 브라운 */
+      --font-eng: 'Cinzel', serif;
+      --font-sans: 'Pretendard', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #e9ecef; font-family: var(--font-sans); color: var(--text-dark);
+      display: flex; justify-content: center; line-height: 1.7; -webkit-font-smoothing: antialiased;
+    }
+
+    /* 모바일 뷰포트 고정 */
+    .phone-container {
+      width: 100%; max-width: 430px; background-color: var(--bg-white); min-height: 100vh;
+      box-shadow: 0 0 20px rgba(0,0,0,0.03); position: relative;
+    }
+
+    /* 애니메이션 효과 */
+    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    section { padding: 70px 24px; text-align: center; }
+    .section-title { font-family: var(--font-eng); font-size: 0.9rem; letter-spacing: 3px; color: var(--point-color); margin-bottom: 35px; text-transform: uppercase; }
+
+    /* 1. 메인 커버 (깔끔한 프레임 레이아웃) */
+    .cover-section { padding: 50px 24px; background-color: var(--bg-white); }
+    .cover-date { font-family: var(--font-eng); font-size: 1rem; letter-spacing: 4px; color: var(--point-color); margin-bottom: 20px; }
+    .cover-img-box { width: 100%; height: 500px; overflow: hidden; margin-bottom: 25px; background-color: #f1f3f5; }
+    .cover-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .cover-names { font-size: 1.3rem; font-weight: 400; letter-spacing: 2px; margin-bottom: 8px; }
+    .cover-names span { font-size: 1.1rem; color: #ccc; margin: 0 8px; }
+    .cover-loc { font-size: 0.9rem; color: var(--text-gray); letter-spacing: 0.5px; }
+
+    /* 2. 초대글 */
+    .greeting-section { background-color: var(--bg-light); }
+    .greeting-text { font-size: 0.95rem; line-height: 2.1; color: #333; margin-bottom: 45px; font-weight: 300; }
+    .relations { font-size: 1rem; display: inline-block; text-align: left; line-height: 2; }
+    .relations p span { color: var(--text-gray); font-size: 0.85rem; margin: 0 8px; }
+
+    /* 3. [필카드 시그니처] 미니 달력 & 디데이 */
+    .calendar-section { background-color: var(--bg-white); }
+    .cal-month { font-family: var(--font-eng); font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 20px; color: var(--text-dark); }
+    
+    /* 달력 그리드 */
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px 0; max-width: 300px; margin: 0 auto 30px auto; font-size: 0.9rem; }
+    .cal-header { font-weight: 500; color: var(--text-gray); font-size: 0.8rem; padding-bottom: 10px; }
+    .cal-day { padding: 5px 0; color: #444; position: relative; display: flex; justify-content: center; align-items: center; }
+    .cal-day.sun { color: #d94848; }
+    /* 예식일 하이라이트 동그라미 */
+    .cal-day.wedding-day::after {
+      content: ''; position: absolute; width: 28px; height: 28px; background-color: var(--point-color);
+      border-radius: 50%; z-index: 1; opacity: 0.2;
+    }
+    .cal-day.wedding-day { font-weight: bold; color: var(--text-dark); }
+
+    /* 디데이 카운트 바 */
+    .dday-box {
+      background-color: var(--bg-light); padding: 15px; border-radius: 5px;
+      display: inline-block; width: 100%; max-width: 320px; font-size: 0.95rem; color: #444;
+    }
+    .dday-box strong { color: var(--point-color); font-weight: 600; }
+
+    /* 4. 갤러리 (바둑판 스퀘어 뷰) */
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 0 4px; }
+    .gallery-thumb { width: 100%; aspect-ratio: 1/1; overflow: hidden; background-color: #f1f3f5; cursor: pointer; }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* 5. 오시는 길 & 네비게이션 버튼 */
+    .map-section { background-color: var(--bg-light); }
+    .map-placeholder { width: 100%; height: 200px; background-color: #e9ecef; display: flex; justify-content: center; align-items: center; color: #aaa; font-size: 0.9rem; margin-bottom: 20px; }
+    .navi-buttons { display: flex; gap: 8px; justify-content: center; max-width: 340px; margin: 0 auto; }
+    .navi-btn { flex: 1; padding: 12px 0; border: 1px solid #ddd; background: var(--bg-white); border-radius: 4px; font-size: 0.85rem; color: #444; text-decoration: none; font-weight: 500; }
+
+    /* 6. 축의금 송금 (간결한 바 버튼 타입) */
+    .bank-btn {
+      width: 100%; max-width: 340px; padding: 16px; background-color: var(--bg-white);
+      border: 1px solid #eaeaea; font-size: 0.9rem; color: var(--text-dark);
+      cursor: pointer; border-radius: 4px; margin: 0 auto 8px auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .bank-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; max-width: 340px; margin: 0 auto; background: #fafafa; }
+    .bank-row { padding: 15px; border-bottom: 1px solid #eee; text-align: left; font-size: 0.85rem; display: flex; justify-content: space-between; }
+    .copy-link { color: var(--point-color); text-decoration: underline; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <div class="phone-container">
+
+    <!-- 메인 커버 -->
+    <section class="cover-section">
+      <div class="cover-date">2026. 10. 24</div>
+      <div class="cover-img-box">
+        <!-- 💡 메인 웨딩 사진을 public 폴더에 넣고 경로를 맞추세요 -->
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=600" alt="Main Cover">
+      </div>
+      <h2 class="cover-names">손의한<span>|</span>홍길순</h2>
+      <p class="cover-loc">2026년 10px 24일 토요일 낮 12시<br>그랜드 하얏트 서울 그랜드볼룸</p>
+    </section>
+
+    <!-- 초대글 -->
+    <section class="greeting-section fade-up">
+      <div class="section-title">Invitation</div>
+      <div class="greeting-text">
+        곁에 있을 때 가장 나다운 모습이 되게 하는 사람,<br>
+        그런 서로를 만나 평생을 약속하고자 합니다.<br><br>
+        기쁜 날, 걸음 하시어<br>
+        저희의 시작을 따뜻하게 안아주세요.
+      </div>
+      <div class="relations">
+        <p><strong>손창완 · 이정숙</strong> <span>의 아들</span> <strong>의한</strong></p>
+        <p style="margin-top: 10px;"><strong>홍길동 · 김미영</strong> <span>의  딸</span> <strong>길순</strong></p>
+      </div>
+    </section>
+
+    <!-- [필카드 핵심 효과] 달력 & 디데이 섹션 -->
+    <section class="calendar-section fade-up">
+      <div class="section-title">Date</div>
+      <div class="cal-month">OCTOBER</div>
+      
+      <!-- 2026년 10월 미니 달력 레이아웃 -->
+      <div class="calendar-grid">
+        <div class="cal-header sun">S</div><div class="cal-header">M</div><div class="cal-header">T</div><div class="cal-header">W</div><div class="cal-header">T</div><div class="cal-header">F</div><div class="cal-header">S</div>
+        <div></div><div></div><div></div><div></div>1<div>2</div><div>3</div>
+        <div class="cal-day sun">4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
+        <div class="cal-day sun">11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div>
+        <div class="cal-day sun">18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div class="cal-day wedding-day">24</div>
+        <div class="cal-day sun">25</div><div>26</div><div>27</div><div>28</div><div>29</div><div>30</div><div>31</div>
+      </div>
+
+      <!-- 실시간 카운트다운 실장 -->
+      <div class="dday-box">
+        손의한 ♥ 홍길순의 결혼식이 <strong id="dday-text">0일</strong> 남았습니다.
+      </div>
+    </section>
+
+    <!-- 갤러리 -->
+    <section class="fade-up">
+      <div class="section-title">Gallery</div>
+      <div class="gallery-grid">
+        <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=300"></div>
+        <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=300"></div>
+        <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300"></div>
+      </div>
+    </section>
+
+    <!-- 오시는 길 -->
+    <section class="map-section fade-up">
+      <div class="section-title">Location</div>
+      <p style="font-weight: 500; margin-bottom: 5px;">그랜드 하얏트 서울, 그랜드볼룸</p>
+      <p style="color: var(--text-gray); font-size: 0.85rem; margin-bottom: 20px;">서울특별시 용산구 소월로 322</p>
+      
+      <!-- 임시 지도 공간 (실제 네이버/카카오 지도 스크립트를 넣을 수 있는 곳) -->
+      <div class="map-placeholder">※ 여기에 약도 사진이나 지도 API가 들어갑니다.</div>
+
+      <div class="navi-buttons">
+        <!-- href에 실제 목적지 검색 링크 주소를 넣으시면 작동합니다 -->
+        <a href="#" class="navi-btn">네이버 지도</a>
+        <a href="#" class="navi-btn">카카오 내비</a>
+        <a href="#" class="navi-btn">T맵</a>
+      </div>
+    </section>
+
+    <!-- 축의금 송금 -->
+    <section class="fade-up">
+      <div class="section-title">Account</div>
+      <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 25px;">축복의 마음을 전하실 곳</p>
+      
+      <button class="bank-btn" onclick="toggleBank('groom')">신랑측 마음 전하기 <span>▼</span></button>
+      <div id="bank-groom" class="bank-content">
+        <div class="bank-row"><span>국민은행 123456-04-123456<br><strong>손의한</strong></span><span class="copy-link" onclick="copyNum('123456-04-123456')">복사</span></div>
+      </div>
+
+      <button class="bank-btn" onclick="toggleBank('bride')">신부측 마음 전하기 <span>▼</span></button>
+      <div id="bank-bride" class="bank-content">
+        <div class="bank-row"><span>신한은행 987654-32-101234<br><strong>홍길순</strong></span><span class="copy-link" onclick="copyNum('987654-32-101234')">복사</span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 자바스크립트 기능 제어 -->
+  <script>
+    // 1. [핵심] 디데이 실시간 계산기
+    function getDDay() {
+      const weddingDate = new Date("2026-10-24T12:00:00+09:00"); // 💡 내 결혼식 날짜 입력
+      const today = new Date();
+      const distance = weddingDate - today;
+      const dday = Math.ceil(distance / (1000 * 60 * 60 * 24));
+      
+      const ddayText = document.getElementById("dday-text");
+      if (dday > 0) {
+        ddayText.innerText = `${dday}일`;
+      } else if (dday === 0) {
+        ddayText.innerText = `오늘`;
+      } else {
+        ddayText.innerText = `종료`;
+      }
+    }
+    getDDay();
+
+    // 2. 부드럽게 화면이 스르륵 나타나는 스크롤 애니메이션
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => scrollObserver.observe(el));
+
+    // 3. 축의금 아코디언 메뉴
+    function toggleBank(id) {
+      const el = document.getElementById(`bank-${id}`);
+      if (el.style.maxHeight && el.style.maxHeight !== "0px") {
+        el.style.maxHeight = "0px";
+      } else {
+        el.style.maxHeight = el.scrollHeight + "px";
+      }
+    }
+
+    // 4. 계좌 복사
+    function copyNum(num) {
+      navigator.clipboard.writeText(num).then(() => {
+        alert("계좌번호가 복사되었습니다.");
+      });
+    }
+  </script>
+</body>
+</html>
