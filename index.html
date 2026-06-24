@@ -407,3 +407,81 @@
   </script>
 </body>
 </html>
+<style>
+  /* 1. 인트로 폰트 및 스타일 */
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+  #intro-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #000000;
+    z-index: 9999; display: flex; justify-content: center; align-items: center;
+    transition: opacity 1.3s ease;
+  }
+  
+  .intro-text-block { 
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 3.5rem; 
+    color: #3b5f99; /* image_60090a.png의 딥 블루 컬러 */
+    text-align: center;
+    white-space: pre-line;
+  }
+
+  .intro-text-block span { opacity: 0; display: inline-block; animation: fadeInChar 0.3s forwards; }
+  @keyframes fadeInChar { to { opacity: 1; } }
+
+  /* 2. 하트 드로잉 애니메이션 (image_600d41.png 스타일) */
+  .heart-container { width: 100px; height: 100px; margin: 40px auto; }
+  .heart-path {
+    fill: none;
+    stroke: #b5838d; /* image_600d41.png의 로즈 브라운 색상 */
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+  }
+  .animate-heart .heart-path { animation: drawHeart 2s ease forwards; }
+  @keyframes drawHeart { to { stroke-dashoffset: 0; } }
+</style>
+
+<!-- 인트로 영역 -->
+<div id="intro-overlay">
+  <div class="intro-text-block" id="intro-text">결혼식에
+초대합니다</div>
+</div>
+
+<!-- 하트 영역 (본문 적절한 곳에 배치) -->
+<div class="heart-container" id="heart-trigger">
+  <svg viewBox="0 0 100 100">
+    <path class="heart-path" d="M50 85 C 20 50, 5 30, 25 20 C 35 15, 50 25, 50 35 C 50 25, 65 15, 75 20 C 95 30, 80 50, 50 85 Z" />
+  </svg>
+</div>
+
+<script>
+  // 인트로 텍스트 효과
+  window.addEventListener('DOMContentLoaded', () => {
+    const titleElement = document.getElementById('intro-text');
+    const text = titleElement.innerText;
+    titleElement.innerText = '';
+    [...text].forEach((char, i) => {
+      const span = document.createElement('span');
+      span.innerText = char;
+      span.style.animationDelay = `${i * 0.15}s`;
+      titleElement.appendChild(span);
+    });
+
+    setTimeout(() => {
+      const overlay = document.getElementById('intro-overlay');
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.remove(); }, 1300);
+    }, (text.length * 150) + 1000);
+  });
+
+  // 스크롤 시 하트 그리기 트리거
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      document.getElementById('heart-trigger').classList.add('animate-heart');
+    }
+  });
+  observer.observe(document.getElementById('heart-trigger'));
+</script>
