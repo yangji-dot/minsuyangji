@@ -3,63 +3,195 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minsu & Yangji Wedding</title>
-  <style>
-    body { margin: 0; padding: 0; }
+  <title>조민수 ∙ 김양지 모바일 초대장</title>
+  
+  <!-- 구글 폰트 명조 및 영문 필기체 로드 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400&family=Monsieur+La+Douise&display=swap" rel="stylesheet">
 
-    /* 인트로 오버레이: 배경 사진 적용 */
+  <style>
+    /* ✨ [눈누] 더페이스샵 잉크립퀴드체 웹폰트 소스 내장 */
+    @font-face {
+      font-family: 'InkLipquid';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* 기본 초기화 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #f5f4f0;
+      font-family: 'Noto Serif KR', serif;
+      color: #333333;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 450px;
+      margin: 0 auto;
+      background-color: #f5f4f0;
+      position: relative;
+      min-height: 100vh;
+      box-shadow: 0 0 20px rgba(0,0,0,0.02);
+    }
+
+    /* 1. 인트로 오버레이 */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('다운로드.jpg') no-repeat center center / cover;
+      background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('다운로드.jpg') no-repeat center center / cover;
       z-index: 9999; display: flex; justify-content: center; align-items: center;
       transition: opacity 1.5s ease;
     }
-
-    /* 더페이스샵 잉크립퀴드체 */
     .intro-text {
-      font-size: 3.2rem;
-      color:#FFB6C1; /* 우아한 핑크색 */
+      font-size: 3.4rem; 
+      color: #FFB6C1; /* 요청하신 연분홍 색상 */
       text-align: center;
-      line-height: 1.6;
-      white-space: pre-line;
-      font-family: 'ink lip:quid', cursive;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      white-space: pre-line; 
+      font-family: 'InkLipquid', sans-serif; /* ✨ 잉크립퀴드체 적용 */
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.25); /* 연분홍이 잘 보이도록 은은한 음영 추가 */
     }
-
     .char { opacity: 0; display: inline-block; animation: fadeInChar 0.6s forwards; }
     @keyframes fadeInChar { to { opacity: 1; } }
+
+    /* 2. 메인 콘텐츠 스타일 (아치형 프레임) */
+    .main-content {
+      padding: 50px 24px;
+      text-align: center;
+      position: relative;
+    }
+    .sub-title {
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 300; font-size: 0.75rem;
+      letter-spacing: 4px; color: #777777;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .main-names {
+      font-size: 1.3rem; font-weight: 400;
+      letter-spacing: 1px; color: #222222;
+      margin-bottom: 35px;
+    }
+
+    /* 이미지 아치 프레임 구조 */
+    .arch-frame {
+      width: 100%;
+      aspect-ratio: 1 / 1.35;
+      border-radius: 200px 200px 0 0;
+      overflow: hidden;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+    .arch-frame img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* 영문 필기체 감성 문구 */
+    .cursive-text {
+      font-family: 'Monsieur La Douise', cursive;
+      font-size: 2.5rem; color: #555555;
+      margin-bottom: 20px; font-weight: 400;
+    }
+    .main-date {
+      font-size: 0.95rem; color: #444444;
+      letter-spacing: -0.5px; font-weight: 300;
+    }
+
+    /* 3. 🌸 벚꽃 잎 흩날리는 이펙트 레이어 */
+    .cherry-blossom-container {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; overflow: hidden; z-index: 10;
+    }
+    .petal {
+      position: absolute; background: #ffb7c5;
+      border-radius: 150% 0 150% 150%;
+      opacity: 0.7; pointer-events: none;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.8; }
+      100% { transform: translateY(100vh) translateX(100px) rotate(720deg); opacity: 0; }
+    }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 </head>
 <body>
 
+  <!-- 1. 인트로 영역 -->
   <div id="intro-overlay">
-    <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
+    <div class="intro-text" id="intro">결혼식에 초대합니다</div>
+  </div>
+
+  <!-- 메인 레이아웃 -->
+  <div class="container">
+    <div class="cherry-blossom-container" id="blossom-box"></div>
+
+    <div class="main-content">
+      <div class="sub-title">THE NEW BEGINNING</div>
+      <div class="main-names">조민수  그리고  김양지</div>
+      
+      <div class="arch-frame">
+        <img src="다운로드.jpg" alt="웨딩 메인 사진">
+      </div>
+      
+      <div class="cursive-text">We are getting married</div>
+      <div class="main-date">2026년 6월 23일 화요일 오후 5시 45분</div>
+    </div>
   </div>
 
   <script>
+    // 인트로 스크립트
     const intro = document.getElementById('intro');
     const text = intro.innerText;
     intro.innerText = '';
-    
     [...text].forEach((char, i) => {
-      // 줄바꿈은 애니메이션 대상에서 제외
-      if (char === '\n') {
-        intro.appendChild(document.createElement('br'));
-      } else {
-        const span = document.createElement('span');
-        span.className = 'char';
-        span.innerText = char;
-        span.style.animationDelay = `${i * 0.15}s`;
-        intro.appendChild(span);
-      }
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.innerText = char;
+      span.style.animationDelay = `${i * 0.15}s`;
+      intro.appendChild(span);
     });
 
-    // 4초 후 인트로 fade-out
     setTimeout(() => {
       document.getElementById('intro-overlay').style.opacity = '0';
-      setTimeout(() => document.getElementById('intro-overlay').remove(), 1500);
+      setTimeout(() => {
+        document.getElementById('intro-overlay').remove();
+        startCherryBlossoms();
+      }, 1500);
     }, 4000);
+
+    // 🌸 벚꽃잎 자바스크립트
+    function startCherryBlossoms() {
+      const blossomBox = document.getElementById('blossom-box');
+      const maxPetals = 25;
+
+      function createPetal() {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        
+        const size = Math.random() * 6 + 6;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 1.4}px`;
+        petal.style.left = `${Math.random() * 100}%`;
+        
+        const duration = Math.random() * 5 + 6;
+        petal.style.animationDuration = `${duration}s`;
+        petal.style.animationDelay = `${Math.random() * 2}s`;
+
+        blossomBox.appendChild(petal);
+
+        setTimeout(() => {
+          petal.remove();
+          createPetal();
+        }, (duration + 2) * 1000);
+      }
+
+      for (let i = 0; i < maxPetals; i++) {
+        setTimeout(createPetal, i * 300);
+      }
+    }
   </script>
 </body>
 </html>
