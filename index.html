@@ -70,7 +70,7 @@
       100% { transform: translateY(100vh) translateX(80px) rotate(540deg) scale(1); opacity: 0; }
     }
 
-    /* 📝 [초대글 섹션 스타일] */
+    /* 🌿 초대글 섹션 스타일 */
     .invitation-section { padding: 60px 24px; background-color: #f5f4f0; text-align: center; }
     .leaf-icon { font-size: 1.2rem; color: #8c9085; margin-bottom: 40px; opacity: 0.8; display: inline-block; transform: rotate(-15deg); }
     .note-pad { max-width: 250px; margin: 0 auto; padding: 4px 0; background-image: linear-gradient(#e1dfda 1px, transparent 1px); background-size: 100% 30px; background-position: 0 0; font-family: 'GangwonSaeeum', sans-serif; word-break: keep-all; }
@@ -78,14 +78,14 @@
     .note-space { height: 30px; }
     .note-author { font-size: 1.3rem; color: #666666; }
 
-    /* 🦋 [소개글 섹션 스타일] */
+    /* 🦋 소개글 섹션 스타일 */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
     .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 30px; }
     .butterfly-left, .butterfly-right { width: 48px; }
     .butterfly-right { height: auto; transform: rotate(-10deg); }
     .greeting-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; line-height: 1.8; color: #444444; word-break: keep-all; text-align: center; max-width: 320px; margin: 0 auto; }
 
-    /* 📞 [부모님 정보 및 연락하기 테마 정의] */
+    /* 📞 부모님 정보 및 연락하기 테마 정의 */
     :root {
       --theme-pink: #f0b1b1; 
     }
@@ -102,57 +102,48 @@
     .contact-btn { display: block; width: 100%; max-width: 340px; margin: 0 auto; height: 54px; line-height: 54px; background-color: var(--theme-pink); color: #ffffff; font-size: 1.4rem; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: opacity 0.2s; }
     .contact-btn:active { opacity: 0.8; }
 
-/* 🛠️ 모달 팝업 레이어 (전체 글씨체 및 크기/두께 완벽 통일 버전) */
+    /* 🛠️ 모달 팝업 레이어 */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { width: 90%; max-width: 380px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transform: translateY(20px); transition: transform 0.3s ease; }
     .modal-overlay.active .modal-content { transform: translateY(0); }
     .modal-header { background-color: var(--theme-pink); color: #ffffff; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
     
-    /* 팝업 타이틀 */
     .modal-title { font-size: 1.6rem; letter-spacing: 1px; }
     .modal-close { font-size: 1.5rem; color: #ffffff; cursor: pointer; opacity: 0.8; background: none; border: none; font-family: sans-serif; }
     .modal-body { padding: 22px 24px; }
     .contact-list { display: flex; flex-direction: column; gap: 12px; }
     
-    /* 💡 [핵심 변경] 호칭과 이름의 크기를 1.55rem, 두께를 normal로 완전히 똑같이 정렬했습니다 */
     .contact-item { display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: inherit; font-size: 1.55rem; padding: 2px 0; font-weight: normal; }
     .contact-label { color: #666666; font-size: 1.55rem; font-weight: normal; }
     .contact-name { color: #111111; font-size: 1.55rem; font-weight: normal; }
     .modal-divider { height: 1px; background-color: #eeeeee; margin: 4px 0; }
 
-/* 📅 [폰트 전체 강원체 적용 및 간격 축소] 달력 섹션 스타일 */
+    /* 📅 달력 섹션 스타일 */
     .calendar-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .calendar-header { text-align: left; max-width: 340px; margin: 0 auto 15px auto; }
     .calendar-month { font-size: 2.2rem; color: #b18888; line-height: 1.2; }
     .calendar-day-text { font-size: 2.2rem; color: #b18888; line-height: 1.2; }
     
-    /* 가로줄과 날짜 사이 간격 좁힘 */
     .calendar-top-line { max-width: 340px; height: 2px; background-color: #c18888; margin: 8px auto 12px auto; }
     .calendar-bottom-line { max-width: 340px; height: 2px; background-color: #c18888; margin: 12px auto 0 auto; }
     
-    /* 테이블 내부 폰트도 전부 강원체로 통일 */
     .calendar-table { width: 100%; max-width: 340px; margin: 0 auto; border-collapse: collapse; font-family: 'GangwonSaeeum', sans-serif; color: #444444; }
-    
-    /* 칸의 높이와 패딩을 줄여 상하 간격을 조절하고 글씨 크기 키움 */
     .calendar-table th, .calendar-table td { width: 14.28%; height: 38px; text-align: center; vertical-align: middle; position: relative; font-size: 1.45rem; }
     .calendar-table th { font-weight: normal; color: #555555; padding-bottom: 8px; font-size: 1.4rem; }
-    .calendar-table th.sun, .calendar-table td.sun { color: #d96868; } /* 일요일 붉은색 */
+    .calendar-table th.sun, .calendar-table td.sun { color: #d96868; }
     
-    /* 💡 10월 18일 하이라이트 동그라미 (동그라미 안 숫자 위치 보정) */
     .wedding-day-point { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; background-color: #f0b1b1; border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; color: #ffffff !important; font-weight: bold; font-size: 1.45rem; padding-bottom: 2px; }
 
-/* ⏱️ [추가] 디데이 카운트다운 섹션 스타일 */
+    /* ⏱️ 디데이 카운트다운 섹션 스타일 */
     .dday-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .dday-title { font-size: 1.6rem; color: #555555; margin-bottom: 25px; letter-spacing: 0.5px; }
     
     .dday-container { display: flex; justify-content: center; align-items: center; gap: 14px; max-width: 360px; margin: 0 auto; }
     .dday-item { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
     
-    /* 💡 이미지와 동일한 색상의 핑크색 원형 마크와 그림자 효과 */
     .dday-circle { width: 62px; height: 62px; background-color: #f0b1b1; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 1.7rem; font-weight: bold; box-shadow: 0 4px 8px rgba(240, 177, 177, 0.25); }
     .dday-label { font-size: 1.15rem; color: #666666; }
-
   </style>
 </head>
 <body>
@@ -223,49 +214,48 @@
       <button class="contact-btn" onclick="openContactModal()">연락하기</button>
     </div>
 
-<div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="modal-title">연락하기</span>
-        <button class="modal-close" onclick="closeContactModal()">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="contact-list">
-          
-          <a href="tel:010-0000-0000" target="_self" class="contact-item">
-            <span class="contact-label">신랑 아버지</span>
-            <span class="contact-name">조병도</span>
-          </a>
-          <a href="tel:010-0000-0000" target="_self" class="contact-item">
-            <span class="contact-label">신랑 어머니</span>
-            <span class="contact-name">김애경</span>
-          </a>
-          <a href="tel:010-0000-0000" target="_self" class="contact-item">
-            <span class="contact-label">신랑</span>
-            <span class="contact-name">조민수</span>
-          </a>
+    <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title">연락하기</span>
+          <button class="modal-close" onclick="closeContactModal()">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="contact-list">
+            <a href="tel:010-0000-0000" target="_self" class="contact-item">
+              <span class="contact-label">신랑 아버지</span>
+              <span class="contact-name">조병도</span>
+            </a>
+            <a href="tel:010-0000-0000" target="_self" class="contact-item">
+              <span class="contact-label">신랑 어머니</span>
+              <span class="contact-name">김애경</span>
+            </a>
+            <a href="tel:010-0000-0000" target="_self" class="contact-item">
+              <span class="contact-label">신랑</span>
+              <span class="contact-name">조민수</span>
+            </a>
 
-          <div class="modal-divider"></div>
+            <div class="modal-divider"></div>
 
-          <a href="tel:010-0000-0000" target="_self" class="contact-item">
-            <span class="contact-label">신부 아버지</span>
-            <span class="contact-name">김승묵</span>
-          </a>
-          <a href="tel:010-0000-0000" target="_self" class="contact-item">
-            <span class="contact-label">신부 어머니</span>
-            <span class="contact-name">안희숙</span>
-          </a>
-          <a href="tel:010-0000-0000" target="_self" class="contact-item">
-            <span class="contact-label">신부</span>
-            <span class="contact-name">김양지</span>
-          </a>
-
+            <a href="tel:010-0000-0000" target="_self" class="contact-item">
+              <span class="contact-label">신부 아버지</span>
+              <span class="contact-name">김승묵</span>
+            </a>
+            <a href="tel:010-0000-0000" target="_self" class="contact-item">
+              <span class="contact-label">신부 어머니</span>
+              <span class="contact-name">안희숙</span>
+            </a>
+            <a href="tel:010-0000-0000" target="_self" class="contact-item">
+              <span class="contact-label">신부</span>
+              <span class="contact-name">김양지</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-<div class="calendar-section">
+    <!-- 📅 10월 정렬 보정 완료된 달력 구역 -->
+    <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
         <div class="calendar-day-text">열여덟 번째 날.</div>
@@ -294,7 +284,7 @@
             <td class="sun">4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
           </tr>
           <tr>
-            <td class="sun">11</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>12</td>
+            <td class="sun">11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td>
           </tr>
           <tr>
             <td class="sun"><span class="wedding-day-point">18</span></td>
@@ -309,8 +299,8 @@
       <div class="calendar-bottom-line"></div>
     </div>
 
-<div class="dday-section">
-      <div class="dday-title">민수 ♥ 양지  결혼식까지</div>
+    <div class="dday-section">
+      <div class="dday-title">민수 ♥ 양지  결婚식까지</div>
       <div class="dday-container">
         <div class="dday-item">
           <div class="dday-circle" id="dday-days">00</div>
@@ -330,11 +320,13 @@
         </div>
       </div>
     </div>
+  </div>
 
   <script>
-    // 1. 페이지 로드 시점 벚꽃 실행 및 에러 수정 완료
+    // 페이지 로딩 시 모든 기능 활성화
     window.addEventListener('DOMContentLoaded', () => {
       startCherryBlossoms();
+      initWeddingTimer(); // 여기에 정상 연결하여 타이머 복구 완료!
     });
 
     // 인트로 타이핑 효과
@@ -355,7 +347,7 @@
       setTimeout(() => { document.getElementById('intro-overlay').remove(); }, 1200);
     }, 4200);
 
-    // 🌸 벚꽃잎 낙하 스크립트 (치명적 타이포 수정 완료)
+    // 🌸 벚꽃잎 낙하 스크립트
     function startCherryBlossoms() {
       const blossomBox = document.getElementById('blossom-box');
       const maxPetals = 22;
@@ -378,9 +370,7 @@
           petal.style.animationDelay = `0s`;
         }
 
-        // 💡 [수정 포인트] blossomBox를 blossBox로 잘못 적었던 부분을 바로잡았습니다.
         blossomBox.appendChild(petal);
-
         setTimeout(() => { petal.remove(); createPetal(false); }, duration * 1000);
       }
 
@@ -403,21 +393,17 @@
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(event) { if (event.target === document.getElementById('contactModal')) { closeContactModal(); } }
-  </script>
-</body>
-</html>
 
-// ⏱️ 실시간 결혼식 디데이 카운트다운 타이머 매칭
+    // ⏱️ 모바일 친화형 실시간 결혼식 디데이 카운트다운 스크립트
     function initWeddingTimer() {
-      // 목표 예식일: 2026년 10월 18일 12시 50분
-      const targetDate = new Date('2026-10-18T12:50:00').getTime();
+      // 목표 예식일: 2026년 10월 18일 12시 50분 (월 파싱 안전처리)
+      const targetDate = new Date(2026, 9, 18, 12, 50, 0).getTime();
 
       function updateTimer() {
         const now = new Date().getTime();
         const distance = targetDate - now;
 
-        // 예식일이 지난 경우 모두 00 처리
-        if (distance < 0) {
+        if (distance <= 0) {
           document.getElementById('dday-days').innerText = '00';
           document.getElementById('dday-hours').innerText = '00';
           document.getElementById('dday-minutes').innerText = '00';
@@ -426,26 +412,20 @@
           return;
         }
 
-        // 시간 변환 공식 계산
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // 한 자리 수일 때 앞에 0을 붙여 2자리로 유지 (예: 9 -> 09)
         document.getElementById('dday-days').innerText = String(days).padStart(2, '0');
         document.getElementById('dday-hours').innerText = String(hours).padStart(2, '0');
         document.getElementById('dday-minutes').innerText = String(minutes).padStart(2, '0');
         document.getElementById('dday-seconds').innerText = String(seconds).padStart(2, '0');
       }
 
-      // 주기적 실행 등록 및 즉시 1회 가동
       updateTimer();
       const timerInterval = setInterval(updateTimer, 1000);
     }
-
-    // 기존 window 로드 이벤트에 타이머 추가 연동
-    window.addEventListener('DOMContentLoaded', () => {
-      initWeddingTimer();
-    });
-
+  </script>
+</body>
+</html>
