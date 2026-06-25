@@ -231,14 +231,18 @@ align-items:center;
 text-align:center;
 }
 
-.butterfly-left{
-width:90px;
-margin-bottom:40px;
+.butterfly-top{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px; /* 약 0.5cm */
+
+margin-bottom:35px;
 }
 
+.butterfly-left,
 .butterfly-right{
-width:70px;
-margin-top:40px;
+width:48px;
 }
 
 .greeting-text{
@@ -247,59 +251,6 @@ max-width:320px;
 margin:0 auto;
 }
 
-
-/* 🎬 애니메이션 정의: 왼쪽 나비의 부드러운 비행 */
-@keyframes floatLeft {
-  0% {
-    transform: translate(0,0) rotate(10deg);
-  }
-  25% {
-    transform: translate(12px,-15px) rotate(18deg);
-  }
-  50% {
-    transform: translate(22px,-5px) rotate(25deg);
-  }
-  75% {
-    transform: translate(10px,10px) rotate(15deg);
-  }
-  100% {
-    transform: translate(0,0) rotate(10deg);
-  }
-}
-
-/* 🎬 애니메이션 정의: 오른쪽 나비의 부드러운 비행 */
-@keyframes floatRight {
-  0% {
-    transform: translate(0,0) rotate(-10deg);
-  }
-  25% {
-    transform: translate(-10px,12px) rotate(-18deg);
-  }
-  50% {
-    transform: translate(-20px,0px) rotate(-25deg);
-  }
-  75% {
-    transform: translate(-8px,-10px) rotate(-15deg);
-  }
-  100% {
-    transform: translate(0,0) rotate(-10deg);
-  }
-}
-
-/* 🎬 애니메이션 정의: 나비의 입체적인 날개짓 (좌우 크기를 수축/이완하여 표현) */
-@keyframes wingFlap {
-  0% {
-    transform: rotate(-2deg) scaleX(1);
-  }
-
-  50% {
-    transform: rotate(2deg) scaleX(0.92);
-  }
-
-  100% {
-    transform: rotate(-2deg) scaleX(1);
-  }
-}
 
   </style>
 </head>
@@ -346,10 +297,21 @@ margin:0 auto;
 <!-- 🦋 소개글 섹션 시작 -->
 <div class="butterfly-area">
 
+  <div class="butterfly-top">
+
+```
 <img id="butterflyLeft"
-    class="butterfly-left"
-    src="butterfly_left1.png"
-    alt="나비">
+     class="butterfly-left"
+     src="butterfly_left1.png"
+     alt="나비">
+
+<img id="butterflyRight"
+     class="butterfly-right"
+     src="butterfly_right1.png"
+     alt="나비">
+```
+
+  </div>
 
   <div class="greeting-text">
     두 사람이 하나 되어<br>
@@ -357,16 +319,16 @@ margin:0 auto;
     소중한 시작을 함께 축복해주시면<br>
     감사하겠습니다.<br><br>
 
-```
 바쁘신 와중에도 귀한 발걸음으로<br>
 참석해주시는 모든 분들께<br>
 진심으로 감사드립니다.<br><br>
 
 저희 두 사람의 앞날에<br>
 따뜻한 격려와 축복을 부탁드립니다.
-```
 
   </div>
+
+</div>
 
 <img id="butterflyRight"
     class="butterfly-right"
@@ -374,7 +336,7 @@ margin:0 auto;
     alt="나비">
 
 </div>
- 소개글 섹션 끝 -->
+<!-- 🦋 소개글 섹션 끝 -->
 
   </div>
 
@@ -441,7 +403,6 @@ margin:0 auto;
         createPetal(true);
       }
     }
-  </script>
 
 const leftFrames = [
 "butterfly_left1.png",
@@ -471,7 +432,8 @@ leftFrames[leftIndex];
 document.getElementById("butterflyRight").src =
 rightFrames[rightIndex];
 
-}, 220);
+}, 320);
 
+</script>
 </body>
 </html>
