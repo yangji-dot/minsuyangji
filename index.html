@@ -7,27 +7,19 @@
   
   <style>
     /* ✨ [폰트 파일 직접 서버 내장 매칭] */
-    /* 1. 인트로: 더페이스샵 잉크립퀴드체 */
     @font-face {
       font-family: 'InkLipquid';
-      src: url('InkLipquid.woff2') format('woff2'),
-           url('InkLipquid.woff') format('woff');
+      src: url('InkLipquid.woff2') format('woff2'), url('InkLipquid.woff') format('woff');
       font-weight: normal; font-style: normal;
     }
-    
-    /* 2. 메인 상단: 강원교육새음체 */
     @font-face {
       font-family: 'GangwonSaeeum';
-      src: url('GangwonSaeeum.woff2') format('woff2'),
-           url('GangwonSaeeum.woff') format('woff');
+      src: url('GangwonSaeeum.woff2') format('woff2'), url('GangwonSaeeum.woff') format('woff');
       font-weight: normal; font-style: normal;
     }
-    
-    /* 3. 메인 하단 필기체: 나눔손글씨 붓 */
     @font-face {
       font-family: 'NanumBrush';
-      src: url('NanumBrush.woff2') format('woff2'),
-           url('NanumBrush.woff') format('woff');
+      src: url('NanumBrush.woff2') format('woff2'), url('NanumBrush.woff') format('woff');
       font-weight: normal; font-style: normal;
     }
 
@@ -40,13 +32,8 @@
     }
 
     .container {
-      width: 100%;
-      max-width: 450px;
-      margin: 0 auto;
-      background-color: #f5f4f0;
-      position: relative;
-      min-height: 100vh;
-      box-shadow: 0 0 20px rgba(0,0,0,0.02);
+      width: 100%; max-width: 450px; margin: 0 auto; background-color: #f5f4f0;
+      position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
     /* 1. 인트로 오버레이 */
@@ -57,80 +44,25 @@
       transition: opacity 1.2s ease-in-out;
     }
     .intro-text {
-      font-size: 3.2rem; 
-      color: #FFB6C1; 
-      text-align: center;
-      white-space: pre-line; 
-      font-family: 'InkLipquid', sans-serif; 
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+      font-size: 3.2rem; color: #FFB6C1; text-align: center; white-space: pre-line; 
+      font-family: 'InkLipquid', sans-serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
     .char { opacity: 0; display: inline-block; animation: fadeInChar 0.6s forwards; }
     @keyframes fadeInChar { to { opacity: 1; } }
 
     /* 2. 메인 콘텐츠 스타일 */
-    .main-content {
-      padding: 55px 24px;
-      text-align: center;
-      position: relative;
-    }
-    
-    /* 상단 글씨 세트 */
-    .top-text-group {
-      font-family: 'GangwonSaeeum', sans-serif; 
-      word-break: keep-all;
-    }
-    .sub-title {
-      font-size: 1.15rem;
-      letter-spacing: 2px; 
-      color: #666666;
-      margin-bottom: 14px;
-    }
-    .main-names {
-      font-size: 1.8rem; 
-      color: #111111;
-      margin-bottom: 35px;
-    }
+    .main-content { padding: 55px 24px; text-align: center; position: relative; }
+    .top-text-group { font-family: 'GangwonSaeeum', sans-serif; word-break: keep-all; }
+    .sub-title { font-size: 1.15rem; letter-spacing: 2px; color: #666666; margin-bottom: 14px; }
+    .main-names { font-size: 1.8rem; color: #111111; margin-bottom: 35px; }
+    .arch-frame { width: 100%; aspect-ratio: 1 / 1.35; border-radius: 220px 220px 0 0; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+    .arch-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .cursive-text { font-family: 'NanumBrush', cursive; font-size: 2.8rem; color: #555555; margin-bottom: 22px; letter-spacing: 1px; }
+    .main-date { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.35rem; color: #444444; }
 
-    /* 이미지 아치 프레임 */
-    .arch-frame {
-      width: 100%;
-      aspect-ratio: 1 / 1.35;
-      border-radius: 220px 220px 0 0;
-      overflow: hidden;
-      margin-bottom: 40px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-    }
-    .arch-frame img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-
-    /* 하단 글씨 세트 */
-    .cursive-text {
-      font-family: 'NanumBrush', cursive; 
-      font-size: 2.8rem; 
-      color: #555555;
-      margin-bottom: 22px;
-      letter-spacing: 1px;
-    }
-    .main-date {
-      font-family: 'GangwonSaeeum', sans-serif; 
-      font-size: 1.35rem; 
-      color: #444444;
-    }
-
-    /* 3. 🌸 실시간 흩날리는 연한 벚꽃 효과 */
-    .cherry-blossom-container {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; overflow: hidden; z-index: 10;
-    }
-    .petal {
-      position: absolute; 
-      background: #ffe3e8; 
-      border-radius: 150% 0 150% 150%;
-      opacity: 0.45; 
-      pointer-events: none;
-      animation: fall linear infinite;
-    }
+    /* 3. 🌸 실시간 흩날리는 벚꽃 효과 */
+    .cherry-blossom-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 10; }
+    .petal { position: absolute; background: #ffe3e8; border-radius: 150% 0 150% 150%; opacity: 0.45; pointer-events: none; animation: fall linear infinite; }
     @keyframes fall {
       0% { transform: translateY(-20px) rotate(0deg) scale(0.8); opacity: 0; }
       15% { opacity: 0.55; }
@@ -139,199 +71,49 @@
     }
 
     /* 📝 [초대글 섹션 스타일] */
-    .invitation-section {
-      padding: 60px 24px;
-      background-color: #f5f4f0;
-      text-align: center;
-    }
-
-    .leaf-icon {
-      font-size: 1.2rem;
-      color: #8c9085;
-      margin-bottom: 40px;
-      opacity: 0.8;
-      display: inline-block;
-      transform: rotate(-15deg);
-    }
-
-    .note-pad {
-      max-width: 250px;
-      margin: 0 auto;
-      padding: 4px 0;
-      background-image: linear-gradient(#e1dfda 1px, transparent 1px);
-      background-size: 100% 30px;
-      background-position: 0 0;
-      font-family: 'GangwonSaeeum', sans-serif;
-      word-break: keep-all;
-    }
-
-    .note-text {
-      font-size: 1.3rem; 
-      color: #333333;
-      line-height: 30px;  
-      text-align: center;
-      transform: translateY(-5px); 
-      display: block;
-    }
-
-    .note-space {
-      height: 30px; 
-    }
-
-    .note-author {
-      font-size: 1.3rem;
-      color: #666666;
-    }
+    .invitation-section { padding: 60px 24px; background-color: #f5f4f0; text-align: center; }
+    .leaf-icon { font-size: 1.2rem; color: #8c9085; margin-bottom: 40px; opacity: 0.8; display: inline-block; transform: rotate(-15deg); }
+    .note-pad { max-width: 250px; margin: 0 auto; padding: 4px 0; background-image: linear-gradient(#e1dfda 1px, transparent 1px); background-size: 100% 30px; background-position: 0 0; font-family: 'GangwonSaeeum', sans-serif; word-break: keep-all; }
+    .note-text { font-size: 1.3rem; color: #333333; line-height: 30px; text-align: center; transform: translateY(-5px); display: block; }
+    .note-space { height: 30px; }
+    .note-author { font-size: 1.3rem; color: #666666; }
 
     /* 🦋 [소개글 섹션 스타일] */
-    .greeting-section {
-      padding: 80px 24px;
-      background-color: #f5f4f0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+    .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
+    .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 30px; }
+    .butterfly-left, .butterfly-right { width: 48px; }
+    .butterfly-right { height: auto; transform: rotate(-10deg); }
+    .greeting-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; line-height: 1.8; color: #444444; word-break: keep-all; text-align: center; max-width: 320px; margin: 0 auto; }
 
-    .butterfly-wrap {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .greeting-text {
-      font-family: 'GangwonSaeeum', sans-serif;
-      font-size: 1.4rem;
-      line-height: 1.8;
-      color: #444444;
-      word-break: keep-all;
-      text-align: center;
-      max-width: 320px;
-      margin: 0 auto;
-    }
-
-    .butterfly-area {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding-bottom: 40px; /* 아래 부모님 섹션과의 간격 확보 */
-    }
-
-    .butterfly-top {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px; 
-      margin-bottom: 30px;
-    }
-
-    .butterfly-left,
-    .butterfly-right {
-      width: 48px;
-    }
-
-    .butterfly-right {
-      width: 48px;
-      height: auto;
-      transform: rotate(-10deg);
-    }
-
-
-    /* ---------------------------------------------------------------- */
-    /* 💡 [여기에 새로 추가되었습니다] 📞 부모님 정보 및 연락하기 전용 CSS 서식 */
-    /* ---------------------------------------------------------------- */
+    /* 📞 [부모님 정보 및 연락하기 테마 정의] */
     :root {
-      --theme-pink: #f0b1b1; /* 나중에 언제든 바꿀 수 있는 기본 핑크 테마 색상 */
+      --theme-pink: #f0b1b1; 
     }
 
-    .family-section {
-      padding: 20px 24px 80px 24px;
-      background-color: #f5f4f0;
-      text-align: center;
-      font-family: 'GangwonSaeeum', sans-serif;
-    }
-
-    .family-relations {
-      max-width: 320px;
-      margin: 0 auto 35px auto;
-      font-size: 1.4rem;
-      line-height: 2.2;
-      color: #333333;
-    }
-    
-    .relation-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-    }
+    /* 4. 부모님 정보 & 연락하기 섹션 스타일 */
+    .family-section { padding: 20px 24px 80px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
+    .family-relations { max-width: 320px; margin: 0 auto 35px auto; font-size: 1.4rem; line-height: 2.2; color: #333333; }
+    .relation-row { display: flex; justify-content: center; align-items: center; gap: 12px; }
     .relation-row .parents { width: 140px; text-align: right; }
     .relation-row .relation { color: #888888; font-size: 1.15rem; width: 40px; text-align: center; }
     .relation-row .child { width: 90px; text-align: left; }
 
-    /* 연락하기 활성화 버튼 */
-    .contact-btn {
-      display: block;
-      width: 100%;
-      max-width: 340px;
-      margin: 0 auto;
-      height: 54px;
-      line-height: 54px;
-      background-color: var(--theme-pink);
-      color: #ffffff;
-      font-size: 1.4rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-      transition: opacity 0.2s;
-    }
+    /* 연락하기 버튼 */
+    .contact-btn { display: block; width: 100%; max-width: 340px; margin: 0 auto; height: 54px; line-height: 54px; background-color: var(--theme-pink); color: #ffffff; font-size: 1.4rem; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: opacity 0.2s; }
     .contact-btn:active { opacity: 0.8; }
 
-    /* 연락처 모달 팝업 레이어 */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 10000;
-      display: flex; justify-content: center; align-items: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
+    /* 모달 팝업 레이어 */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
-
-    .modal-content {
-      width: 90%;
-      max-width: 380px;
-      background-color: #ffffff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
+    .modal-content { width: 90%; max-width: 380px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transform: translateY(20px); transition: transform 0.3s ease; }
     .modal-overlay.active .modal-content { transform: translateY(0); }
-
-    .modal-header {
-      background-color: var(--theme-pink);
-      color: #ffffff;
-      padding: 16px 20px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
+    .modal-header { background-color: var(--theme-pink); color: #ffffff; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
     .modal-title { font-size: 1.45rem; }
-    .modal-close {
-      font-size: 1.5rem; color: #ffffff; cursor: pointer; opacity: 0.8;
-      background: none; border: none; font-family: sans-serif;
-    }
-
+    .modal-close { font-size: 1.5rem; color: #ffffff; cursor: pointer; opacity: 0.8; background: none; border: none; font-family: sans-serif; }
     .modal-body { padding: 25px 24px; }
     .contact-list { display: flex; flex-direction: column; gap: 16px; }
-    .contact-item {
-      display: flex; justify-content: space-between; align-items: center;
-      text-decoration: none; color: inherit; font-size: 1.35rem; padding: 4px 0;
-    }
+    .contact-item { display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: inherit; font-size: 1.35rem; padding: 4px 0; }
     .contact-label { color: #777777; font-size: 1.15rem; }
-    .contact-name { color: #111111; }
     .modal-divider { height: 1px; background-color: #eeeeee; margin: 6px 0; }
 
   </style>
@@ -350,11 +132,9 @@
         <div class="sub-title">THE NEW BEGINNING</div>
         <div class="main-names">조민수  그리고  김양지</div>
       </div>
-      
       <div class="arch-frame">
         <img src="다운로드.jpg" alt="웨딩 메인 사진">
       </div>
-      
       <div class="cursive-text">We are getting married</div>
       <div class="main-date">2026년 10월 18일 일요일 오후 12시 50분</div>
       <div class="main-date">상주 마리앙스. 마리앙스 홀</div>
@@ -377,7 +157,6 @@
         <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
         <img id="butterflyRight" class="butterfly-right" src="butterfly_right1.png" alt="나비">
       </div>
-
       <div class="greeting-text">
         두 사람이 하나 되어<br>
         아름다운 가정을 꾸려나가는<br>
@@ -391,8 +170,6 @@
       </div>
     </div>
 
-
-    /* 💡 [여기에 새로 추가되었습니다] 4. 부모님 정보 및 연락하기 버튼 HTML 구역 */
     <div class="family-section">
       <div class="family-relations">
         <div class="relation-row">
@@ -406,3 +183,101 @@
           <span class="child">김양지</span>
         </div>
       </div>
+      <button class="contact-btn" onclick="openContactModal()">연락하기</button>
+    </div>
+
+  </div> <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title">연락하기</span>
+        <button class="modal-close" onclick="closeContactModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="contact-list">
+          <a href="tel:010-0000-0000" class="contact-item"><span class="contact-label">신랑</span><span class="contact-name">조민수</span></a>
+          <a href="tel:010-0000-0000" class="contact-item"><span class="contact-label">신랑 아버지</span><span class="contact-name">조병도</span></a>
+          <a href="tel:010-0000-0000" class="contact-item"><span class="contact-label">신랑 어머니</span><span class="contact-name">김애경</span></a>
+          <div class="modal-divider"></div>
+          <a href="tel:010-0000-0000" class="contact-item"><span class="contact-label">신부</span><span class="contact-name">김양지</span></a>
+          <a href="tel:010-0000-0000" class="contact-item"><span class="contact-label">신부 아버지</span><span class="contact-name">김승묵</span></a>
+          <a href="tel:010-0000-0000" class="contact-item"><span class="contact-label">신부 어머니</span><span class="contact-name">안희숙</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. 페이지 로드 시점 벚꽃 실행 및 에러 수정 완료
+    window.addEventListener('DOMContentLoaded', () => {
+      startCherryBlossoms();
+    });
+
+    // 인트로 타이핑 효과
+    const intro = document.getElementById('intro');
+    const text = intro.innerText;
+    intro.innerText = '';
+    [...text].forEach((char, i) => {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.innerText = char;
+      span.style.animationDelay = `${i * 0.12}s`;
+      intro.appendChild(span);
+    });
+
+    // 인트로 타이밍 제어
+    setTimeout(() => {
+      document.getElementById('intro-overlay').style.opacity = '0';
+      setTimeout(() => { document.getElementById('intro-overlay').remove(); }, 1200);
+    }, 4200);
+
+    // 🌸 벚꽃잎 낙하 스크립트 (치명적 타이포 수정 완료)
+    function startCherryBlossoms() {
+      const blossomBox = document.getElementById('blossom-box');
+      const maxPetals = 22;
+
+      function createPetal(isInitial = false) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        
+        const size = Math.random() * 5 + 5;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 1.4}px`;
+        petal.style.left = `${Math.random() * 100}%`;
+        
+        const duration = Math.random() * 4 + 7;
+        petal.style.animationDuration = `${duration}s`;
+        
+        if (isInitial) {
+          petal.style.animationDelay = `-${Math.random() * duration}s`;
+        } else {
+          petal.style.animationDelay = `0s`;
+        }
+
+        // 💡 [수정 포인트] blossomBox를 blossBox로 잘못 적었던 부분을 바로잡았습니다.
+        blossomBox.appendChild(petal);
+
+        setTimeout(() => { petal.remove(); createPetal(false); }, duration * 1000);
+      }
+
+      for (let i = 0; i < maxPetals; i++) { createPetal(true); }
+    }
+
+    // 🦋 나비 실시간 애니메이션 스위칭
+    const leftFrames = ["butterfly_left1.png", "butterfly_left2.png", "butterfly_left3.png", "butterfly_left2.png"];
+    const rightFrames = ["butterfly_right1.png", "butterfly_right2.png", "butterfly_right3.png", "butterfly_right2.png"];
+    let leftIndex = 0, rightIndex = 0;
+
+    setInterval(() => {
+      leftIndex = (leftIndex + 1) % leftFrames.length;
+      rightIndex = (rightIndex + 1) % rightFrames.length;
+      document.getElementById("butterflyLeft").src = leftFrames[leftIndex];
+      document.getElementById("butterflyRight").src = rightFrames[rightIndex];
+    }, 320);
+
+    // 📞 연락하기 모달 제어
+    function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
+    function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
+    function closeContactModalOutside(event) { if (event.target === document.getElementById('contactModal')) { closeContactModal(); } }
+  </script>
+</body>
+</html>
