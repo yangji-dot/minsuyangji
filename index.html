@@ -210,14 +210,15 @@
 /* 나비들이 자유롭게 배치될 기준 공간 */
 .butterfly-wrap {
   position: relative;
-  max-width: 340px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 🦋 나비 컨테이너 */
 .butterfly-float {
   position: absolute;
-  width: 44px;
+  width: 70px;
   pointer-events: none;
 }
 
@@ -226,21 +227,12 @@
   width: 100%;
   display: block;
   transform-origin: center center;
-  animation: wingFlap 0.35s ease-in-out infinite;
+  animation: wingFlap 0.8s ease-in-out infinite;
 }
 
 /* 왼쪽 나비 */
-.bf-left {
-  top: -30px;
-  left: 0;
-  animation: floatLeft 6s ease-in-out infinite;
-}
-
-/* 오른쪽 나비 */
-.bf-right {
-  bottom: -20px;
-  right: 0;
-  animation: floatRight 7s ease-in-out infinite;
+.bf-top {
+  margin-bottom: 20px;
 }
 
 /* 소개글 텍스트 서식 */
@@ -293,15 +285,18 @@
 /* 🎬 애니메이션 정의: 나비의 입체적인 날개짓 (좌우 크기를 수축/이완하여 표현) */
 @keyframes wingFlap {
   0% {
-    transform: scaleX(1);
+    transform: rotate(-2deg) scaleX(1);
   }
+
   50% {
-    transform: scaleX(0.65);
+    transform: rotate(2deg) scaleX(0.92);
   }
+
   100% {
-    transform: scaleX(1);
+    transform: rotate(-2deg) scaleX(1);
   }
 }
+
   </style>
 </head>
 <body>
@@ -347,29 +342,22 @@
 <!-- 🦋 소개글 섹션 시작 -->
 <div class="butterfly-wrap">
 
-  <!-- 왼쪽 나비 -->
-  <div class="bf-left butterfly-float">
+  <div class="bf-top butterfly-float">
     <img src="butterfly.png" class="butterfly-wing" alt="나비">
   </div>
 
-  <!-- 소개글 -->
   <div class="greeting-text">
     두 사람이 하나 되어<br>
     아름다운 가정을 꾸려나가는<br>
     소중한 시작을 함께 축복해주시면<br>
-    감사하겠습니다.<br>
-    <br>
+    감사하겠습니다.<br><br>
+
     바쁘신 와중에도 귀한 발걸음으로<br>
     참석해주시는 모든 분들께<br>
-    진심으로 감사드립니다.<br>
-    <br>
+    진심으로 감사드립니다.<br><br>
+
     저희 두 사람의 앞날에<br>
     따뜻한 격려와 축복을 부탁드립니다.
-  </div>
-
-  <!-- 오른쪽 나비 -->
-  <div class="bf-right butterfly-float">
-    <img src="butterfly.png" class="butterfly-wing" alt="나비">
   </div>
 
 </div>
