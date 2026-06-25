@@ -121,25 +121,37 @@
     .contact-name { color: #111111; font-size: 1.55rem; font-weight: normal; }
     .modal-divider { height: 1px; background-color: #eeeeee; margin: 4px 0; }
 
-/* 📅 [간격 축소 및 10월 정렬] 달력 섹션 스타일 */
-    .calendar-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; }
+/* 📅 [폰트 전체 강원체 적용 및 간격 축소] 달력 섹션 스타일 */
+    .calendar-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .calendar-header { text-align: left; max-width: 340px; margin: 0 auto 15px auto; }
-    .calendar-month { font-family: 'GangwonSaeeum', sans-serif; font-size: 2.2rem; color: #b18888; line-height: 1.2; }
-    .calendar-day-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 2.2rem; color: #b18888; line-height: 1.2; }
+    .calendar-month { font-size: 2.2rem; color: #b18888; line-height: 1.2; }
+    .calendar-day-text { font-size: 2.2rem; color: #b18888; line-height: 1.2; }
     
-    /* 💡 가로줄과 날짜 사이의 간격을 좁히기 위해 여백(margin) 축소 */
+    /* 가로줄과 날짜 사이 간격 좁힘 */
     .calendar-top-line { max-width: 340px; height: 2px; background-color: #c18888; margin: 8px auto 12px auto; }
     .calendar-bottom-line { max-width: 340px; height: 2px; background-color: #c18888; margin: 12px auto 0 auto; }
     
-    .calendar-table { width: 100%; max-width: 340px; margin: 0 auto; border-collapse: collapse; font-family: sans-serif; font-size: 0.95rem; color: #444444; }
+    /* 테이블 내부 폰트도 전부 강원체로 통일 */
+    .calendar-table { width: 100%; max-width: 340px; margin: 0 auto; border-collapse: collapse; font-family: 'GangwonSaeeum', sans-serif; color: #444444; }
     
-    /* 💡 칸의 높이와 패딩을 줄여 전체적인 상하 간격을 좁혔습니다 */
-    .calendar-table th, .calendar-table td { width: 14.28%; height: 38px; text-align: center; vertical-align: middle; position: relative; }
-    .calendar-table th { font-weight: normal; color: #555555; padding-bottom: 8px; }
+    /* 칸의 높이와 패딩을 줄여 상하 간격을 조절하고 글씨 크기 키움 */
+    .calendar-table th, .calendar-table td { width: 14.28%; height: 38px; text-align: center; vertical-align: middle; position: relative; font-size: 1.45rem; }
+    .calendar-table th { font-weight: normal; color: #555555; padding-bottom: 8px; font-size: 1.4rem; }
     .calendar-table th.sun, .calendar-table td.sun { color: #d96868; } /* 일요일 붉은색 */
     
-    /* 💡 10월 18일 하이라이트 동그라미 */
-    .wedding-day-point { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; background-color: #f0b1b1; border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; color: #ffffff !important; font-weight: bold; }
+    /* 💡 10월 18일 하이라이트 동그라미 (동그라미 안 숫자 위치 보정) */
+    .wedding-day-point { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; background-color: #f0b1b1; border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; color: #ffffff !important; font-weight: bold; font-size: 1.45rem; padding-bottom: 2px; }
+
+/* ⏱️ [추가] 디데이 카운트다운 섹션 스타일 */
+    .dday-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
+    .dday-title { font-size: 1.6rem; color: #555555; margin-bottom: 25px; letter-spacing: 0.5px; }
+    
+    .dday-container { display: flex; justify-content: center; align-items: center; gap: 14px; max-width: 360px; margin: 0 auto; }
+    .dday-item { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+    
+    /* 💡 이미지와 동일한 색상의 핑크색 원형 마크와 그림자 효과 */
+    .dday-circle { width: 62px; height: 62px; background-color: #f0b1b1; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 1.7rem; font-weight: bold; box-shadow: 0 4px 8px rgba(240, 177, 177, 0.25); }
+    .dday-label { font-size: 1.15rem; color: #666666; }
 
   </style>
 </head>
@@ -295,6 +307,28 @@
       </table>
       
       <div class="calendar-bottom-line"></div>
+    </div>
+
+<div class="dday-section">
+      <div class="dday-title">민수 ♥ 양지  결혼식까지</div>
+      <div class="dday-container">
+        <div class="dday-item">
+          <div class="dday-circle" id="dday-days">00</div>
+          <div class="dday-label">Days</div>
+        </div>
+        <div class="dday-item">
+          <div class="dday-circle" id="dday-hours">00</div>
+          <div class="dday-label">Hours</div>
+        </div>
+        <div class="dday-item">
+          <div class="dday-circle" id="dday-minutes">00</div>
+          <div class="dday-label">Minutes</div>
+        </div>
+        <div class="dday-item">
+          <div class="dday-circle" id="dday-seconds">00</div>
+          <div class="dday-label">Seconds</div>
+        </div>
+      </div>
     </div>
 
   <script>
