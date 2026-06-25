@@ -55,9 +55,7 @@
     .top-text-group { font-family: 'GangwonSaeeum', sans-serif; word-break: keep-all; }
     .sub-title { font-size: 1.15rem; letter-spacing: 2px; color: #666666; margin-bottom: 14px; }
     .main-names { font-size: 1.8rem; color: #111111; margin-bottom: 35px; }
-    
-    /* 💡 '그리고' 텍스트를 이름보다 20% 작게 스타일링 (0.8em) */
-    .main-names .and-text { font-size: 0.8em; color: #777777; margin: 0 6px; }
+    .main-names .and-text { font-size: 0.8em; color: #111111; margin: 0 6px; }
 
     .arch-frame { width: 100%; aspect-ratio: 1 / 1.35; border-radius: 220px 220px 0 0; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
     .arch-frame img { width: 100%; height: 100%; object-fit: cover; }
@@ -89,11 +87,6 @@
     .butterfly-right { height: auto; transform: rotate(-10deg); }
     .greeting-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; line-height: 1.8; color: #444444; word-break: keep-all; text-align: center; max-width: 320px; margin: 0 auto; }
 
-    /* 📞 부모님 정보 및 연락하기 테마 정의 */
-    :root {
-      --theme-pink: #f0b1b1; 
-    }
-
     /* 4. 부모님 정보 & 연락하기 섹션 스타일 */
     .family-section { padding: 20px 24px 80px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .family-relations { max-width: 320px; margin: 0 auto 35px auto; font-size: 1.4rem; line-height: 2.2; color: #333333; }
@@ -102,26 +95,41 @@
     .relation-row .relation { color: #888888; font-size: 1.15rem; width: 40px; text-align: center; }
     .relation-row .child { width: 90px; text-align: left; }
 
-    /* 연락하기 버튼 */
-    .contact-btn { display: block; width: 100%; max-width: 340px; margin: 0 auto; height: 54px; line-height: 54px; background-color: var(--theme-pink); color: #ffffff; font-size: 1.4rem; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: opacity 0.2s; }
-    .contact-btn:active { opacity: 0.8; }
+    /* 💡 [image_211c2a.png] 스타일 반영: 화이트 배경의 심플한 버튼 */
+    .contact-btn { 
+      display: block; width: 100%; max-width: 260px; margin: 0 auto; height: 50px; 
+      line-height: 48px; background-color: #ffffff; color: #555555; font-size: 1.35rem; 
+      border: 1px solid #dcdcdc; border-radius: 6px; cursor: pointer; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.2s; 
+    }
+    .contact-btn:active { background-color: #f9f9f9; }
 
-    /* 🛠️ 모달 팝업 레이어 */
+    /* 🛠️ [image_211ca2.png] 스타일 반영: 커스텀 팝업 디자인 */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
-    .modal-content { width: 90%; max-width: 380px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transform: translateY(20px); transition: transform 0.3s ease; }
+    .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
     .modal-overlay.active .modal-content { transform: translateY(0); }
-    .modal-header { background-color: var(--theme-pink); color: #ffffff; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.2rem; color: #aaaaaa; cursor: pointer; background: none; border: none; font-family: sans-serif; }
     
-    .modal-title { font-size: 1.6rem; letter-spacing: 1px; }
-    .modal-close { font-size: 1.5rem; color: #ffffff; cursor: pointer; opacity: 0.8; background: none; border: none; font-family: sans-serif; }
-    .modal-body { padding: 22px 24px; }
-    .contact-list { display: flex; flex-direction: column; gap: 12px; }
+    /* 신랑측/신부측 좌우 격자형 레이아웃 */
+    .modal-grid { display: flex; width: 100%; gap: 10px; }
+    .grid-column { width: 50%; display: flex; flex-direction: column; gap: 24px; }
     
-    .contact-item { display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: inherit; font-size: 1.55rem; padding: 2px 0; font-weight: normal; }
-    .contact-label { color: #666666; font-size: 1.55rem; font-weight: normal; }
-    .contact-name { color: #111111; font-size: 1.55rem; font-weight: normal; }
-    .modal-divider { height: 1px; background-color: #eeeeee; margin: 4px 0; }
+    .side-title { font-size: 1.55rem; font-weight: bold; margin-bottom: 6px; text-align: center; }
+    .grid-column.groom-side .side-title { color: #5c849e; } /* 신랑측 블루톤 단색 */
+    .grid-column.bride-side .side-title { color: #b57a7a; } /* 신부측 핑크톤 단색 */
+    
+    .member-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 10px; }
+    .action-icons { display: flex; justify-content: center; gap: 22px; }
+    .action-icons a { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.1s; }
+    .action-icons a:active { transform: scale(0.9); }
+    
+    /* SVG 아이콘 고유 색상 및 크기 지정 */
+    .grid-column.groom-side .icon-phone { fill: #5c849e; width: 20px; height: 20px; }
+    .grid-column.groom-side .icon-mail { fill: #7296ad; width: 22px; height: 22px; }
+    .grid-column.bride-side .icon-phone { fill: #b57a7a; width: 20px; height: 20px; }
+    .grid-column.bride-side .icon-mail { fill: #c79191; width: 22px; height: 22px; }
 
     /* 📅 달력 섹션 스타일 */
     .calendar-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
@@ -136,7 +144,7 @@
     .calendar-table th, .calendar-table td { width: 14.28%; height: 38px; text-align: center; vertical-align: middle; position: relative; font-size: 1.45rem; }
     .calendar-table th { font-weight: normal; color: #555555; padding-bottom: 8px; font-size: 1.4rem; }
     
-    /* 💡 일요일 컬러(기존 붉은색) 및 토요일 컬러(새롭게 파란색 추가) */
+    /* 일요일 컬러 및 토요일 컬러(파란색) */
     .calendar-table th.sun, .calendar-table td.sun { color: #d96868; }
     .calendar-table th.sat, .calendar-table td.sat { color: #4a86e8; }
     
@@ -218,49 +226,81 @@
           <span class="child">양지</span>
         </div>
       </div>
-      <button class="contact-btn" onclick="openContactModal()">연락하기</button>
+      <!-- 💡 [image_211c2a.png] 형태의 '혼주에게 연락하기' 버튼으로 변경 -->
+      <button class="contact-btn" onclick="openContactModal()">혼주에게 연락하기</button>
     </div>
 
+    <!-- 🛠️ [image_211ca2.png] 커스텀 격자형 팝업 레이어 변경 -->
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
-        <div class="modal-header">
-          <span class="modal-title">연락하기</span>
-          <button class="modal-close" onclick="closeContactModal()">✕</button>
-        </div>
-        <div class="modal-body">
-          <div class="contact-list">
-            <a href="tel:010-0000-0000" target="_self" class="contact-item">
-              <span class="contact-label">신랑 아버지</span>
-              <span class="contact-name">조병도</span>
-            </a>
-            <a href="tel:010-0000-0000" target="_self" class="contact-item">
-              <span class="contact-label">신랑 어머니</span>
-              <span class="contact-name">김애경</span>
-            </a>
-            <a href="tel:010-0000-0000" target="_self" class="contact-item">
-              <span class="contact-label">신랑</span>
-              <span class="contact-name">조민수</span>
-            </a>
+        <button class="modal-close" onclick="closeContactModal()">✕</button>
+        
+        <div class="modal-grid">
+          <!-- 🟦 신랑측 구역 -->
+          <div class="grid-column groom-side">
+            <div class="side-title">신랑측</div>
+            
+            <div class="member-box">
+              <div class="member-info">아버지 조병도</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
+            
+            <div class="member-box">
+              <div class="member-info">어머니/신랑모 김애경</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
 
-            <div class="modal-divider"></div>
+            <!-- 💡 어머니 밑에 신랑 추가 -->
+            <div class="member-box">
+              <div class="member-info">신랑 조민수</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 🟥 신부측 구역 -->
+          <div class="grid-column bride-side">
+            <div class="side-title">신부측</div>
+            
+            <div class="member-box">
+              <div class="member-info">아버지 김승묵</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
+            
+            <div class="member-box">
+              <div class="member-info">어머니/신부모 안희숙</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
 
-            <a href="tel:010-0000-0000" target="_self" class="contact-item">
-              <span class="contact-label">신부 아버지</span>
-              <span class="contact-name">김승묵</span>
-            </a>
-            <a href="tel:010-0000-0000" target="_self" class="contact-item">
-              <span class="contact-label">신부 어머니</span>
-              <span class="contact-name">안희숙</span>
-            </a>
-            <a href="tel:010-0000-0000" target="_self" class="contact-item">
-              <span class="contact-label">신부</span>
-              <span class="contact-name">김양지</span>
-            </a>
+            <!-- 💡 어머니 밑에 신부 추가 -->
+            <div class="member-box">
+              <div class="member-info">신부 김양지</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
 
+    <!-- 📅 달력 구역 -->
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
