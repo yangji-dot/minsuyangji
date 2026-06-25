@@ -214,27 +214,33 @@
   margin: 0 auto;
 }
 
-/* 🦋 나비 공통 스타일 */
-.butterfly {
+/* 🦋 나비 컨테이너 */
+.butterfly-float {
   position: absolute;
-  width: 32px; /* 나비 크기 조절 */
-  height: auto;
-  opacity: 0.85;
+  width: 44px;
   pointer-events: none;
 }
 
-/* 왼쪽 나비 위치 및 날개짓+둥실 애니메이션 */
-.bf-left {
-  top: -20px;
-  left: 10px;
-  animation: floatLeft 4s ease-in-out infinite, wingFlap 0.6s ease-in-out infinite alternate;
+/* 나비 이미지 */
+.butterfly-wing {
+  width: 100%;
+  display: block;
+  transform-origin: center center;
+  animation: wingFlap 0.35s ease-in-out infinite;
 }
 
-/* 오른쪽 나비 위치 및 애니메이션 (왼쪽과 엇박자로 움직이도록 세팅) */
+/* 왼쪽 나비 */
+.bf-left {
+  top: -30px;
+  left: 0;
+  animation: floatLeft 6s ease-in-out infinite;
+}
+
+/* 오른쪽 나비 */
 .bf-right {
-  bottom: -10px;
-  right: 10px;
-  animation: floatRight 4.5s ease-in-out infinite, wingFlap 0.5s ease-in-out infinite alternate;
+  bottom: -20px;
+  right: 0;
+  animation: floatRight 7s ease-in-out infinite;
 }
 
 /* 소개글 텍스트 서식 */
@@ -248,22 +254,54 @@
 
 /* 🎬 애니메이션 정의: 왼쪽 나비의 부드러운 비행 */
 @keyframes floatLeft {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(15deg); }
-  50% { transform: translateY(-12px) translateX(8px) rotate(20deg); }
+  0% {
+    transform: translate(0,0) rotate(10deg);
+  }
+  25% {
+    transform: translate(12px,-15px) rotate(18deg);
+  }
+  50% {
+    transform: translate(22px,-5px) rotate(25deg);
+  }
+  75% {
+    transform: translate(10px,10px) rotate(15deg);
+  }
+  100% {
+    transform: translate(0,0) rotate(10deg);
+  }
 }
 
 /* 🎬 애니메이션 정의: 오른쪽 나비의 부드러운 비행 */
 @keyframes floatRight {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(-15deg); }
-  50% { transform: translateY(15px) translateX(-6px) rotate(-10deg); }
+  0% {
+    transform: translate(0,0) rotate(-10deg);
+  }
+  25% {
+    transform: translate(-10px,12px) rotate(-18deg);
+  }
+  50% {
+    transform: translate(-20px,0px) rotate(-25deg);
+  }
+  75% {
+    transform: translate(-8px,-10px) rotate(-15deg);
+  }
+  100% {
+    transform: translate(0,0) rotate(-10deg);
+  }
 }
 
 /* 🎬 애니메이션 정의: 나비의 입체적인 날개짓 (좌우 크기를 수축/이완하여 표현) */
 @keyframes wingFlap {
-  0% { transform: scaleX(1); }
-  100% { transform: scaleX(0.5) skewY(5deg); }
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.65);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
-
   </style>
 </head>
 <body>
@@ -307,32 +345,34 @@
     <!-- 초대글 섹션 끝 -->
 
 <!-- 🦋 소개글 섹션 시작 -->
-    <div class="greeting-section">
-      <div class="butterfly-wrap">
-        
-        <!-- 왼쪽 나비 (image_fa87fd.png 매칭) -->
-        <img src="image_fa87fd.png" class="butterfly bf-left" alt="나비">
-        
-        <!-- 소개글 본문 -->
-        <div class="greeting-text">
-          두 사람이 하나 되어<br>
-          아름다운 가정을 꾸려나가는<br>
-          소중한 시작을 함께 축복해주시면<br>
-          감사하겠습니다.<br>
-          <br>
-          바쁘신 와중에도 귀한 발걸음으로<br>
-          참석해주시는 모든 분들께<br>
-          진심으로 감사드립니다.<br>
-          <br>
-          저희 두 사람의 앞날에<br>
-          따뜻한 격려와 축복을 부탁드립니다.
-        </div>
-        
-        <!-- 오른쪽 나비 (image_fa87fd.png 매칭) -->
-        <img src="image_fa87fd.png" class="butterfly bf-right" alt="나비">
-        
-      </div>
-    </div>
+<div class="butterfly-wrap">
+
+  <!-- 왼쪽 나비 -->
+  <div class="bf-left butterfly-float">
+    <img src="butterfly.png" class="butterfly-wing" alt="나비">
+  </div>
+
+  <!-- 소개글 -->
+  <div class="greeting-text">
+    두 사람이 하나 되어<br>
+    아름다운 가정을 꾸려나가는<br>
+    소중한 시작을 함께 축복해주시면<br>
+    감사하겠습니다.<br>
+    <br>
+    바쁘신 와중에도 귀한 발걸음으로<br>
+    참석해주시는 모든 분들께<br>
+    진심으로 감사드립니다.<br>
+    <br>
+    저희 두 사람의 앞날에<br>
+    따뜻한 격려와 축복을 부탁드립니다.
+  </div>
+
+  <!-- 오른쪽 나비 -->
+  <div class="bf-right butterfly-float">
+    <img src="butterfly.png" class="butterfly-wing" alt="나비">
+  </div>
+
+</div>
     <!-- 🦋 소개글 섹션 끝 -->
 
   </div>
