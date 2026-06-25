@@ -121,21 +121,23 @@
     .contact-name { color: #111111; font-size: 1.55rem; font-weight: normal; }
     .modal-divider { height: 1px; background-color: #eeeeee; margin: 4px 0; }
 
-/* 📅 [추가] 달력 섹션 스타일 */
+/* 📅 [보정] 달력 섹션 스타일 (위아래 가로줄 굵기 및 색상 일치) */
     .calendar-section { padding: 50px 24px; background-color: #f5f4f0; text-align: center; }
-    .calendar-header { text-align: left; max-width: 340px; margin: 0 auto 30px auto; }
+    .calendar-header { text-align: left; max-width: 340px; margin: 0 auto 25px auto; }
     .calendar-month { font-family: 'GangwonSaeeum', sans-serif; font-size: 2.2rem; color: #b18888; line-height: 1.2; }
     .calendar-day-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 2.2rem; color: #b18888; line-height: 1.2; }
-    .calendar-line { max-width: 340px; height: 1px; background-color: #b18888; margin: 12px auto 20px auto; opacity: 0.6; }
+    
+    /* 💡 이미지와 동일한 두께와 색상의 상단/하단 가로줄 */
+    .calendar-top-line { max-width: 340px; height: 2px; background-color: #c18888; margin: 12px auto 20px auto; }
+    .calendar-bottom-line { max-width: 340px; height: 2px; background-color: #c18888; margin: 25px auto 0 auto; }
     
     .calendar-table { width: 100%; max-width: 340px; margin: 0 auto; border-collapse: collapse; font-family: sans-serif; font-size: 0.95rem; color: #444444; }
     .calendar-table th, .calendar-table td { width: 14.28%; height: 45px; text-align: center; vertical-align: middle; position: relative; }
     .calendar-table th { font-weight: normal; color: #555555; padding-bottom: 15px; }
-    .calendar-table th.sun, .calendar-table td.sun { color: #d96868; } /* 일요일 붉은색 */
+    .calendar-table th.sun, .calendar-table td.sun { color: #d96868; } /* 일요일 색상 */
     
-    /* 💡 10월 18일 강조 동그라미 */
-    .wedding-day-point { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; background-color: #f0b1b1; border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; color: #ffffff !important; font-weight: bold; }
-    .wedding-time-tag { position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; color: #666666; white-space: nowrap; width: 60px; font-weight: normal; }
+    /* 💡 10월 18일 하이라이트 동그라미 (시간 제외 버전) */
+    .wedding-day-point { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background-color: #f0b1b1; border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; color: #ffffff !important; font-weight: bold; }
 
   </style>
 </head>
@@ -254,7 +256,8 @@
         <div class="calendar-month">시월의</div>
         <div class="calendar-day-text">열여덟 번째 날.</div>
       </div>
-      <div class="calendar-line"></div>
+      
+      <div class="calendar-top-line"></div>
       
       <table class="calendar-table">
         <thead>
@@ -278,12 +281,7 @@
           </tr>
           <tr>
             <td class="sun">12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td>
-            <td>
-              <span class="wedding-day-point">
-                18
-                <span class="wedding-time-tag">오후 12:50</span>
-              </span>
-            </td>
+            <td><span class="wedding-day-point">18</span></td>
           </tr>
           <tr>
             <td class="sun">19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
@@ -293,8 +291,9 @@
           </tr>
         </tbody>
       </table>
+      
+      <div class="calendar-bottom-line"></div>
     </div>
-
   <script>
     // 1. 페이지 로드 시점 벚꽃 실행 및 에러 수정 완료
     window.addEventListener('DOMContentLoaded', () => {
