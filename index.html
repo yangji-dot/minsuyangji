@@ -406,3 +406,46 @@
   </script>
 </body>
 </html>
+
+// ⏱️ 실시간 결혼식 디데이 카운트다운 타이머 매칭
+    function initWeddingTimer() {
+      // 목표 예식일: 2026년 10월 18일 12시 50분
+      const targetDate = new Date('2026-10-18T12:50:00').getTime();
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        // 예식일이 지난 경우 모두 00 처리
+        if (distance < 0) {
+          document.getElementById('dday-days').innerText = '00';
+          document.getElementById('dday-hours').innerText = '00';
+          document.getElementById('dday-minutes').innerText = '00';
+          document.getElementById('dday-seconds').innerText = '00';
+          clearInterval(timerInterval);
+          return;
+        }
+
+        // 시간 변환 공식 계산
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // 한 자리 수일 때 앞에 0을 붙여 2자리로 유지 (예: 9 -> 09)
+        document.getElementById('dday-days').innerText = String(days).padStart(2, '0');
+        document.getElementById('dday-hours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('dday-minutes').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('dday-seconds').innerText = String(seconds).padStart(2, '0');
+      }
+
+      // 주기적 실행 등록 및 즉시 1회 가동
+      updateTimer();
+      const timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    // 기존 window 로드 이벤트에 타이머 추가 연동
+    window.addEventListener('DOMContentLoaded', () => {
+      initWeddingTimer();
+    });
+
