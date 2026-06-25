@@ -5,17 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>조민수 ∙ 김양지 모바일 초대장</title>
   
-  <!-- 구글 폰트: 고딕, 명조, 필기체, 연분홍 붓글씨에 최적화된 나눔손글씨 붓체 로드 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://noonnu.cc/font_page/68" rel="stylesheet">
-
   <style>
+    /* ✨ [폰트 파일 직접 서버 내장 매칭]
+      다운로드하신 폰트 파일들을 '다운로드.jpg'와 같은 폴더에 넣어주세요.
+    */
+    
+    /* 1. 인트로: 더페이스샵 잉크립퀴드체 */
+    @font-face {
+      font-family: 'InkLipquid';
+      src: url('InkLipquid.woff2') format('woff2'),
+           url('InkLipquid.woff') format('woff');
+      font-weight: normal; font-style: normal;
+    }
+    
+    /* 2. 메인 상단: 강원교육새음체 */
+    @font-face {
+      font-family: 'GangwonSaeeum';
+      src: url('GangwonSaeeum.woff2') format('woff2'),
+           url('GangwonSaeeum.woff') format('woff');
+      font-weight: normal; font-style: normal;
+    }
+    
+    /* 3. 메인 하단 필기체: 나눔손글씨 붓 */
+    @font-face {
+      font-family: 'NanumBrush';
+      src: url('NanumBrush.woff2') format('woff2'),
+           url('NanumBrush.woff') format('woff');
+      font-weight: normal; font-style: normal;
+    }
+
     /* 기본 초기화 */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background-color: #f5f4f0;
-      font-family: 'Noto Serif KR', serif;
       color: #333333;
       overflow-x: hidden;
     }
@@ -30,145 +52,162 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* 1. 인트로 오버레이 */
+    /* 1. 인트로 오버레이 (불투명 어두운색 최적화 유지) */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('다운로드.jpg') no-repeat center center / cover;
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
       z-index: 9999; display: flex; justify-content: center; align-items: center;
-      transition: opacity 1.5s ease;
+      transition: opacity 1.2s ease-in-out;
     }
     .intro-text {
-      font-size: 3.5rem; /* 가독성을 위해 크기 살짝 조정 */
-      color: #FFB6C1; /* 요청하신 연분홍색상 적용 */
+      font-size: 3.2rem; 
+      color: #FFB6C1; 
       text-align: center;
       white-space: pre-line; 
-      font-family: '잉크립', cursive; /* 붓글씨 대체 폰트 */
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.3); /* 연분홍색을 돋보이게 하기 위한 부드러운 그림자 */
+      font-family: 'InkLipquid', sans-serif; 
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
     .char { opacity: 0; display: inline-block; animation: fadeInChar 0.6s forwards; }
     @keyframes fadeInChar { to { opacity: 1; } }
 
     /* 2. 메인 콘텐츠 스타일 */
     .main-content {
-      padding: 50px 24px;
+      padding: 55px 24px;
       text-align: center;
       position: relative;
     }
+    
+    /* 상단 글씨 세트 */
+    .top-text-group {
+      font-family: 'GangwonSaeeum', sans-serif; 
+      word-break: keep-all;
+    }
     .sub-title {
-      font-family: 'Noto Serif KR', serif;
-      font-weight: 300; font-size: 0.75rem;
-      letter-spacing: 4px; color: #777777;
-      text-transform: uppercase; margin-bottom: 12px;
+      font-size: 1.15rem;
+      letter-spacing: 2px; 
+      color: #666666;
+      margin-bottom: 14px;
     }
     .main-names {
-      font-size: 1.3rem; font-weight: 400;
-      letter-spacing: 1px; color: #222222;
+      font-size: 1.8rem; 
+      color: #111111;
       margin-bottom: 35px;
     }
 
-    /* 이미지 아치 프레임 구조 */
+    /* 이미지 아치 프레임 */
     .arch-frame {
       width: 100%;
       aspect-ratio: 1 / 1.35;
-      border-radius: 200px 200px 0 0;
+      border-radius: 220px 220px 0 0;
       overflow: hidden;
-      margin-bottom: 35px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     }
     .arch-frame img {
       width: 100%; height: 100%; object-fit: cover;
     }
 
-    /* 영문 필기체 감성 문구 */
+    /* 하단 글씨 세트 */
     .cursive-text {
-      font-family: 'Monsieur La Douise', cursive;
-      font-size: 2.5rem; color: #555555;
-      margin-bottom: 20px; font-weight: 400;
+      font-family: 'NanumBrush', cursive; 
+      font-size: 2.8rem; 
+      color: #555555;
+      margin-bottom: 22px;
+      letter-spacing: 1px;
     }
     .main-date {
-      font-size: 0.95rem; color: #444444;
-      letter-spacing: -0.5px; font-weight: 300;
+      font-family: 'GangwonSaeeum', sans-serif; 
+      font-size: 1.35rem; 
+      color: #444444;
     }
 
-    /* 3. 🌸 벚꽃 잎 흩날리는 이펙트 레이어 */
+    /* 3. 🌸 실시간 흩날리는 연한 벚꽃 효과 */
     .cherry-blossom-container {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none; overflow: hidden; z-index: 10;
     }
     .petal {
-      position: absolute; background: #ffb7c5;
+      position: absolute; 
+      background: #ffe3e8; 
       border-radius: 150% 0 150% 150%;
-      opacity: 0.7; pointer-events: none;
+      opacity: 0.45; 
+      pointer-events: none;
       animation: fall linear infinite;
     }
     @keyframes fall {
-      0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.8; }
-      90% { opacity: 0.8; }
-      100% { transform: translateY(100vh) translateX(100px) rotate(720deg); opacity: 0; }
+      0% { transform: translateY(-20px) rotate(0deg) scale(0.8); opacity: 0; }
+      15% { opacity: 0.55; }
+      85% { opacity: 0.55; }
+      100% { transform: translateY(100vh) translateX(80px) rotate(540deg) scale(1); opacity: 0; }
     }
 
-/* 📝 줄노트 초대글 전용 디자인 서식 */
+/* 📝 [초대글 섹션 스타일] */
 .invitation-section {
-  padding: 80px 24px 60px 24px;
+  padding: 60px 24px;
   background-color: #f5f4f0;
   text-align: center;
 }
 
+/* 상단 나뭇잎 아이콘 (이미지가 없을 경우를 대비해 유니코드 이모지로 깔끔하게 대체 및 스타일링) */
 .leaf-icon {
   font-size: 1.2rem;
   color: #8c9085;
-  margin-bottom: 35px;
-  opacity: 0.7;
+  margin-bottom: 40px;
+  opacity: 0.8;
   display: inline-block;
   transform: rotate(-15deg);
 }
 
+/* 줄노트 배경 구현 구역 */
 .note-pad {
   max-width: 380px;
   margin: 0 auto;
   padding: 10px 0;
-  /* image_79f973.png 느낌의 정갈한 연회색 줄노트 격자선 선언 (간격 52px) */
+  
+  /* 💡 image_79f973.png와 같은 정갈한 연한 회색 줄노트 선 구현 (간격 52px) */
   background-image: linear-gradient(#e1dfda 1px, transparent 1px);
   background-size: 100% 52px;
   background-position: 0 0;
-  font-family: 'GangwonSaeeum', sans-serif; /* 임시 강원새음체 지정 */
+  
+  font-family: 'GangwonSaeeum', sans-serif; /* 일단 강원새음체로 세팅 */
   word-break: keep-all;
 }
 
+/* 노트 위 글귀 스타일 */
 .note-text {
-  font-size: 1.45rem;
+  font-size: 1.0rem; /* 강원새음체 특성에 맞춰 크기 밸런스 조정 */
   color: #333333;
-  /* 선 위에 글씨가 정확히 정렬되도록 높이 일치 */
+  
+  /* 💡 배경 줄간격(52px)과 글씨 높이를 일치시켜 선 위에 글씨가 정확히 올라타도록 제어 */
   line-height: 52px; 
   text-align: center;
 }
 
+/* 영화 제목 구절 구분 공백 */
 .note-space {
-  height: 52px; /* 깔끔하게 한 줄 공백 */
+  height: 52px; /* 한 줄을 비워두는 효과 */
 }
 
 .note-author {
   font-size: 1.3rem;
   color: #666666;
 }
-
   </style>
 </head>
 <body>
 
-  <!-- 1. 인트로 영역 (수정된 폰트와 연분홍 컬러) -->
   <div id="intro-overlay">
-    <div class="intro-text" id="intro">결혼식에 초대합니다</div>
+    <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
   </div>
 
-  <!-- 메인 레이아웃 -->
   <div class="container">
     <div class="cherry-blossom-container" id="blossom-box"></div>
 
     <div class="main-content">
-      <div class="sub-title">THE NEW BEGINNING</div>
-      <div class="main-names">조민수  그리고  김양지</div>
+      <div class="top-text-group">
+        <div class="sub-title">THE NEW BEGINNING</div>
+        <div class="main-names">조민수  그리고  김양지</div>
+      </div>
       
       <div class="arch-frame">
         <img src="다운로드.jpg" alt="웨딩 메인 사진">
@@ -177,11 +216,10 @@
       <div class="cursive-text">We are getting married</div>
       <div class="main-date">2026년 6월 23일 화요일 오후 5시 45분</div>
     </div>
-  </div>
 
-<!-- 📝 [새로 추가된 초대글 섹션 시작] -->
+<!-- 📝 초대글 섹션 시작 -->
     <div class="invitation-section">
-      <!-- 상단 나뭇잎 포인트 (image_79f973.png 오마주) -->
+      <!-- 상단 나뭇잎 포인트 -->
       <div class="leaf-icon">🌿</div>
       
       <!-- 줄노트 글귀 영역 -->
@@ -194,10 +232,17 @@
         <p class="note-text note-author">영화 &lt;어바웃 타임&gt;</p>
       </div>
     </div>
-    <!-- 📝 초대글 섹션 끝 -->
+    <!-- 초대글 섹션 끝 -->
+
+  </div>
 
   <script>
-    // 인트로 스크립트
+    // 페이지 로드 시점(인트로가 켜져 있을 때) 내부적으로 벚꽃잎을 미리 날리기 시작합니다.
+    window.addEventListener('DOMContentLoaded', () => {
+      startCherryBlossoms();
+    });
+
+    // 인트로 타이핑 효과 스크립트
     const intro = document.getElementById('intro');
     const text = intro.innerText;
     intro.innerText = '';
@@ -205,46 +250,53 @@
       const span = document.createElement('span');
       span.className = 'char';
       span.innerText = char;
-      span.style.animationDelay = `${i * 0.15}s`;
+      span.style.animationDelay = `${i * 0.12}s`;
       intro.appendChild(span);
     });
 
+    // 인트로 오버레이 투명화 및 원천 제거 타이밍 최적화
     setTimeout(() => {
       document.getElementById('intro-overlay').style.opacity = '0';
       setTimeout(() => {
         document.getElementById('intro-overlay').remove();
-        startCherryBlossoms();
-      }, 1500);
-    }, 4000);
+      }, 1200);
+    }, 4200);
 
-    // 🌸 벚꽃잎 자바스크립트
+    // 🌸 벚꽃잎 자바스크립트 (즉시 생성 및 무한 낙하)
     function startCherryBlossoms() {
       const blossomBox = document.getElementById('blossom-box');
-      const maxPetals = 25;
+      const maxPetals = 22;
 
-      function createPetal() {
+      function createPetal(isInitial = false) {
         const petal = document.createElement('div');
         petal.className = 'petal';
         
-        const size = Math.random() * 6 + 6;
+        const size = Math.random() * 5 + 5;
         petal.style.width = `${size}px`;
         petal.style.height = `${size * 1.4}px`;
         petal.style.left = `${Math.random() * 100}%`;
         
-        const duration = Math.random() * 5 + 6;
+        const duration = Math.random() * 4 + 7;
         petal.style.animationDuration = `${duration}s`;
-        petal.style.animationDelay = `${Math.random() * 2}s`;
+        
+        // 인트로가 걷힐 때 이미 공중에 흩날리는 중이도록 첫 생성 잎들은 랜덤한 시작 지연(delay)을 뺍니다.
+        if (isInitial) {
+          petal.style.animationDelay = `-${Math.random() * duration}s`;
+        } else {
+          petal.style.animationDelay = `0s`;
+        }
 
         blossomBox.appendChild(petal);
 
         setTimeout(() => {
           petal.remove();
-          createPetal();
-        }, (duration + 2) * 1000);
+          createPetal(false); 
+        }, duration * 1000);
       }
 
+      // 처음 구동 시 즉시 22개의 꽃잎을 엇갈린 공중 위치로 뿌려 배치시킵니다.
       for (let i = 0; i < maxPetals; i++) {
-        setTimeout(createPetal, i * 300);
+        createPetal(true);
       }
     }
   </script>
