@@ -162,30 +162,34 @@
 .note-pad {
   max-width: 380px;
   margin: 0 auto;
-  padding: 10px 0;
+  padding: 5px 0; /* 상하 여백 미세 조정 */
   
-  /* 💡 image_79f973.png와 같은 정갈한 연한 회색 줄노트 선 구현 (간격 10px) */
+  /* 💡 글자 겹침을 해결하기 위해 줄 간격을 45px로 시원하게 넓힙니다. */
   background-image: linear-gradient(#e1dfda 1px, transparent 1px);
-  background-size: 100% 30px;
+  background-size: 100% 45px;
   background-position: 0 0;
   
-  font-family: 'GangwonSaeeum', sans-serif; /* 일단 강원새음체로 세팅 */
+  font-family: 'GangwonSaeeum', sans-serif;
   word-break: keep-all;
 }
 
 /* 노트 위 글귀 스타일 */
 .note-text {
-  font-size: 1.3rem; /* 강원새음체 특성에 맞춰 크기 밸런스 조정 */
+  font-size: 1.3rem; 
   color: #333333;
   
-  /* 💡 배경 줄간격(30px)과 글씨 높이를 일치시켜 선 위에 글씨가 정확히 올라타도록 제어 */
-  line-height: 30px; 
+  /* 💡 줄 높이를 변경된 간격 45px과 똑같이 맞춰줍니다. */
+  line-height: 45px;  
   text-align: center;
+  
+  /* 💡 강원새음체 폰트 고유의 아래 처짐을 보정하여 글자가 선 위에 완벽히 올라타도록 만듭니다. */
+  padding-top: 2px; 
 }
 
 /* 영화 제목 구절 구분 공백 */
 .note-space {
-  height: 30px; /* 한 줄을 비워두는 효과 */
+  /* 💡 한 줄 공백 높이도 45px로 통일 */
+  height: 45px; 
 }
 
 .note-author {
