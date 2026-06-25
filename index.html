@@ -100,7 +100,7 @@
       line-height: 48px; background-color: #ffffff; color: #555555; font-size: 1.35rem; 
       border: 1px solid #dcdcdc; border-radius: 6px; cursor: pointer; 
       box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.2s;
-      font-family: 'GangwonSaeeum', sans-serif; /* 💡 버튼 텍스트 강원세음체 적용 */
+      font-family: 'GangwonSaeeum', sans-serif;
     }
     .contact-btn:active { background-color: #f9f9f9; }
 
@@ -111,7 +111,7 @@
     .modal-overlay.active .modal-content { transform: translateY(0); }
     .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.2rem; color: #aaaaaa; cursor: pointer; background: none; border: none; font-family: sans-serif; }
     
-    .modal-grid { display: flex; width: 100%; gap: 10px; font-family: 'GangwonSaeeum', sans-serif; } /* 💡 내부 텍스트 강원세음체 고정 */
+    .modal-grid { display: flex; width: 100%; gap: 10px; font-family: 'GangwonSaeeum', sans-serif; }
     .grid-column { width: 50%; display: flex; flex-direction: column; gap: 24px; }
     .side-title { font-size: 1.55rem; font-weight: bold; margin-bottom: 6px; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .grid-column.groom-side .side-title { color: #5c849e; }
@@ -152,33 +152,56 @@
     .dday-container { display: flex; justify-content: center; align-items: center; gap: 14px; max-width: 360px; margin: 0 auto; }
     .dday-item { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
     
-    .dday-circle { width: 62px; height: 62px; background-color: #f0b1b1; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 1.7rem; font-weight: bold; box-shadow: 0 4px 8px rgba(240, 177, 177, 0.25); }
+    /* 🛠️ 숫자 처짐 현상 보완 완료 */
+    .dday-circle { 
+      width: 62px; height: 62px; background-color: #f0b1b1; border-radius: 50%; 
+      display: flex; justify-content: center; align-items: center; padding-bottom: 3px;
+      color: #ffffff; font-size: 1.7rem; font-weight: bold; box-shadow: 0 4px 8px rgba(240, 177, 177, 0.25); 
+    }
     .dday-label { font-size: 1.15rem; color: #666666; }
 
-    /* 📸 갤러리 섹션 스타일 (디데이 하단으로 배치 이동됨) */
+    /* 💝 마음 전하실 곳 섹션 스타일 (레퍼런스 이미지 기준 색상 구현) */
+    .account-section { padding: 60px 24px 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
+    .account-main-title { font-size: 1.95rem; color: #f2b2b2; margin-bottom: 35px; font-weight: normal; }
+    .account-intro-text { font-size: 1.35rem; color: #555555; line-height: 1.8; margin-bottom: 25px; word-break: keep-all; }
+    .account-sub-text { font-size: 1.3rem; color: #666666; line-height: 1.8; margin-bottom: 40px; word-break: keep-all; }
+
+    /* 아코디언 상자 공통 디자인 (image_2293eb.png 매칭) */
+    .accordion-wrapper { max-width: 380px; margin: 0 auto 14px auto; background-color: #ffffff; border: 1px solid #dcdcdc; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); overflow: hidden; text-align: left; }
+    .accordion-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+    .accordion-header span { font-size: 1.5rem; font-weight: 500; }
+    .arrow-icon { width: 14px; height: 14px; fill: #888888; transition: transform 0.3s ease; }
+
+    /* 신랑측/신부측 헤더 고유 색상 설정 */
+    .groom-acc .accordion-header span { color: #5c849e; }
+    .bride-acc .accordion-header span { color: #b57a7a; }
+
+    .accordion-wrapper.active .arrow-icon { transform: rotate(180deg); }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background-color: #ffffff; }
+    .accordion-wrapper.active .accordion-content { max-height: 500px; }
+
+    /* 계좌 내용 목록 레이아웃 (image_22f1a7.png, image_22f23a.png 매칭) */
+    .account-row { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-top: 1px solid #eeeeee; }
+    .account-info-box { display: flex; flex-direction: column; gap: 4px; }
+    .account-owner { font-size: 1.45rem; font-weight: bold; }
+    
+    /* 계좌 소유주 타이틀 텍스트 컬러 분리 */
+    .groom-acc .account-owner { color: #5c849e; }
+    .bride-acc .account-owner { color: #b57a7a; }
+
+    .account-number-detail { font-size: 1.35rem; color: #444444; }
+    .account-bank { font-size: 1.35rem; color: #666666; }
+
+    /* 복사 버튼 스타일 */
+    .copy-btn { padding: 6px 16px; background-color: #ffffff; border: 1px solid #cccccc; color: #555555; font-size: 1.25rem; border-radius: 4px; cursor: pointer; font-family: 'GangwonSaeeum', sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.02); transition: background-color 0.1s; }
+    .copy-btn:active { background-color: #f5f5f5; }
+
+    /* 📸 갤러리 섹션 스타일 */
     .gallery-section { padding: 40px 20px 80px 20px; background-color: #f5f4f0; text-align: center; }
-    
-    /* 💡 기존보다 크기를 30% 축소한 Gallery 소제목 디자인 */
-    .gallery-title { 
-      font-family: 'InkLipquid', sans-serif; 
-      font-size: 1.95rem; 
-      color: #f2b2b2; 
-      margin-bottom: 25px; 
-      font-weight: normal;
-    }
-    
+    .gallery-title { font-family: 'InkLipquid', sans-serif; font-size: 1.95rem; color: #f2b2b2; margin-bottom: 25px; font-weight: normal; }
     .gallery-container { display: flex; gap: 12px; width: 100%; max-width: 380px; margin: 0 auto; }
     .gallery-col { display: flex; flex-direction: column; gap: 12px; width: 50%; }
-    
-    .gallery-item { 
-      width: 100%; 
-      background-color: #dbdbdb; 
-      border-radius: 14px; 
-      overflow: hidden; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    .gallery-item { width: 100%; background-color: #dbdbdb; border-radius: 14px; overflow: hidden; display: flex; justify-content: center; align-items: center; }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
     
     .left-col .item-tall  { height: 230px; }
@@ -312,15 +335,88 @@
       </div>
     </div>
 
-    <!-- 📸 [위치 변경 완료] 디데이 구역 최하단에 배치된 갤러리 -->
+    <!-- 📍 [위치 확인] 디데이 바로 다음으로 정밀 배치된 계좌 구역 (image_2293eb.png 기준 문구) -->
+    <div class="account-section">
+      <div class="account-main-title">마음 전하실 곳</div>
+      
+      <div class="account-intro-text">
+        멀리서도 축하의 마음을<br>
+        전하고 싶으신 분들을 위해<br>
+        계좌번호를 안내해드립니다.
+      </div>
+      
+      <div class="account-sub-text">
+        소중한 축하를 보내주셔서 감사드리며,<br>
+        따뜻한 마음에 깊이 감사드립니다.
+      </div>
+
+      <!-- 🧑‍💼 신랑측 아코디언 상자 (image_22f1a7.png 참고) -->
+      <div class="accordion-wrapper groom-acc">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>신랑측</span>
+          <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
+        <div class="accordion-content">
+          <div class="account-row">
+            <div class="account-info-box">
+              <span class="account-owner">신랑</span>
+              <span class="account-number-detail">123456789</span>
+              <span class="account-bank">농협 조민수</span>
+            </div>
+            <button class="copy-btn" onclick="copyAccountNumber('123456789')">복사</button>
+          </div>
+          <div class="account-row">
+            <div class="account-info-box">
+              <span class="account-owner">신랑 아버지</span>
+              <span class="account-number-detail">123456789</span>
+              <span class="account-bank">농협 조병도</span>
+            </div>
+            <button class="copy-btn" onclick="copyAccountNumber('123456789')">복사</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 👰 신부측 아코디언 상자 (image_22f23a.png 참고) -->
+      <div class="accordion-wrapper bride-acc">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>신부측</span>
+          <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
+        <div class="accordion-content">
+          <div class="account-row">
+            <div class="account-info-box">
+              <span class="account-owner">신부</span>
+              <span class="account-number-detail">987654321</span>
+              <span class="account-bank">국민 김양지</span>
+            </div>
+            <button class="copy-btn" onclick="copyAccountNumber('987654321')">복사</button>
+          </div>
+          <div class="account-row">
+            <div class="account-info-box">
+              <span class="account-owner">신부 아버지</span>
+              <span class="account-number-detail">987654321-01</span>
+              <span class="account-bank">국민 김승묵</span>
+            </div>
+            <button class="copy-btn" onclick="copyAccountNumber('987654321-01')">복사</button>
+          </div>
+          <div class="account-row">
+            <div class="account-info-box">
+              <span class="account-owner">신부 어머니</span>
+              <span class="account-number-detail">987654321-02</span>
+              <span class="account-bank">국민 안희숙</span>
+            </div>
+            <button class="copy-btn" onclick="copyAccountNumber('987654321-02')">복사</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 📸 최하단 갤러리 섹션 -->
     <div class="gallery-section">
       <div class="gallery-title">Gallery</div>
-      
       <div class="gallery-container">
         <div class="gallery-col left-col">
-          <div class="gallery-item item-tall">
-            <!-- <img src="photo1.jpg" alt="웨딩사진"> -->
-          </div>
+          <div class="gallery-item item-tall"></div>
           <div class="gallery-item item-short"></div>
           <div class="gallery-item item-short"></div>
         </div>
@@ -336,7 +432,6 @@
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
         <button class="modal-close" onclick="closeContactModal()">✕</button>
-        
         <div class="modal-grid">
           <div class="grid-column groom-side">
             <div class="side-title">신랑측</div>
@@ -362,7 +457,6 @@
               </div>
             </div>
           </div>
-          
           <div class="grid-column bride-side">
             <div class="side-title">신부측</div>
             <div class="member-box">
@@ -472,6 +566,30 @@
       }
       updateTimer();
       const timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    /* ⚙️ 아코디언 및 계좌번호 단독 복사 시스템 스크립트 */
+    function toggleAccordion(headerElement) {
+      const wrapper = headerElement.parentElement;
+      if (wrapper.classList.contains('active')) {
+        wrapper.classList.remove('active');
+      } else {
+        wrapper.classList.add('active');
+      }
+    }
+
+    function copyAccountNumber(accountNum) {
+      navigator.clipboard.writeText(accountNum).then(() => {
+        alert("계좌번호가 복사되었습니다.");
+      }).catch(err => {
+        const dummy = document.createElement("textarea");
+        document.body.appendChild(dummy);
+        dummy.value = accountNum;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+        alert("계좌번호가 복사되었습니다.");
+      });
     }
   </script>
 </body>
