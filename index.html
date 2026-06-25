@@ -215,26 +215,6 @@
   align-items: center;
 }
 
-/* 🦋 나비 컨테이너 */
-.butterfly-float {
-  position: absolute;
-  width: 70px;
-  pointer-events: none;
-}
-
-/* 나비 이미지 */
-.butterfly-wing {
-  width: 100%;
-  display: block;
-  transform-origin: center center;
-  animation: wingFlap 0.8s ease-in-out infinite;
-}
-
-/* 왼쪽 나비 */
-.bf-top {
-  margin-bottom: 20px;
-}
-
 /* 소개글 텍스트 서식 */
 .greeting-text {
   font-family: 'GangwonSaeeum', sans-serif; /* 메인과 통일감 유지 */
@@ -243,6 +223,30 @@
   color: #444444;
   word-break: keep-all;
 }
+
+.butterfly-area{
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+
+.butterfly-left{
+width:90px;
+margin-bottom:40px;
+}
+
+.butterfly-right{
+width:70px;
+margin-top:40px;
+}
+
+.greeting-text{
+text-align:center;
+max-width:320px;
+margin:0 auto;
+}
+
 
 /* 🎬 애니메이션 정의: 왼쪽 나비의 부드러운 비행 */
 @keyframes floatLeft {
@@ -340,11 +344,12 @@
     <!-- 초대글 섹션 끝 -->
 
 <!-- 🦋 소개글 섹션 시작 -->
-<div class="butterfly-wrap">
+<div class="butterfly-area">
 
-  <div class="bf-top butterfly-float">
-    <img src="butterfly.png" class="butterfly-wing" alt="나비">
-  </div>
+<img id="butterflyLeft"
+    class="butterfly-left"
+    src="butterfly_left1.png"
+    alt="나비">
 
   <div class="greeting-text">
     두 사람이 하나 되어<br>
@@ -352,16 +357,24 @@
     소중한 시작을 함께 축복해주시면<br>
     감사하겠습니다.<br><br>
 
-    바쁘신 와중에도 귀한 발걸음으로<br>
-    참석해주시는 모든 분들께<br>
-    진심으로 감사드립니다.<br><br>
+```
+바쁘신 와중에도 귀한 발걸음으로<br>
+참석해주시는 모든 분들께<br>
+진심으로 감사드립니다.<br><br>
 
-    저희 두 사람의 앞날에<br>
-    따뜻한 격려와 축복을 부탁드립니다.
+저희 두 사람의 앞날에<br>
+따뜻한 격려와 축복을 부탁드립니다.
+```
+
   </div>
 
+<img id="butterflyRight"
+    class="butterfly-right"
+    src="butterfly_right1.png"
+    alt="나비">
+
 </div>
-    <!-- 🦋 소개글 섹션 끝 -->
+ 소개글 섹션 끝 -->
 
   </div>
 
@@ -429,5 +442,36 @@
       }
     }
   </script>
+
+const leftFrames = [
+"butterfly_left1.png",
+"butterfly_left2.png",
+"butterfly_left3.png",
+"butterfly_left2.png"
+];
+
+const rightFrames = [
+"butterfly_right1.png",
+"butterfly_right2.png",
+"butterfly_right3.png",
+"butterfly_right2.png"
+];
+
+let leftIndex = 0;
+let rightIndex = 0;
+
+setInterval(() => {
+
+leftIndex = (leftIndex + 1) % leftFrames.length;
+rightIndex = (rightIndex + 1) % rightFrames.length;
+
+document.getElementById("butterflyLeft").src =
+leftFrames[leftIndex];
+
+document.getElementById("butterflyRight").src =
+rightFrames[rightIndex];
+
+}, 220);
+
 </body>
 </html>
