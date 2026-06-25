@@ -55,6 +55,10 @@
     .top-text-group { font-family: 'GangwonSaeeum', sans-serif; word-break: keep-all; }
     .sub-title { font-size: 1.15rem; letter-spacing: 2px; color: #666666; margin-bottom: 14px; }
     .main-names { font-size: 1.8rem; color: #111111; margin-bottom: 35px; }
+    
+    /* 💡 '그리고' 텍스트를 이름보다 20% 작게 스타일링 (0.8em) */
+    .main-names .and-text { font-size: 0.8em; color: #777777; margin: 0 6px; }
+
     .arch-frame { width: 100%; aspect-ratio: 1 / 1.35; border-radius: 220px 220px 0 0; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
     .arch-frame img { width: 100%; height: 100%; object-fit: cover; }
     .cursive-text { font-family: 'NanumBrush', cursive; font-size: 2.8rem; color: #555555; margin-bottom: 22px; letter-spacing: 1px; }
@@ -131,7 +135,10 @@
     .calendar-table { width: 100%; max-width: 340px; margin: 0 auto; border-collapse: collapse; font-family: 'GangwonSaeeum', sans-serif; color: #444444; }
     .calendar-table th, .calendar-table td { width: 14.28%; height: 38px; text-align: center; vertical-align: middle; position: relative; font-size: 1.45rem; }
     .calendar-table th { font-weight: normal; color: #555555; padding-bottom: 8px; font-size: 1.4rem; }
+    
+    /* 💡 일요일 컬러(기존 붉은색) 및 토요일 컬러(새롭게 파란색 추가) */
     .calendar-table th.sun, .calendar-table td.sun { color: #d96868; }
+    .calendar-table th.sat, .calendar-table td.sat { color: #4a86e8; }
     
     .wedding-day-point { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; background-color: #f0b1b1; border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; color: #ffffff !important; font-weight: bold; font-size: 1.45rem; padding-bottom: 2px; }
 
@@ -158,7 +165,7 @@
     <div class="main-content">
       <div class="top-text-group">
         <div class="sub-title">THE NEW BEGINNING</div>
-        <div class="main-names">조민수  그리고  김양지</div>
+        <div class="main-names">조민수<span class="and-text">그리고</span>김양지</div>
       </div>
       <div class="arch-frame">
         <img src="다운로드.jpg" alt="웨딩 메인 사진">
@@ -254,7 +261,6 @@
       </div>
     </div>
 
-    <!-- 📅 10월 정렬 보정 완료된 달력 구역 -->
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
@@ -272,26 +278,26 @@
             <th>수</th>
             <th>목</th>
             <th>금</th>
-            <th>토</th>
+            <th class="sat">토</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td></td><td></td><td></td><td></td>
-            <td>1</td><td>2</td><td>3</td>
+            <td>1</td><td>2</td><td class="sat">3</td>
           </tr>
           <tr>
-            <td class="sun">4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
+            <td class="sun">4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="sat">10</td>
           </tr>
           <tr>
-            <td class="sun">11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td>
+            <td class="sun">11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td class="sat">17</td>
           </tr>
           <tr>
             <td class="sun"><span class="wedding-day-point">18</span></td>
-            <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+            <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td class="sat">24</td>
           </tr>
           <tr>
-            <td class="sun">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
+            <td class="sun">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="sat">31</td>
           </tr>
         </tbody>
       </table>
@@ -300,7 +306,7 @@
     </div>
 
     <div class="dday-section">
-      <div class="dday-title">민수 ♥ 양지  결婚식까지</div>
+      <div class="dday-title">민수 ♥ 양지  결혼식까지</div>
       <div class="dday-container">
         <div class="dday-item">
           <div class="dday-circle" id="dday-days">00</div>
@@ -326,7 +332,7 @@
     // 페이지 로딩 시 모든 기능 활성화
     window.addEventListener('DOMContentLoaded', () => {
       startCherryBlossoms();
-      initWeddingTimer(); // 여기에 정상 연결하여 타이머 복구 완료!
+      initWeddingTimer();
     });
 
     // 인트로 타이핑 효과
@@ -396,7 +402,6 @@
 
     // ⏱️ 모바일 친화형 실시간 결혼식 디데이 카운트다운 스크립트
     function initWeddingTimer() {
-      // 목표 예식일: 2026년 10월 18일 12시 50분 (월 파싱 안전처리)
       const targetDate = new Date(2026, 9, 18, 12, 50, 0).getTime();
 
       function updateTimer() {
