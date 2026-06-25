@@ -6,10 +6,7 @@
   <title>조민수 ∙ 김양지 모바일 초대장</title>
   
   <style>
-    /* ✨ [폰트 파일 직접 서버 내장 매칭]
-      다운로드하신 폰트 파일들을 '다운로드.jpg'와 같은 폴더에 넣어주세요.
-    */
-    
+    /* ✨ [폰트 파일 직접 서버 내장 매칭] */
     /* 1. 인트로: 더페이스샵 잉크립퀴드체 */
     @font-face {
       font-family: 'InkLipquid';
@@ -52,7 +49,7 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* 1. 인트로 오버레이 (불투명 어두운색 최적화 유지) */
+    /* 1. 인트로 오버레이 */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
@@ -141,122 +138,201 @@
       100% { transform: translateY(100vh) translateX(80px) rotate(540deg) scale(1); opacity: 0; }
     }
 
-/* 📝 [초대글 섹션 스타일] */
-.invitation-section {
-  padding: 60px 24px;
-  background-color: #f5f4f0;
-  text-align: center;
-}
+    /* 📝 [초대글 섹션 스타일] */
+    .invitation-section {
+      padding: 60px 24px;
+      background-color: #f5f4f0;
+      text-align: center;
+    }
 
-/* 상단 나뭇잎 아이콘 (이미지가 없을 경우를 대비해 유니코드 이모지로 깔끔하게 대체 및 스타일링) */
-.leaf-icon {
-  font-size: 1.2rem;
-  color: #8c9085;
-  margin-bottom: 40px;
-  opacity: 0.8;
-  display: inline-block;
-  transform: rotate(-15deg);
-}
+    .leaf-icon {
+      font-size: 1.2rem;
+      color: #8c9085;
+      margin-bottom: 40px;
+      opacity: 0.8;
+      display: inline-block;
+      transform: rotate(-15deg);
+    }
 
-/* 줄노트 배경 구현 구역 */
-.note-pad {
-  max-width: 250px;
-  margin: 0 auto;
-  padding: 4px 0; /* 상하 여백 미세 조정 */
-  
-  /* 💡 글자 겹침을 해결하기 위해 줄 간격을 30px로 시원하게 넓힙니다. */
-  background-image: linear-gradient(#e1dfda 1px, transparent 1px);
-  background-size: 100% 30px;
-  background-position: 0 0;
-  
-  font-family: 'GangwonSaeeum', sans-serif;
-  word-break: keep-all;
-}
+    .note-pad {
+      max-width: 250px;
+      margin: 0 auto;
+      padding: 4px 0;
+      background-image: linear-gradient(#e1dfda 1px, transparent 1px);
+      background-size: 100% 30px;
+      background-position: 0 0;
+      font-family: 'GangwonSaeeum', sans-serif;
+      word-break: keep-all;
+    }
 
-/* 노트 위 글귀 스타일 */
-.note-text {
-  font-size: 1.3rem; 
-  color: #333333;
-  
-  /* 줄 높이는 격자 간격과 동일하게 유지 */
-  line-height: 30px;  
-  text-align: center;
-  
-  /* 💡 [핵심] 글씨 전체를 위로 5픽셀 강제 이동시켜 선 위에 예쁘게 안착시킵니다 */
-  transform: translateY(-5px); 
-  display: block; /* 위치 이동이 정확히 먹히도록 블록 요소로 지정 */
-}
+    .note-text {
+      font-size: 1.3rem; 
+      color: #333333;
+      line-height: 30px;  
+      text-align: center;
+      transform: translateY(-5px); 
+      display: block;
+    }
 
-/* 영화 제목 구절 구분 공백 */
-.note-space {
-  /* 💡 한 줄 공백 높이도 45px로 통일 */
-  height: 30px; 
-}
+    .note-space {
+      height: 30px; 
+    }
 
-.note-author {
-  font-size: 1.3rem;
-  color: #666666;
-}
+    .note-author {
+      font-size: 1.3rem;
+      color: #666666;
+    }
 
-/* 🦋 [소개글 섹션 스타일] */
-.greeting-section {
-  padding: 80px 24px;
-  background-color: #f5f4f0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
+    /* 🦋 [소개글 섹션 스타일] */
+    .greeting-section {
+      padding: 80px 24px;
+      background-color: #f5f4f0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* 나비들이 자유롭게 배치될 기준 공간 */
-.butterfly-wrap {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .butterfly-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-/* 소개글 텍스트 서식 */
-.greeting-text {
-  font-family: 'GangwonSaeeum', sans-serif; /* 메인과 통일감 유지 */
-  font-size: 1.4rem;
-  line-height: 1.8;
-  color: #444444;
-  word-break: keep-all;
-}
+    .greeting-text {
+      font-family: 'GangwonSaeeum', sans-serif;
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: #444444;
+      word-break: keep-all;
+      text-align: center;
+      max-width: 320px;
+      margin: 0 auto;
+    }
 
-.butterfly-area{
-display:flex;
-flex-direction:column;
-align-items:center;
-text-align:center;
-}
+    .butterfly-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 40px; /* 아래 부모님 섹션과의 간격 확보 */
+    }
 
-.butterfly-top{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:8px; /* 약 0.5cm */
+    .butterfly-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px; 
+      margin-bottom: 30px;
+    }
 
-margin-bottom:30px;
-}
+    .butterfly-left,
+    .butterfly-right {
+      width: 48px;
+    }
 
-.butterfly-left,
-.butterfly-right{
-width:48px;
-}
+    .butterfly-right {
+      width: 48px;
+      height: auto;
+      transform: rotate(-10deg);
+    }
 
-.butterfly-right{
-  width:48px;
-  height:auto;
-  transform: rotate(-10deg);
-}
 
-.greeting-text{
-text-align:center;
-max-width:320px;
-margin:0 auto;
-}
+    /* ---------------------------------------------------------------- */
+    /* 💡 [여기에 새로 추가되었습니다] 📞 부모님 정보 및 연락하기 전용 CSS 서식 */
+    /* ---------------------------------------------------------------- */
+    :root {
+      --theme-pink: #f0b1b1; /* 나중에 언제든 바꿀 수 있는 기본 핑크 테마 색상 */
+    }
 
+    .family-section {
+      padding: 20px 24px 80px 24px;
+      background-color: #f5f4f0;
+      text-align: center;
+      font-family: 'GangwonSaeeum', sans-serif;
+    }
+
+    .family-relations {
+      max-width: 320px;
+      margin: 0 auto 35px auto;
+      font-size: 1.4rem;
+      line-height: 2.2;
+      color: #333333;
+    }
+    
+    .relation-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    .relation-row .parents { width: 140px; text-align: right; }
+    .relation-row .relation { color: #888888; font-size: 1.15rem; width: 40px; text-align: center; }
+    .relation-row .child { width: 90px; text-align: left; }
+
+    /* 연락하기 활성화 버튼 */
+    .contact-btn {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+      height: 54px;
+      line-height: 54px;
+      background-color: var(--theme-pink);
+      color: #ffffff;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      transition: opacity 0.2s;
+    }
+    .contact-btn:active { opacity: 0.8; }
+
+    /* 연락처 모달 팝업 레이어 */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 10000;
+      display: flex; justify-content: center; align-items: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+    .modal-content {
+      width: 90%;
+      max-width: 380px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.active .modal-content { transform: translateY(0); }
+
+    .modal-header {
+      background-color: var(--theme-pink);
+      color: #ffffff;
+      padding: 16px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .modal-title { font-size: 1.45rem; }
+    .modal-close {
+      font-size: 1.5rem; color: #ffffff; cursor: pointer; opacity: 0.8;
+      background: none; border: none; font-family: sans-serif;
+    }
+
+    .modal-body { padding: 25px 24px; }
+    .contact-list { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item {
+      display: flex; justify-content: space-between; align-items: center;
+      text-decoration: none; color: inherit; font-size: 1.35rem; padding: 4px 0;
+    }
+    .contact-label { color: #777777; font-size: 1.15rem; }
+    .contact-name { color: #111111; }
+    .modal-divider { height: 1px; background-color: #eeeeee; margin: 6px 0; }
 
   </style>
 </head>
@@ -284,151 +360,49 @@ margin:0 auto;
       <div class="main-date">상주 마리앙스. 마리앙스 홀</div>
     </div>
 
-<!-- 📝 초대글 섹션 시작 -->
     <div class="invitation-section">
-      <!-- 상단 나뭇잎 포인트 -->
       <div class="leaf-icon">🌿</div>
-      
-      <!-- 줄노트 글귀 영역 -->
       <div class="note-pad">
         <p class="note-text">우리는 매일 우리의 삶을 여행합니다.</p>
         <p class="note-text">우리가 할 수 있는건,</p>
         <p class="note-text">이 멋진 여행을 즐기기 위해</p>
         <p class="note-text">매일 최선을 다하는 것입니다.</p>
-        <div class="note-space"></div> <!-- 줄노트 한 줄 비우기 -->
+        <div class="note-space"></div>
         <p class="note-text note-author">영화 &lt;어바웃 타임&gt;</p>
       </div>
     </div>
-    <!-- 초대글 섹션 끝 -->
 
-<!-- 🦋 소개글 섹션 시작 -->
-<div class="butterfly-area">
+    <div class="butterfly-area">
+      <div class="butterfly-top">
+        <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
+        <img id="butterflyRight" class="butterfly-right" src="butterfly_right1.png" alt="나비">
+      </div>
 
-  <div class="butterfly-top">
+      <div class="greeting-text">
+        두 사람이 하나 되어<br>
+        아름다운 가정을 꾸려나가는<br>
+        소중한 시작을 함께 축복해주시면<br>
+        감사하겠습니다.<br><br>
+        바쁘신 와중에도 귀한 발걸음으로<br>
+        참석해주시는 모든 분들께<br>
+        진심으로 감사드립니다.<br><br>
+        저희 두 사람의 앞날에<br>
+        따뜻한 격려와 축복을 부탁드립니다.
+      </div>
+    </div>
 
-<img id="butterflyLeft"
-     class="butterfly-left"
-     src="butterfly_left1.png"
-     alt="나비">
 
-<img id="butterflyRight"
-     class="butterfly-right"
-     src="butterfly_right1.png"
-     alt="나비">
-
-  </div>
-
-  <div class="greeting-text">
-    두 사람이 하나 되어<br>
-    아름다운 가정을 꾸려나가는<br>
-    소중한 시작을 함께 축복해주시면<br>
-    감사하겠습니다.<br><br>
-바쁘신 와중에도 귀한 발걸음으로<br>
-참석해주시는 모든 분들께<br>
-진심으로 감사드립니다.<br><br>
-저희 두 사람의 앞날에<br>
-따뜻한 격려와 축복을 부탁드립니다.
-
-  </div>
-</div>
-<!-- 🦋 소개글 섹션 끝 -->
-
-  </div>
-
-  <script>
-    // 페이지 로드 시점(인트로가 켜져 있을 때) 내부적으로 벚꽃잎을 미리 날리기 시작합니다.
-    window.addEventListener('DOMContentLoaded', () => {
-      startCherryBlossoms();
-    });
-
-    // 인트로 타이핑 효과 스크립트
-    const intro = document.getElementById('intro');
-    const text = intro.innerText;
-    intro.innerText = '';
-    [...text].forEach((char, i) => {
-      const span = document.createElement('span');
-      span.className = 'char';
-      span.innerText = char;
-      span.style.animationDelay = `${i * 0.12}s`;
-      intro.appendChild(span);
-    });
-
-    // 인트로 오버레이 투명화 및 원천 제거 타이밍 최적화
-    setTimeout(() => {
-      document.getElementById('intro-overlay').style.opacity = '0';
-      setTimeout(() => {
-        document.getElementById('intro-overlay').remove();
-      }, 1200);
-    }, 4200);
-
-    // 🌸 벚꽃잎 자바스크립트 (즉시 생성 및 무한 낙하)
-    function startCherryBlossoms() {
-      const blossomBox = document.getElementById('blossom-box');
-      const maxPetals = 22;
-
-      function createPetal(isInitial = false) {
-        const petal = document.createElement('div');
-        petal.className = 'petal';
-        
-        const size = Math.random() * 5 + 5;
-        petal.style.width = `${size}px`;
-        petal.style.height = `${size * 1.4}px`;
-        petal.style.left = `${Math.random() * 100}%`;
-        
-        const duration = Math.random() * 4 + 7;
-        petal.style.animationDuration = `${duration}s`;
-        
-        // 인트로가 걷힐 때 이미 공중에 흩날리는 중이도록 첫 생성 잎들은 랜덤한 시작 지연(delay)을 뺍니다.
-        if (isInitial) {
-          petal.style.animationDelay = `-${Math.random() * duration}s`;
-        } else {
-          petal.style.animationDelay = `0s`;
-        }
-
-        blossomBox.appendChild(petal);
-
-        setTimeout(() => {
-          petal.remove();
-          createPetal(false); 
-        }, duration * 1000);
-      }
-
-      // 처음 구동 시 즉시 22개의 꽃잎을 엇갈린 공중 위치로 뿌려 배치시킵니다.
-      for (let i = 0; i < maxPetals; i++) {
-        createPetal(true);
-      }
-    }
-
-const leftFrames = [
-"butterfly_left1.png",
-"butterfly_left2.png",
-"butterfly_left3.png",
-"butterfly_left2.png"
-];
-
-const rightFrames = [
-"butterfly_right1.png",
-"butterfly_right2.png",
-"butterfly_right3.png",
-"butterfly_right2.png"
-];
-
-let leftIndex = 0;
-let rightIndex = 0;
-
-setInterval(() => {
-
-leftIndex = (leftIndex + 1) % leftFrames.length;
-rightIndex = (rightIndex + 1) % rightFrames.length;
-
-document.getElementById("butterflyLeft").src =
-leftFrames[leftIndex];
-
-document.getElementById("butterflyRight").src =
-rightFrames[rightIndex];
-
-}, 320);
-
-</script>
-</body>
-</html>
+    /* 💡 [여기에 새로 추가되었습니다] 4. 부모님 정보 및 연락하기 버튼 HTML 구역 */
+    <div class="family-section">
+      <div class="family-relations">
+        <div class="relation-row">
+          <span class="parents">조병도 · 김애경</span>
+          <span class="relation">아들</span>
+          <span class="child">조민수</span>
+        </div>
+        <div class="relation-row">
+          <span class="parents">김승묵 · 안희숙</span>
+          <span class="relation">딸</span>
+          <span class="child">김양지</span>
+        </div>
+      </div>
