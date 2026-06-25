@@ -99,24 +99,25 @@
       display: block; width: 100%; max-width: 260px; margin: 0 auto; height: 50px; 
       line-height: 48px; background-color: #ffffff; color: #555555; font-size: 1.35rem; 
       border: 1px solid #dcdcdc; border-radius: 6px; cursor: pointer; 
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.2s; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.2s;
+      font-family: 'GangwonSaeeum', sans-serif; /* 💡 버튼 텍스트 강원세음체 적용 */
     }
     .contact-btn:active { background-color: #f9f9f9; }
 
-    /* 🛠️ [image_211ca2.png] 커스텀 팝업 디자인 */
+    /* 🛠️ 혼주에게 연락하기 팝업창 디자인 */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
     .modal-overlay.active .modal-content { transform: translateY(0); }
     .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.2rem; color: #aaaaaa; cursor: pointer; background: none; border: none; font-family: sans-serif; }
     
-    .modal-grid { display: flex; width: 100%; gap: 10px; }
+    .modal-grid { display: flex; width: 100%; gap: 10px; font-family: 'GangwonSaeeum', sans-serif; } /* 💡 내부 텍스트 강원세음체 고정 */
     .grid-column { width: 50%; display: flex; flex-direction: column; gap: 24px; }
-    .side-title { font-size: 1.55rem; font-weight: bold; margin-bottom: 6px; text-align: center; }
+    .side-title { font-size: 1.55rem; font-weight: bold; margin-bottom: 6px; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .grid-column.groom-side .side-title { color: #5c849e; }
     .grid-column.bride-side .side-title { color: #b57a7a; }
     .member-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 10px; }
+    .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 10px; font-family: 'GangwonSaeeum', sans-serif; }
     .action-icons { display: flex; justify-content: center; gap: 22px; }
     .action-icons a { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.1s; }
     .action-icons a:active { transform: scale(0.9); }
@@ -125,40 +126,6 @@
     .grid-column.groom-side .icon-mail { fill: #7296ad; width: 22px; height: 22px; }
     .grid-column.bride-side .icon-phone { fill: #b57a7a; width: 20px; height: 20px; }
     .grid-column.bride-side .icon-mail { fill: #c79191; width: 22px; height: 22px; }
-
-    /* 📸 [🆕 새로 추가된 갤러리 섹션 - image_2124c1, image_212b69 반영] */
-    .gallery-section { padding: 40px 20px 60px 20px; background-color: #f5f4f0; text-align: center; }
-    
-    /* 소제목: image_212b69 캘리그라피 색상 및 잉크립퀴드체 적용 */
-    .gallery-title { 
-      font-family: 'InkLipquid', sans-serif; 
-      font-size: 2.8rem; 
-      color: #f2b2b2; 
-      margin-bottom: 30px; 
-      font-weight: normal;
-    }
-    
-    /* image_2124c1 비대칭 형태의 2열 반응형 갤러리 레이아웃 구조 */
-    .gallery-container { display: flex; gap: 12px; width: 100%; max-width: 380px; margin: 0 auto; }
-    .gallery-col { display: flex; flex-direction: column; gap: 12px; width: 50%; }
-    
-    /* 개별 미리보기 박스 공통 스타일 (둥근 모서리) */
-    .gallery-item { 
-      width: 100%; 
-      background-color: #dbdbdb; 
-      border-radius: 14px; 
-      overflow: hidden; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    
-    /* image_2124c1 스타일 가이드 맞춤 비율 고정 */
-    .left-col .item-tall  { height: 230px; }
-    .left-col .item-short { height: 120px; }
-    .right-col .item-short { height: 120px; }
-    .right-col .item-tall  { height: 230px; }
 
     /* 📅 달력 섹션 스타일 */
     .calendar-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
@@ -187,6 +154,37 @@
     
     .dday-circle { width: 62px; height: 62px; background-color: #f0b1b1; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 1.7rem; font-weight: bold; box-shadow: 0 4px 8px rgba(240, 177, 177, 0.25); }
     .dday-label { font-size: 1.15rem; color: #666666; }
+
+    /* 📸 갤러리 섹션 스타일 (디데이 하단으로 배치 이동됨) */
+    .gallery-section { padding: 40px 20px 80px 20px; background-color: #f5f4f0; text-align: center; }
+    
+    /* 💡 기존보다 크기를 30% 축소한 Gallery 소제목 디자인 */
+    .gallery-title { 
+      font-family: 'InkLipquid', sans-serif; 
+      font-size: 1.95rem; 
+      color: #f2b2b2; 
+      margin-bottom: 25px; 
+      font-weight: normal;
+    }
+    
+    .gallery-container { display: flex; gap: 12px; width: 100%; max-width: 380px; margin: 0 auto; }
+    .gallery-col { display: flex; flex-direction: column; gap: 12px; width: 50%; }
+    
+    .gallery-item { 
+      width: 100%; 
+      background-color: #dbdbdb; 
+      border-radius: 14px; 
+      overflow: hidden; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    
+    .left-col .item-tall  { height: 230px; }
+    .left-col .item-short { height: 120px; }
+    .right-col .item-short { height: 120px; }
+    .right-col .item-tall  { height: 230px; }
   </style>
 </head>
 <body>
@@ -257,22 +255,75 @@
       <button class="contact-btn" onclick="openContactModal()">혼주에게 연락하기</button>
     </div>
 
-    <!-- 📸 [🆕 새로 추가된 갤러리 섹션 레이아웃 영역] -->
+    <!-- 📅 달력 구역 -->
+    <div class="calendar-section">
+      <div class="calendar-header">
+        <div class="calendar-month">시월의</div>
+        <div class="calendar-day-text">열여덟 번째 날.</div>
+      </div>
+      <div class="calendar-top-line"></div>
+      <table class="calendar-table">
+        <thead>
+          <tr>
+            <th class="sun">일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th class="sat">토</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td><td></td><td></td><td></td><td>1</td><td>2</td><td class="sat">3</td>
+          </tr>
+          <tr>
+            <td class="sun">4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="sat">10</td>
+          </tr>
+          <tr>
+            <td class="sun">11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td class="sat">17</td>
+          </tr>
+          <tr>
+            <td class="sun"><span class="wedding-day-point">18</span></td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td class="sat">24</td>
+          </tr>
+          <tr>
+            <td class="sun">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="sat">31</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="calendar-bottom-line"></div>
+    </div>
+
+    <!-- ⏱️ 디데이 카운트다운 구역 -->
+    <div class="dday-section">
+      <div class="dday-title">민수 ♥ 양지  결혼식까지</div>
+      <div class="dday-container">
+        <div class="dday-item">
+          <div class="dday-circle" id="dday-days">00</div>
+          <div class="dday-label">Days</div>
+        </div>
+        <div class="dday-item">
+          <div class="dday-circle" id="dday-hours">00</div>
+          <div class="dday-label">Hours</div>
+        </div>
+        <div class="dday-item">
+          <div class="dday-circle" id="dday-minutes">00</div>
+          <div class="dday-label">Minutes</div>
+        </div>
+        <div class="dday-item">
+          <div class="dday-circle" id="dday-seconds">00</div>
+          <div class="dday-label">Seconds</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 📸 [위치 변경 완료] 디데이 구역 최하단에 배치된 갤러리 -->
     <div class="gallery-section">
       <div class="gallery-title">Gallery</div>
       
       <div class="gallery-container">
-        <!-- 좌측 열: 긴 박스 1개, 짧은 박스 2개 -->
         <div class="gallery-col left-col">
           <div class="gallery-item item-tall">
-            <!-- 나중에 아래처럼 src 안에 실제 사진 경로를 입력하시면 됩니다 -->
-            <!-- <img src="photo1.jpg" alt="웨딩스냅1"> -->
+            <!-- <img src="photo1.jpg" alt="웨딩사진"> -->
           </div>
           <div class="gallery-item item-short"></div>
           <div class="gallery-item item-short"></div>
         </div>
-        
-        <!-- 우측 열: 짧은 박스 2개, 긴 박스 1개 -->
         <div class="gallery-col right-col">
           <div class="gallery-item item-short"></div>
           <div class="gallery-item item-short"></div>
@@ -336,63 +387,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 📅 달력 구역 -->
-    <div class="calendar-section">
-      <div class="calendar-header">
-        <div class="calendar-month">시월의</div>
-        <div class="calendar-day-text">열여덟 번째 날.</div>
-      </div>
-      <div class="calendar-top-line"></div>
-      <table class="calendar-table">
-        <thead>
-          <tr>
-            <th class="sun">일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th class="sat">토</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td><td></td><td></td><td></td><td>1</td><td>2</td><td class="sat">3</td>
-          </tr>
-          <tr>
-            <td class="sun">4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="sat">10</td>
-          </tr>
-          <tr>
-            <td class="sun">11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td class="sat">17</td>
-          </tr>
-          <tr>
-            <td class="sun"><span class="wedding-day-point">18</span></td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td class="sat">24</td>
-          </tr>
-          <tr>
-            <td class="sun">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="sat">31</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="calendar-bottom-line"></div>
-    </div>
-
-    <!-- ⏱️ 디데이 -->
-    <div class="dday-section">
-      <div class="dday-title">민수 ♥ 양지  결혼식까지</div>
-      <div class="dday-container">
-        <div class="dday-item">
-          <div class="dday-circle" id="dday-days">00</div>
-          <div class="dday-label">Days</div>
-        </div>
-        <div class="dday-item">
-          <div class="dday-circle" id="dday-hours">00</div>
-          <div class="dday-label">Hours</div>
-        </div>
-        <div class="dday-item">
-          <div class="dday-circle" id="dday-minutes">00</div>
-          <div class="dday-label">Minutes</div>
-        </div>
-        <div class="dday-item">
-          <div class="dday-circle" id="dday-seconds">00</div>
-          <div class="dday-label">Seconds</div>
         </div>
       </div>
     </div>
