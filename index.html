@@ -146,100 +146,7 @@
     .grid-column.groom-side svg { fill: #7FA6C2; }
     .grid-column.bride-side svg { fill: #E29B9B; }
 
-    /* 📍 [신규] image_aef81b.png 기반 오시는 길 (LOCATION) 섹션 */
-    .location-section {
-      padding: 60px 0 50px 0;
-      background-color: #f5f4f0; /* 배경색 일괄 변경 대응용 */
-      text-align: center;
-    }
-    .location-title {
-      font-family: 'InkLipquid', sans-serif;
-      font-size: 2.2rem;
-      letter-spacing: 2px;
-      color: #555555;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-    }
-    .hall-name {
-      font-family: 'GangwonSaeeum', sans-serif;
-      font-size: 1.65rem;
-      font-weight: bold;
-      color: #1a3a54;
-      margin-bottom: 10px;
-    }
-    .hall-address-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 30px;
-    }
-    .hall-address {
-      font-family: 'GangwonSaeeum', sans-serif;
-      font-size: 1.45rem;
-      color: #666666;
-    }
-    .address-copy-icon {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-    }
-    .address-copy-icon svg {
-      width: 16px;
-      height: 16px;
-      fill: #888888;
-    }
-    
-    /* 지도 뷰어 영역 */
-    .map-wrapper {
-      width: 100%;
-      height: 240px;
-      background-color: #e0dbcd; /* 임시 맵 배경 */
-      margin-bottom: 25px;
-      overflow: hidden;
-    }
-    .map-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* 내비게이션 앱 버튼 그룹 */
-    .map-apps-group {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding: 0 20px;
-    }
-    .map-app-btn {
-      flex: 1;
-      max-width: 110px;
-      height: 42px;
-      background-color: #ffffff;
-      border: none;
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      text-decoration: none;
-    }
-    .map-app-btn span {
-      font-family: 'GangwonSaeeum', sans-serif;
-      font-size: 1.35rem;
-      color: #444444;
-      font-weight: bold;
-    }
-    .map-app-btn img {
-      width: 16px;
-      height: 16px;
-      object-fit: contain;
-    }
-
+ 
     /* 📅 달력 섹션 */
     .calendar-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .calendar-header { text-align: left; max-width: 340px; margin: 0 auto 15px auto; }
@@ -288,45 +195,6 @@
     .gallery-item { width: 100%; background-color: #dbdbdb; border-radius: 14px; overflow: hidden; }
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
-
- <!-- 📍 [신규 구역] 오시는 길 (LOCATION) 섹션 -->
-    <div class="location-section">
-      <div class="location-title">Location</div>
-      <div class="hall-name">상주 마리앙스 마리앙스홀</div>
-      <div class="hall-address-box">
-        <span class="hall-address" id="targetAddress">경북 상주시 삼백로 343</span>
-        <button class="address-copy-icon" onclick="copyAddressText()" title="주소 복사">
-          <svg viewBox="0 0 24 24">
-            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- 지도 이미지 영역 (추후 실제 맵 캡처 파일명으로 교체 가능) -->
-      <div class="map-wrapper">
-        <img src="map_sample.png" alt="상주 마리앙스 지도" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><rect width=\'100%\\' height=\'100%\' fill=\'%23e6e2d8\'/><text x=\'50%\' y=\'50%\' font-size=\'14\' fill=\'%23888888\' text-anchor=\'middle\' dy=\'.3em\'>[여기에 지도 캡처 이미지를 넣어주세요]</text></svg>'">
-      </div>
-
-      <!-- 내비게이션 길찾기 연동 링크 버튼그룹 -->
-      <div class="map-apps-group">
-        <!-- 네이버 지도 앱/웹 링크 -->
-        <a href="https://map.naver.com/v5/search/%EA%B2%BD%EB%B6%85%20%EC%83%81%EC%A3%BC%EC%8B%9C%20%EC%82%BC%EB%B0%B1%EB%A1%9C%20343" target="_blank" class="map-app-btn">
-          <img src="https://gshb.go.kr/images/tour/contents/icon_naver_map.png" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\'><circle cx=\'8\' cy=\'8\' r=\'8\' fill=\'%2303C75A\'/></svg>'" alt="네이버">
-          <span>네이버</span>
-        </a>
-        <!-- 티맵 목적지 검색 링크 -->
-        <a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=your_key&name=%EC%83%81%EC%A3%BC%EB%A7%88%EB%A6%AC%EC%95%94%EC%8A%A4&lon=128.1632&lat=36.4175" target="_blank" class="map-app-btn">
-          <img src="https://www.tmap.co.kr/tmap2/images/common/favicon.ico" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\'><circle cx=\'8\' cy=\'8\' r=\'8\' fill=\'%234A33FE\'/></svg>'" alt="티맵">
-          <span>T MAP</span>
-        </a>
-        <!-- 구글맵 주소 검색 링크 -->
-        <a href="https://www.google.com/maps/search/?api=1&query=%EA%B2%BD%EB%B6%85+%EC%83%81%EC%A3%BC%EC%8B%9C+%EC%82%BC%EB%B0%B1%EB%A1%9C+343" target="_blank" class="map-app-btn">
-          <img src="https://www.google.com/images/branding/product/ico/maps16_b.png" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\'><circle cx=\'8\' cy=\'8\' r=\'8\' fill=\'%23EA4335\'/></svg>'" alt="구글">
-          <span>구글맵</span>
-        </a>
-      </div>
-    </div>
-
   </style>
 </head>
 <body class="intro-active">
@@ -672,5 +540,33 @@
       setTimeout(() => { closeIntroOverlay(); }, 2800); 
     });
   </script>
+<!-- 📍 오시는 길 (LOCATION) 섹션 -->
+<div class="location-section" style="padding: 60px 24px; background-color: #f5f4f0; text-align: center;">
+  <div class="location-title" style="font-family: 'InkLipquid', sans-serif; font-size: 2.2rem; letter-spacing: 2px; color: #555555; margin-bottom: 30px; text-transform: uppercase;">Location</div>
+  <div class="hall-name" style="font-family: 'GangwonSaeeum', sans-serif; font-size: 1.65rem; font-weight: bold; color: #1a3a54; margin-bottom: 10px;">상주 마리앙스</div>
+  <div class="hall-address-box" style="display: flex; justify-content: center; align-items: center; gap: 6px; margin-bottom: 30px;">
+    <span class="hall-address" id="targetAddress" style="font-family: 'GangwonSaeeum', sans-serif; font-size: 1.45rem; color: #666666;">경북 상주시 삼백로 343</span>
+    <button class="address-copy-icon" onclick="copyAddressText()" title="주소 복사" style="background: none; border: none; cursor: pointer; display: inline-flex; align-items: center;">
+      <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: #888888;"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+    </button>
+  </div>
+
+  <!-- 네이버 지도 연동 (iframe) -->
+  <div class="map-wrapper" style="width: 100%; height: 300px; border-radius: 14px; overflow: hidden; margin-bottom: 25px;">
+    <iframe src="https://map.naver.com/v5/search/%EC%83%81%EC%A3%BC%EB%A7%88%EB%A6%AC%EC%95%94%EC%8A%A4/place/19864213" 
+            width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
+  </div>
+
+  <!-- 내비게이션 앱 버튼 그룹 -->
+  <div class="map-apps-group" style="display: flex; justify-content: center; gap: 12px;">
+    <a href="https://map.naver.com/v5/search/%EA%B2%BD%EB%B6%85%20%EC%83%81%EC%A3%BC%EC%8B%9C%20%EC%82%BC%EB%B0%B1%EB%A1%9C%20343" target="_blank" style="flex: 1; max-width: 110px; height: 42px; background-color: #ffffff; border-radius: 8px; display: flex; justify-content: center; align-items: center; text-decoration: none; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
+      <span style="font-family: 'GangwonSaeeum', sans-serif; font-size: 1.35rem; color: #444444; font-weight: bold;">네이버</span>
+    </a>
+    <a href="https://www.google.com/maps/search/?api=1&query=경북+상주시+삼백로+343" target="_blank" style="flex: 1; max-width: 110px; height: 42px; background-color: #ffffff; border-radius: 8px; display: flex; justify-content: center; align-items: center; text-decoration: none; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
+      <span style="font-family: 'GangwonSaeeum', sans-serif; font-size: 1.35rem; color: #444444; font-weight: bold;">구글맵</span>
+    </a>
+  </div>
+</div>
+
 </body>
 </html>
