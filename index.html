@@ -33,7 +33,7 @@
     }
 
     body.intro-active {
-      overflow: transparent; 
+      overflow: hidden; 
     }
 
     .container {
@@ -50,6 +50,7 @@
       transform: translateY(0);
       opacity: 1;
       visibility: visible;
+      cursor: pointer;
     }
     #intro-overlay.hidden {
       transform: translateY(-100vh);
@@ -62,8 +63,6 @@
       font-family: 'InkLipquid', sans-serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
       user-select: none;
     }
-    .char { opacity: 0; display: inline-block; animation: fadeInChar 0.4s forwards; }
-    @keyframes fadeInChar { to { opacity: 1; } }
 
     /* 🎵 배경음악 컨트롤 버튼 */
     .bgm-control-btn {
@@ -196,27 +195,30 @@
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
 
-/* 📍 오시는 길 섹션 스타일 */
+    /* 📍 오시는 길 섹션 스타일 */
     .location-section { padding: 50px 24px; background-color: #f5f4f0; text-align: center; }
     .location-title { font-family: 'InkLipquid', sans-serif; font-size: 1.95rem; color: #f2b2b2; margin-bottom: 20px; }
     .hall-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 8px; color: #333; }
     .hall-address-box { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 25px; }
     .hall-address { font-size: 1.3rem; color: #666; }
     .address-copy-icon { background: none; border: none; cursor: pointer; display: flex; align-items: center; }
-    .map-wrapper { width: 100%; height: 220px; border-radius: 14px; overflow: hidden; margin-bottom: 20px; border: 1px solid #e2ded5; }
+    .map-wrapper { display: block; width: 100%; height: 220px; border-radius: 14px; overflow: hidden; margin-bottom: 20px; border: 1px solid #e2ded5; }
     .map-apps-group { display: flex; justify-content: center; gap: 10px; }
-    .map-app-btn { padding: 10px 20px; background-color: #ffffff; border: 1px solid #e2ded5; border-radius: 8px; text-decoration: none; color: #444; font-size: 1.25rem; }
+    .map-app-btn { padding: 10px 20px; background-color: #ffffff; border: 1px solid #e2ded5; border-radius: 8px; text-decoration: none; color: #444; font-size: 1.25rem; display: inline-flex; align-items: center; gap: 4px; }
+    .map-app-btn img { width: 16px; height: 16px; object-fit: contain; }
  </style>
 </head>
 <body class="intro-active">
 
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop preload="auto"></audio>
 
-  <div id="intro-overlay">
+  <!-- 인트로 레이어 (클릭하면 해제) -->
+  <div id="intro-overlay" onclick="closeIntroOverlay()">
     <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
   </div>
 
   <div class="container">
+    <!-- 꽃잎 컨테이너 -->
     <div class="cherry-blossom-container" id="blossom-box"></div>
 
     <div class="main-content">
@@ -357,14 +359,14 @@
       </div>
     </div>
 
-<!-- 📍 오시는 길 섹션 -->
+    <!-- 📍 오시는 길 섹션 -->
     <div class="location-section">
       <div class="location-title">LOCATION</div>
       <div class="hall-name">상주 마리앙스 마리앙스홀</div>
       <div class="hall-address-box">
         <span class="hall-address" id="targetAddress">경상북도 상주시 삼백로 343</span>
         <button class="address-copy-icon" onclick="copyAddressText()">
-          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: #888;"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: #88.%;"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
         </button>
       </div>
 
@@ -417,16 +419,84 @@
   </div> <!-- container div 닫힘 -->
 
   <script>
-    /* 기존 스크립트 로직 유지 */
-    function toggleAccordion(el) { el.parentElement.classList.toggle('active'); }
-    function copyAccountNumber(val) { navigator.clipboard.writeText(val).then(() => alert("계좌번호가 복사되었습니다.")); }
-    function copyAddressText() { navigator.clipboard.writeText(document.getElementById('targetAddress').innerText).then(() => alert("주소가 복사되었습니다.")); }
+    // 1. 인트로 레이어 끄기
+    function closeIntroOverlay() {
+      const intro = document.getElementById('intro-overlay');
+      if (intro) {
+        intro.classList.add('hidden');
+        document.body.classList.remove('intro-active');
+      }
+    }
+
+    // 2. 아코디언 핸들러
+    function toggleAccordion(el) { 
+      el.parentElement.classList.toggle('active'); 
+    }
+
+    // 3. 클립보드 복사 기믹들
+    function copyAccountNumber(val) { 
+      navigator.clipboard.writeText(val).then(() => alert("계좌번호가 복사되었습니다.")); 
+    }
+    
+    function copyAddressText() { 
+      navigator.clipboard.writeText(document.getElementById('targetAddress').innerText).then(() => alert("주소가 복사되었습니다.")); 
+    }
+
+    // 4. 모달 핸들러
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(e) { if (e.target.id === 'contactModal') closeContactModal(); }
-    function toggleBgm(event) { event.stopPropagation(); const audio = document.getElementById('weddingBgm'); const btn = document.querySelector('.bgm-control-btn'); if(audio.paused) { audio.play(); btn.classList.remove('muted'); } else { audio.pause(); btn.classList.add('muted'); } }
+
+    // 5. 배경음악 토글 시스템
+    function toggleBgm(event) { 
+      event.stopPropagation(); 
+      const audio = document.getElementById('weddingBgm'); 
+      const btn = document.querySelector('.bgm-control-btn'); 
+      if(audio.paused) { 
+        audio.play().catch(() => {
+          console.log("브라우저 보안 정책으로 인해 자동 상호작용 후 재생 가능합니다.");
+        }); 
+        btn.classList.remove('muted'); 
+      } else { 
+        audio.pause(); 
+        btn.classList.add('muted'); 
+      } 
+    }
     
-    // 추가 기능 함수들은 그대로 유지합니다.
-  </script>
-</body>
-</html>
+    // 6. 실시간 벚꽃(Cherry Blossom) 생성기
+    function createPetal() {
+      const container = document.getElementById('blossom-box');
+      if(!container) return;
+      
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = Math.random() * 5 + 5 + 's'; // 5~10초 사이 낙하
+      petal.style.width = petal.style.height = Math.random() * 8 + 6 + 'px'; // 6~14px 크기
+      
+      container.appendChild(petal);
+      
+      setTimeout(() => {
+        petal.remove();
+      }, 10000);
+    }
+    setInterval(createPetal, 400);
+
+    // 7. 실시간 디데이(D-Day) 타이머 연산 루프
+    function updateWeddingDday() {
+      const targetDate = new Date("2026-10-18T12:50:00").getTime();
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("dday-days").innerText = "00";
+        document.getElementById("dday-hours").innerText = "00";
+        document.getElementById("dday-minutes").innerText = "00";
+        document.getElementById("dday-seconds").innerText = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
