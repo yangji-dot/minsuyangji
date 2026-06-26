@@ -288,6 +288,45 @@
     .gallery-item { width: 100%; background-color: #dbdbdb; border-radius: 14px; overflow: hidden; }
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
+
+ <!-- 📍 [신규 구역] 오시는 길 (LOCATION) 섹션 -->
+    <div class="location-section">
+      <div class="location-title">Location</div>
+      <div class="hall-name">상주 마리앙스 마리앙스홀</div>
+      <div class="hall-address-box">
+        <span class="hall-address" id="targetAddress">경북 상주시 삼백로 343</span>
+        <button class="address-copy-icon" onclick="copyAddressText()" title="주소 복사">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 지도 이미지 영역 (추후 실제 맵 캡처 파일명으로 교체 가능) -->
+      <div class="map-wrapper">
+        <img src="map_sample.png" alt="상주 마리앙스 지도" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><rect width=\'100%\\' height=\'100%\' fill=\'%23e6e2d8\'/><text x=\'50%\' y=\'50%\' font-size=\'14\' fill=\'%23888888\' text-anchor=\'middle\' dy=\'.3em\'>[여기에 지도 캡처 이미지를 넣어주세요]</text></svg>'">
+      </div>
+
+      <!-- 내비게이션 길찾기 연동 링크 버튼그룹 -->
+      <div class="map-apps-group">
+        <!-- 네이버 지도 앱/웹 링크 -->
+        <a href="https://map.naver.com/v5/search/%EA%B2%BD%EB%B6%85%20%EC%83%81%EC%A3%BC%EC%8B%9C%20%EC%82%BC%EB%B0%B1%EB%A1%9C%20343" target="_blank" class="map-app-btn">
+          <img src="https://gshb.go.kr/images/tour/contents/icon_naver_map.png" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\'><circle cx=\'8\' cy=\'8\' r=\'8\' fill=\'%2303C75A\'/></svg>'" alt="네이버">
+          <span>네이버</span>
+        </a>
+        <!-- 티맵 목적지 검색 링크 -->
+        <a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=your_key&name=%EC%83%81%EC%A3%BC%EB%A7%88%EB%A6%AC%EC%95%94%EC%8A%A4&lon=128.1632&lat=36.4175" target="_blank" class="map-app-btn">
+          <img src="https://www.tmap.co.kr/tmap2/images/common/favicon.ico" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\'><circle cx=\'8\' cy=\'8\' r=\'8\' fill=\'%234A33FE\'/></svg>'" alt="티맵">
+          <span>T MAP</span>
+        </a>
+        <!-- 구글맵 주소 검색 링크 -->
+        <a href="https://www.google.com/maps/search/?api=1&query=%EA%B2%BD%EB%B6%85+%EC%83%81%EC%A3%BC%EC%8B%9C+%EC%82%BC%EB%B0%B1%EB%A1%9C+343" target="_blank" class="map-app-btn">
+          <img src="https://www.google.com/images/branding/product/ico/maps16_b.png" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\'><circle cx=\'8\' cy=\'8\' r=\'8\' fill=\'%23EA4335\'/></svg>'" alt="구글">
+          <span>구글맵</span>
+        </a>
+      </div>
+    </div>
+
   </style>
 </head>
 <body class="intro-active">
@@ -369,44 +408,6 @@
       <button class="contact-btn" onclick="openContactModal()">축하 연락하기</button>
     </div>
 
-    <!-- 📍 [신규 구역] 오시는 길 (LOCATION) 섹션 -->
-    <div class="location-section">
-      <div class="location-title">Location</div>
-      <div class="hall-name">상주 마리앙스 마리앙스홀</div>
-      <div class="hall-address-box">
-        <span class="hall-address" id="targetAddress">경북 상주시 삼백로 343</span>
-        <button class="address-copy-icon" onclick="copyAddressText()" title="주소 복사">
-          <svg viewBox="0 0 24 24">
-            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- 지도 이미지 영역 (추후 실제 맵 캡처 파일명으로 교체 가능) -->
-      <div class="map-wrapper">
-        <img src="map_sample.png" alt="상주 마리앙스 지도" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><rect width=\'100%\\' height=\'100%\' fill=\'%23e6e2d8\'/><text x=\'50%\' y=\'50%\' font-size=\'14\' fill=\'%23888888\' text-anchor=\'middle\' dy=\'.3em\'>[여기에 지도 캡처 이미지를 넣어주세요]</text></svg>'">
-      </div>
-
-      <!-- 내비게이션 길찾기 연동 링크 버튼그룹 -->
-      <div class="map-apps-group">
-        <!-- 네이버 지도 앱/웹 링크 -->
-        <a href="https://map.naver.com/v5/search/%EA%B2%BD%EB%B6%85%20%EC%83%81%EC%A3%BC%EC%8B%9C%20%EC%82%BC%EB%B0%B1%EB%A1%9C%20343" target="_blank" class="map-app-btn">
-          <img src="https://gshb.go.kr/images/tour/contents/icon_naver_map.png" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\'><circle cx=\'8\' cy=\'8\' r=\'8\' fill=\'%2303C75A\'/></svg>'" alt="네이버">
-          <span>네이버</span>
-        </a>
-        <!-- 티맵 목적지 검색 링크 -->
-        <a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=your_key&name=%EC%83%81%EC%A3%BC%EB%A7%88%EB%A6%AC%EC%95%94%EC%8A%A4&lon=128.1632&lat=36.4175" target="_blank" class="map-app-btn">
-          <img src="https://www.tmap.co.kr/tmap2/images/common/favicon.ico" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\'><circle cx=\'8\' cy=\'8\' r=\'8\' fill=\'%234A33FE\'/></svg>'" alt="티맵">
-          <span>T MAP</span>
-        </a>
-        <!-- 구글맵 주소 검색 링크 -->
-        <a href="https://www.google.com/maps/search/?api=1&query=%EA%B2%BD%EB%B6%85+%EC%83%81%EC%A3%BC%EC%8B%9C+%EC%82%BC%EB%B0%B1%EB%A1%9C+343" target="_blank" class="map-app-btn">
-          <img src="https://www.google.com/images/branding/product/ico/maps16_b.png" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\'><circle cx=\'8\' cy=\'8\' r=\'8\' fill=\'%23EA4335\'/></svg>'" alt="구글">
-          <span>구글맵</span>
-        </a>
-      </div>
-    </div>
-
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
@@ -460,7 +461,7 @@
       </div>
 
       <div class="accordion-wrapper bride-acc">
-        <div class="accordion-header" onclick="toggleAccordion(this)"><span>text</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
+        <div class="accordion-header" onclick="toggleAccordion(this)"><span>신부측</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
         <div class="accordion-content">
           <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 김양지</span><span class="account-number-detail">987654321</span><span class="account-bank">국민 김양지</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321')">복사</button></div>
           <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 아버지</span><span class="account-number-detail">987654321-01</span><span class="account-bank">국민 김승묵</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321-01')">복사</button></div>
