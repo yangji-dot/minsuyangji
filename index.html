@@ -32,8 +32,12 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* 인트로 활성화 시 스크롤 잠금 */
     body.intro-active {
       overflow: hidden; 
+      position: fixed;
+      width: 100%;
+      height: 100%;
     }
 
     .container {
@@ -41,12 +45,12 @@
       position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* 인트로 레이어 */
+    /* ✨ 인트로 레이어 (클릭/터치 영역 확보 및 버그 수정) */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
-      z-index: 9999; display: flex; justify-content: center; align-items: center;
-      transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease;
+      z-index: 999999; display: flex; justify-content: center; align-items: center;
+      transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
       transform: translateY(0);
       opacity: 1;
       visibility: visible;
@@ -62,6 +66,7 @@
       font-size: 2.5rem; color: #FFB6C1; text-align: center; white-space: pre-line; 
       font-family: 'InkLipquid', sans-serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
       user-select: none;
+      pointer-events: none; /* 텍스트가 클릭 이벤트를 방해하지 않도록 설정 */
     }
 
     /* 🎵 배경음악 컨트롤 버튼 */
@@ -104,7 +109,7 @@
     .note-pad { max-width: 250px; margin: 0 auto; padding: 4px 0; background-image: linear-gradient(#e1dfda 1px, transparent 1px); background-size: 100% 30px; background-position: 0 0; font-family: 'GangwonSaeeum', sans-serif; word-break: keep-all; }
     .note-text { font-size: 1.3rem; color: #333333; line-height: 30px; text-align: center; transform: translateY(-5px); display: block; }
     .note-space { height: 30px; }
-    .note-author { font-size: 1.3rem; color: #666666; }
+    .note-text note-author { font-size: 1.3rem; color: #666666; }
 
     /* 🦋 나비 구역 */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
@@ -197,23 +202,24 @@
     /* 📍 오시는 길 섹션 스타일 */
     .location-section { padding: 50px 24px; background-color: #f5f4f0; text-align: center; }
     .location-title { font-family: 'InkLipquid', sans-serif; font-size: 1.95rem; color: #f2b2b2; margin-bottom: 20px; }
-    .hall-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 8px; color: #333; }
+    .hall-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 8px; color: #333333; }
     .hall-address-box { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 25px; }
-    .hall-address { font-size: 1.3rem; color: #666; }
+    .hall-address { font-size: 1.3rem; color: #666666; }
     .address-copy-icon { background: none; border: none; cursor: pointer; display: flex; align-items: center; }
     .map-wrapper { display: block; width: 100%; height: 220px; border-radius: 14px; overflow: hidden; margin-bottom: 20px; border: 1px solid #e2ded5; }
     .map-apps-group { display: flex; justify-content: center; gap: 10px; }
-    .map-app-btn { padding: 10px 20px; background-color: #ffffff; border: 1px solid #e2ded5; border-radius: 8px; text-decoration: none; color: #444; font-size: 1.25rem; display: inline-flex; align-items: center; gap: 4px; }
+    .map-app-btn { padding: 10px 20px; background-color: #ffffff; border: 1px solid #e2ded5; border-radius: 8px; text-decoration: none; color: #444444; font-size: 1.25rem; display: inline-flex; align-items: center; gap: 4px; }
     .map-app-btn img { width: 16px; height: 16px; object-fit: contain; }
  </style>
 </head>
 <body class="intro-active">
 
+  <!-- 배경음악 파일 -->
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop preload="auto"></audio>
 
-  <!-- 인트로 레이어 (클릭하면 해제) -->
-  <div id="intro-overlay" onclick="closeIntroOverlay()">
-    <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
+  <!-- 인트로 레이어 (전체 화면 클릭 및 터치 바인딩 해결) -->
+  <div id="intro-overlay">
+    <div class="intro-text">♥결혼식에 초대합니다♥</div>
   </div>
 
   <div class="container">
@@ -221,6 +227,7 @@
     <div class="cherry-blossom-container" id="blossom-box"></div>
 
     <div class="main-content">
+      <!-- BGM 컨트롤 버튼 -->
       <button class="bgm-control-btn muted" onclick="toggleBgm(event)">
         <svg class="bgm-icon icon-playing" viewBox="0 0 24 24">
           <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -242,6 +249,7 @@
       <div class="main-date">상주 마리앙스, 마리앙스 홀</div>
     </div>
 
+    <!-- 초대글 섹션 -->
     <div class="invitation-section">
       <div class="leaf-icon">🌿</div>
       <div class="note-pad">
@@ -254,6 +262,7 @@
       </div>
     </div>
 
+    <!-- 나비 구역 -->
     <div class="butterfly-area">
       <div class="butterfly-top">
         <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
@@ -272,6 +281,7 @@
       </div>
     </div>
 
+    <!-- 부모님 정보 섹션 -->
     <div class="family-section">
       <div class="family-relations">
         <div class="relation-row">
@@ -288,6 +298,7 @@
       <button class="contact-btn" onclick="openContactModal()">축하 연락하기</button>
     </div>
 
+    <!-- 달력 섹션 -->
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
@@ -309,6 +320,7 @@
       <div class="calendar-bottom-line"></div>
     </div>
 
+    <!-- 디데이 카운트다운 -->
     <div class="dday-section">
       <div class="dday-title">민수 ♥ 양지 결혼식까지</div>
       <div class="dday-container">
@@ -319,6 +331,7 @@
       </div>
     </div>
 
+    <!-- 계좌번호 안내 섹션 -->
     <div class="account-section">
       <div class="account-main-title">마음 전하실 곳</div>
       <div class="account-intro-text">
@@ -350,6 +363,7 @@
       </div>
     </div>
 
+    <!-- 📸 갤러리 섹션 -->
     <div class="gallery-section">
       <div class="gallery-title">Gallery</div>
       <div class="gallery-container">
@@ -369,7 +383,7 @@
         </button>
       </div>
 
-      <!-- 지도 클릭 시 네이버 지도 이동 -->
+      <!-- 지도 구역 -->
       <a href="https://map.naver.com/v5/entry/place/19864213" target="_blank" class="map-wrapper">
         <img src="지도이미지파일.png" style="width:100%; height:100%; object-fit:cover;" alt="지도">
       </a>
@@ -387,6 +401,7 @@
       </div>
     </div>
 
+    <!-- 연락처 모달 -->
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
         <button class="modal-close" onclick="closeContactModal()">✕</button>
@@ -415,24 +430,59 @@
       </div>
     </div>
 
-  </div> <!-- container div 닫힘 -->
+  </div>
 
   <script>
-    // 1. 인트로 레이어 끄기
-    function closeIntroOverlay() {
-      const intro = document.getElementById('intro-overlay');
-      if (intro) {
-        intro.classList.add('hidden');
+    // 🛠️ 1. 완벽한 인트로 해제 및 버그 수정 시스템
+    const introOverlay = document.getElementById('intro-overlay');
+    let isIntroClosed = false;
+
+    function handleIntroClose() {
+      if (isIntroClosed) return;
+      isIntroClosed = true;
+
+      if (introOverlay) {
+        introOverlay.classList.add('hidden');
         document.body.classList.remove('intro-active');
+
+        // 음악 자동 재생 트리거
+        const audio = document.getElementById('weddingBgm');
+        const bgmBtn = document.querySelector('.bgm-control-btn');
+        if (audio) {
+          audio.play().then(() => {
+            if (bgmBtn) bgmBtn.classList.remove('muted');
+          }).catch((err) => {
+            console.log("브라우저 정책으로 음소거 상태를 유지합니다. 버튼으로 켜실 수 있습니다.", err);
+          });
+        }
+
+        // 애니메이션 완료 후 DOM에서 물리적으로 제거하여 터치 방해 전면 차단
+        setTimeout(() => {
+          if (introOverlay.parentNode) {
+            introOverlay.parentNode.removeChild(introOverlay);
+          }
+        }, 900);
       }
     }
+
+    // 모바일 터치 및 클릭 이벤트 전체 바인딩 (안넘어가는 현상 완전 해결)
+    if (introOverlay) {
+      introOverlay.addEventListener('click', handleIntroClose);
+      introOverlay.addEventListener('touchstart', handleIntroClose, { passive: true });
+    }
+
+    // 사용자가 클릭하지 않아도 2.8초 후 자동으로 넘어가는 안전장치 복원
+    setTimeout(() => {
+      handleIntroClose();
+    }, 2800);
+
 
     // 2. 아코디언 핸들러
     function toggleAccordion(el) { 
       el.parentElement.classList.toggle('active'); 
     }
 
-    // 3. 클립보드 복사 기믹들
+    // 3. 클립보드 복사
     function copyAccountNumber(val) { 
       navigator.clipboard.writeText(val).then(() => alert("계좌번호가 복사되었습니다.")); 
     }
@@ -441,20 +491,18 @@
       navigator.clipboard.writeText(document.getElementById('targetAddress').innerText).then(() => alert("주소가 복사되었습니다.")); 
     }
 
-    // 4. 모달 핸들러
+    // 4. 모달 제어
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(e) { if (e.target.id === 'contactModal') closeContactModal(); }
 
-    // 5. 배경음악 토글 시스템
+    // 5. 배경음악 수동 토글
     function toggleBgm(event) { 
       event.stopPropagation(); 
       const audio = document.getElementById('weddingBgm'); 
       const btn = document.querySelector('.bgm-control-btn'); 
       if(audio.paused) { 
-        audio.play().catch(() => {
-          console.log("브라우저 보안 정책으로 인해 자동 상호작용 후 재생 가능합니다.");
-        }); 
+        audio.play().catch(() => {}); 
         btn.classList.remove('muted'); 
       } else { 
         audio.pause(); 
@@ -462,7 +510,7 @@
       } 
     }
     
-    // 6. 실시간 벚꽃(Cherry Blossom) 생성기
+    // 6. 벚꽃 생성 시스템
     function createPetal() {
       const container = document.getElementById('blossom-box');
       if(!container) return;
@@ -470,8 +518,8 @@
       const petal = document.createElement('div');
       petal.className = 'petal';
       petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = Math.random() * 5 + 5 + 's'; // 5~10초 사이 낙하
-      petal.style.width = petal.style.height = Math.random() * 8 + 6 + 'px'; // 6~14px 크기
+      petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+      petal.style.width = petal.style.height = Math.random() * 8 + 6 + 'px';
       
       container.appendChild(petal);
       
@@ -481,7 +529,7 @@
     }
     setInterval(createPetal, 400);
 
-    // 7. 실시간 디데이(D-Day) 타이머 연산 루프
+    // 7. 실시간 디데이 타이머
     function updateWeddingDday() {
       const targetDate = new Date("2026-10-18T12:50:00").getTime();
       const now = new Date().getTime();
@@ -498,4 +546,4 @@
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distanceNormally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+      const seconds = Math.floor((distance % (1000 * 60))Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
