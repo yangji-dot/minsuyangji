@@ -37,7 +37,7 @@
       position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* 1. 인트로 오버레이 (클릭 시 페이드아웃 후 완전히 사라짐) */
+    /* 1. 인트로 오버레이 */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
@@ -50,7 +50,7 @@
     #intro-overlay.hidden {
       opacity: 0;
       visibility: hidden;
-      pointer-events: none; /* 클릭 차단 */
+      pointer-events: none;
     }
     .intro-text {
       font-size: 2.5rem; color: #FFB6C1; text-align: center; white-space: pre-line; 
@@ -102,36 +102,37 @@
     .note-space { height: 30px; }
     .note-author { font-size: 1.3rem; color: #666666; }
 
-    /* 🦋 나비 애니메이션 구역 */
+    /* 🦋 나비 구역 */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
     .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 30px; height: 50px; }
     .butterfly-left, .butterfly-right { width: 48px; height: 44px; object-fit: contain; }
     .greeting-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; line-height: 1.8; color: #444444; word-break: keep-all; text-align: center; max-width: 320px; margin: 0 auto; }
 
-    /* 부모님 정보 섹션 */
+    /* 👥 부모님 정보 섹션 */
     .family-section { padding: 20px 24px 60px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .family-relations { max-width: 320px; margin: 0 auto 35px auto; font-size: 1.4rem; line-height: 2.2; color: #333333; }
     .relation-row { display: flex; justify-content: center; align-items: center; gap: 12px; }
     .relation-row .parents { width: 140px; text-align: right; }
     .relation-row .relation { color: #888888; width: 30px; text-align: center; }
     .relation-row .child { width: 60px; text-align: left; font-weight: bold; }
-    .contact-btn { padding: 10px 36px; background-color: #ffffff; border: 1px solid #c1bba2; color: #555555; font-size: 1.35rem; border-radius: 6px; cursor: pointer; font-family: 'GangwonSaeeum', sans-serif; }
+    .contact-btn { padding: 10px 36px; background-color: #ffffff; border: 1px solid #c1bba2; color: #555555; font-size: 1.35rem; border-radius: 6px; cursor: pointer; font-family: 'GangwonSaeeum', sans-serif; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
 
-    /* 혼주 연락처 모달창 */
+    /* 📞 혼주 연락처 모달 팝업 */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
-    .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; position: relative; }
-    .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.2rem; color: #aaaaaa; cursor: pointer; background: none; border: none; }
+    .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
+    .modal-overlay.active .modal-content { transform: translateY(0); }
+    .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.2rem; color: #aaaaaa; cursor: pointer; background: none; border: none; font-family: sans-serif; }
     .modal-grid { display: flex; width: 100%; gap: 10px; }
     .grid-column { width: 50%; display: flex; flex-direction: column; gap: 24px; }
     .side-title { font-size: 1.55rem; font-weight: bold; margin-bottom: 6px; text-align: center; }
     .grid-column.groom-side .side-title { color: #5c849e; }
     .grid-column.bride-side .side-title { color: #b57a7a; }
-    .member-box { display: flex; flex-direction: column; align-items: center; }
+    .member-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 10px; }
     .action-icons { display: flex; justify-content: center; gap: 22px; }
-    .action-icons a { text-decoration: none; }
-    .icon-phone, .icon-mail { width: 22px; height: 22px; }
+    .action-icons a { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+    .icon-phone, .icon-mail { width: 20px; height: 20px; }
     .grid-column.groom-side svg { fill: #5c849e; }
     .grid-column.bride-side svg { fill: #b57a7a; }
 
@@ -236,7 +237,15 @@
         <img id="butterflyRight" class="butterfly-right" src="butterfly_right1.png" alt="나비">
       </div>
       <div class="greeting-text">
-        두 사람이 하나 되어 아름다운 가정을 꾸려나가는 소중한 시작을 함께 축복해주시면 감사하겠습니다.
+        두 사람이 하나 되어<br>
+        아름다운 가정을 꾸려나가는<br>
+        소중한 시작을 함께 축복해주시면<br>
+        감사하겠습니다.<br><br>
+        바쁘신 와중에도 귀한 발걸음으로<br>
+        참석해주시는 모든 분들께<br>
+        진심으로 감사드립니다.<br><br>
+        저희 두 사람의 앞날에<br>
+        따뜻한 격려와 축복을 부탁드립니다.
       </div>
     </div>
 
@@ -289,19 +298,31 @@
 
     <div class="account-section">
       <div class="account-main-title">마음 전하실 곳</div>
-      <div class="account-intro-text">멀리서도 축하의 마음을 전하고 싶으신 분들을 위해 계좌번호를 안내해드립니다.</div>
+      <div class="account-intro-text">
+        멀리서도 축하의 마음을<br>
+        전하고 싶으신 분들을 위해<br>
+        계좌번호를 안내해드립니다.
+      </div>
+      <div class="account-sub-text">
+        소중한 축하를 보내주셔서 감사드리며,<br>
+        따뜻한 마음에 깊이 감사드립니다.
+      </div>
       
       <div class="accordion-wrapper groom-acc">
         <div class="accordion-header" onclick="toggleAccordion(this)"><span>신랑측</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
         <div class="accordion-content">
-          <div class="account-row"><div class="account-info-box"><span class="account-owner">신랑 조민수</span><span class="account-number-detail">123456789</span><span class="account-bank">농협</span></div><button class="copy-btn" onclick="copyAccountNumber('123456789')">복사</button></div>
+          <div class="account-row"><div class="account-info-box"><span class="account-owner">신랑 조민수</span><span class="account-number-detail">123456789</span><span class="account-bank">농협 조민수</span></div><button class="copy-btn" onclick="copyAccountNumber('123456789')">복사</button></div>
+          <div class="account-row"><div class="account-info-box"><span class="account-owner">신랑 아버지</span><span class="account-number-detail">123456789</span><span class="account-bank">농협 조병도</span></div><button class="copy-btn" onclick="copyAccountNumber('123456789')">복사</button></div>
+          <div class="account-row"><div class="account-info-box"><span class="account-owner">신랑 어머니</span><span class="account-number-detail">123456789-02</span><span class="account-bank">농협 김애경</span></div><button class="copy-btn" onclick="copyAccountNumber('123456789-02')">복사</button></div>
         </div>
       </div>
 
       <div class="accordion-wrapper bride-acc">
         <div class="accordion-header" onclick="toggleAccordion(this)"><span>신부측</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
         <div class="accordion-content">
-          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 김양지</span><span class="account-number-detail">987654321</span><span class="account-bank">국민</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321')">복사</button></div>
+          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 김양지</span><span class="account-number-detail">987654321</span><span class="account-bank">국민 김양지</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321')">복사</button></div>
+          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 아버지</span><span class="account-number-detail">987654321-01</span><span class="account-bank">국민 김승묵</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321-01')">복사</button></div>
+          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 어머니</span><span class="account-number-detail">987654321-02</span><span class="account-bank">국민 안희숙</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321-02')">복사</button></div>
         </div>
       </div>
     </div>
@@ -320,11 +341,37 @@
         <div class="modal-grid">
           <div class="grid-column groom-side">
             <div class="side-title">신랑측</div>
-            <div class="member-box"><div class="member-info">신랑 조민수</div></div>
+            <div class="member-box">
+              <div class="member-info">아버지 조병도</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
+            <div class="member-box">
+              <div class="member-info">어머니 김애경</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
           </div>
           <div class="grid-column bride-side">
             <div class="side-title">신부측</div>
-            <div class="member-box"><div class="member-info">신부 김양지</div></div>
+            <div class="member-box">
+              <div class="member-info">아버지 김승묵</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
+            <div class="member-box">
+              <div class="member-info">어머니 안희숙</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -333,11 +380,11 @@
   </div>
 
   <script>
-    // 🔄 나비 애니메이션 타임라인 데이터 보정
+    // 🔄 [수정] 나비 날개짓 애니메이션 간격 조정 (기존 대비 2.5배 더 천천히 우아하게 설정)
     const butterflyTimeline = [
-      { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 130 },
-      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 120 },
-      { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 130 }
+      { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 350 },
+      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 320 },
+      { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 350 }
     ];
     let currentFrame = 0;
 
@@ -353,7 +400,7 @@
       setTimeout(runButterflyAnimation, frameData.delay);
     }
 
-    // 🌸 벚꽃 애니메이션 로직
+    // 🌸 벚꽃 애니메이션
     function startCherryBlossoms() {
       const blossomBox = document.getElementById('blossom-box');
       if (!blossomBox) return;
@@ -370,9 +417,9 @@
       }
     }
 
-    // ⏱️ 디데이 연산 타이머
+    // ⏱️ 디데이 타이머
     function initWeddingTimer() {
-      const targetDate = new Date(2026, 9, 18, 12, 50, 0).getTime(); // 10월 (Month Index: 9)
+      const targetDate = new Date(2026, 9, 18, 12, 50, 0).getTime();
       setInterval(() => {
         const now = new Date().getTime();
         const distance = targetDate - now;
@@ -385,7 +432,19 @@
       }, 1000);
     }
 
-    // 🛑 [핵심 수정] 인트로 닫기 보완 함수 (브라우저 정책 우회 차단 처리)
+    // 🎵 [수정완료] 로딩되자마자 자동재생 및 터치 시 예외 재생 설계
+    function tryAutoplayBgm() {
+      const audio = document.getElementById('weddingBgm');
+      const btn = document.querySelector('.bgm-control-btn');
+      if (audio) {
+        audio.play().then(() => {
+          if (btn) btn.classList.remove('muted');
+        }).catch(err => {
+          console.log("브라우저 자동재생 차단 대기 중...");
+        });
+      }
+    }
+
     let isIntroClosed = false;
     function closeIntroOverlay() {
       if (isIntroClosed) return;
@@ -395,12 +454,12 @@
       const audio = document.getElementById('weddingBgm');
       const btn = document.querySelector('.bgm-control-btn');
 
-      // 오디오 작동 여부와 관계없이 화면은 무조건 넘어가도록 트라이캐치 분리
+      // 사용자가 인트로를 터치/클릭하는 순간 강제 차단 해제 및 음악 재생
       if (audio) {
         audio.play().then(() => {
           if (btn) btn.classList.remove('muted');
         }).catch(err => {
-          console.log("브라우저 자동재생 차단 우회 패스");
+          console.log("오디오 재생 실패 트래킹 패스");
         });
       }
 
@@ -409,11 +468,6 @@
         setTimeout(() => { overlay.remove(); }, 1000);
       }
     }
-
-    // 예외 백업용 장치: 터치 반응이 없더라도 3.5초가 지나면 무조건 인트로를 걷어냅니다.
-    setTimeout(() => {
-      closeIntroOverlay();
-    }, 3500);
 
     // 음악 수동 온오프 제어
     function toggleBgm(event) {
@@ -430,7 +484,7 @@
       }
     }
 
-    // 모달창 및 아코디언 컴포넌트 이벤트 컨트롤
+    // 기능 컨트롤러
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(e) { if (e.target.id === 'contactModal') closeContactModal(); }
@@ -439,13 +493,14 @@
       navigator.clipboard.writeText(val).then(() => alert("계좌번호가 복사되었습니다."));
     }
 
-    // DOM 렌더링 시 기초 기능 바인딩
+    // DOM 렌더 완료 시 트리거 연동
     window.addEventListener('DOMContentLoaded', () => {
       startCherryBlossoms();
       initWeddingTimer();
       runButterflyAnimation();
+      tryAutoplayBgm(); // 로딩 즉시 음원 자동 재생 도전
 
-      // 타이핑 애니메이션 빌드
+      // 타이핑 애니메이션
       const intro = document.getElementById('intro');
       if (intro) {
         const text = intro.innerText; intro.innerText = '';
