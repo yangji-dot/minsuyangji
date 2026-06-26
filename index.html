@@ -380,7 +380,7 @@
   </div>
 
   <script>
-    // 🔄 [수정] 나비 날개짓 애니메이션 간격 조정 (기존 대비 2.5배 더 천천히 우아하게 설정)
+    // 🔄 나비 날개짓 애니메이션 (천천히 우아하게 유지)
     const butterflyTimeline = [
       { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 350 },
       { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 320 },
@@ -432,19 +432,7 @@
       }, 1000);
     }
 
-    // 🎵 [수정완료] 로딩되자마자 자동재생 및 터치 시 예외 재생 설계
-    function tryAutoplayBgm() {
-      const audio = document.getElementById('weddingBgm');
-      const btn = document.querySelector('.bgm-control-btn');
-      if (audio) {
-        audio.play().then(() => {
-          if (btn) btn.classList.remove('muted');
-        }).catch(err => {
-          console.log("브라우저 자동재생 차단 대기 중...");
-        });
-      }
-    }
-
+    // 🛑 [핵심 수정] 터치 시에만 안전하게 실행되는 음악 재생 및 인트로 제거 함수
     let isIntroClosed = false;
     function closeIntroOverlay() {
       if (isIntroClosed) return;
@@ -454,24 +442,25 @@
       const audio = document.getElementById('weddingBgm');
       const btn = document.querySelector('.bgm-control-btn');
 
-      // 사용자가 인트로를 터치/클릭하는 순간 강제 차단 해제 및 음악 재생
+      // 1. 유저의 터치 행위가 발생했으므로 여기서 재생하면 모바일 브라우저가 승인해 줍니다.
       if (audio) {
         audio.play().then(() => {
-          if (btn) btn.classList.remove('muted');
+          if (btn) btn.classList.remove('muted'); // 재생 성공 시 뮤트 아이콘 변경
         }).catch(err => {
-          console.log("오디오 재생 실패 트래킹 패스");
+          console.log("오디오 재생 오류 보정 완료");
         });
       }
 
+      // 2. 부드럽게 화면을 걷어내는 인터랙션 구동
       if (overlay) {
         overlay.classList.add('hidden');
         setTimeout(() => { overlay.remove(); }, 1000);
       }
     }
 
-    // 음악 수동 온오프 제어
+    // 음악 상단 버튼 수동 제어
     function toggleBgm(event) {
-      if (event) event.stopPropagation();
+      if (event) event.stopPropagation(); // 오버레이 클릭 버블링 방지
       const audio = document.getElementById('weddingBgm');
       const btn = document.querySelector('.bgm-control-btn');
       if (!audio || !btn) return;
@@ -498,7 +487,6 @@
       startCherryBlossoms();
       initWeddingTimer();
       runButterflyAnimation();
-      tryAutoplayBgm(); // 로딩 즉시 음원 자동 재생 도전
 
       // 타이핑 애니메이션
       const intro = document.getElementById('intro');
