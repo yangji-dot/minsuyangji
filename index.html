@@ -41,8 +41,14 @@
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
       z-index: 9999; display: flex; justify-content: center; align-items: center;
-      transition: opacity 1.2s ease-in-out;
+      transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
       cursor: pointer;
+      opacity: 1;
+      visibility: visible;
+    }
+    #intro-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
     }
     .intro-text {
       font-size: 3.2rem; color: #FFB6C1; text-align: center; white-space: pre-line; 
@@ -214,9 +220,10 @@
 </head>
 <body>
 
-  <!-- 🎵 배경음악 오디오 레이어 (※ 파일 경로 확인용으로 띄어쓰기를 %20으로 매칭했습니다) -->
+  <!-- 🎵 배경음악 오디오 레이어 -->
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop prefetch></audio>
 
+  <!-- 첫 로드 및 재방문 시 유연하게 대처하는 오버레이 창 -->
   <div id="intro-overlay" onclick="closeIntroOverlay()">
     <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
   </div>
@@ -226,7 +233,7 @@
 
     <div class="main-content">
       <!-- 우측 상단 음악 ON/OFF 제어 버튼 -->
-      <button class="bgm-control-btn" onclick="toggleBgm(event)" title="배경음악 토글">
+      <button class="bgm-control-btn muted" onclick="toggleBgm(event)" title="배경음악 토글">
         <svg class="bgm-icon icon-playing" viewBox="0 0 24 24">
           <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
         </svg>
@@ -259,7 +266,7 @@
       </div>
     </div>
 
-    <!-- 🦋 완벽히 동기화된 순환형 나비 애니메이션 구역 -->
+    <!-- 🦋 1-2-3-4-5-6-7-6-5-4-3-2-1 무한 왕복 동기화 나비 구역 -->
     <div class="butterfly-area">
       <div class="butterfly-top">
         <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
@@ -509,33 +516,33 @@
   </div>
 
   <script>
-    // 🎨 색상을 일관되게 단일 톤(#CBD396)으로 통일한 내장형 SVG 데이터 매칭
+    // 🎨 이질감 없는 단일 색상(#CBD396) 톤의 SVG 프레임들 데이터화
     const svgFrame1 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M300 280 C310 250, 340 130, 490 105 C520 100, 540 140, 510 210 C480 280, 420 300, 420 300 C420 300, 450 360, 420 410 C390 460, 340 430, 310 380 C300 360, 300 300, 300 300 C300 300, 300 360, 290 380 C260 430, 210 460, 180 410 C150 360, 180 300, 180 300 C180 300, 120 280, 90 210 C60 140, 80 100, 110 105 C260 130, 290 250, 300 280 Z" fill="%23CBD396"/><path d="M295 240 Q290 200, 275 180 M305 240 Q310 200, 325 180" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M295 240 C295 230, 305 230, 305 240 L303 350 C303 355, 297 355, 297 350 Z" fill="%23CBD396"/></svg>';
     const svgFrame2 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M300 280 C308 250, 330 140, 430 115 C455 110, 475 145, 450 220 C425 295, 385 310, 385 310 C385 310, 410 370, 385 415 C360 460, 325 435, 308 385 C300 365, 300 300, 300 300 C300 300, 300 365, 292 385 C275 435, 240 460, 215 415 C190 370, 215 310, 215 310 C215 310, 175 295, 150 220 C125 145, 145 110, 170 115 C270 140, 292 250, 300 280 Z" fill="%23CBD396"/><path d="M295 240 Q291 200, 278 182 M305 240 Q309 200, 322 182" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M295 240 C295 230, 305 230, 305 240 L303 350 C303 355, 297 355, 297 350 Z" fill="%23CBD396"/></svg>';
     const svgFrame3 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M290 290 C285 260, 250 160, 190 140 C170 135, 155 165, 175 230 C195 295, 230 320, 230 320 C230 320, 210 375, 230 415 C250 455, 280 430, 290 385 Z" fill="%23CBD396"/><path d="M300 295 C305 265, 340 135, 415 105 C440 95, 460 130, 440 210 C420 290, 370 315, 370 315 C370 315, 395 375, 370 425 C345 475, 315 445, 302 395 Z" fill="%23CBD396"/><path d="M290 250 Q285 210, 270 190 M298 252 Q305 212, 318 192" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M288 255 C285 245, 298 240, 302 250 L290 360 C288 365, 282 362, 285 355 Z" fill="%23CBD396"/></svg>';
     const svgFrame4 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M330 320 C330 290, 370 160, 460 140 C490 135, 510 165, 490 240 C470 315, 410 340, 410 340 C410 340, 420 400, 390 440 C360 480, 330 450, 330 390 Z" fill="%23CBD396"/><path d="M310 330 C300 295, 250 160, 140 145 C100 140, 80 180, 110 270 C140 360, 220 380, 220 380 C220 380, 190 445, 230 490 C270 535, 310 470, 310 410 Z" fill="%23CBD396"/><path d="M315 290 Q300 255, 280 240 M322 295 Q315 260, 305 242" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M310 300 C305 290, 320 285, 325 295 L340 395 C342 400, 335 403, 332 398 Z" fill="%23CBD396"/></svg>';
 
-    // 🔄 무한대칭 완전순환형 타임라인 배치 구조 (1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 반복)
+    // 🔄 끊김이 생기지 않도록 완벽히 동기화된 1-2-3-4-5-6-7-6-5-4-3-2 왕복 타임라인 어레이
     const butterflyTimeline = [
-      { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 130 }, // 1. 정면 활짝 (진입 정점)
-      { left: "butterfly_left1.png", right: svgFrame1,                 delay: 60  }, // 2. 정면 살짝 접힘 (내려가는 중)
-      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 55  }, // 3. 중간 정면 접힘
-      { left: "butterfly_left2.png", right: svgFrame2,                 delay: 55  }, // 4. 정면 많이 접힘
-      { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 70  }, // 5. 최대 수직 접힘
-      { left: "butterfly_left3.png", right: svgFrame3,                 delay: 60  }, // 6. 입체 측면 과도기
-      { left: "butterfly_left3.png", right: "butterfly_left3.png",  delay: 110 }, // 7. 측면 완전 접힘 (반환 정점)
+      { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 130 }, // 1번 (정면 완전 활짝)
+      { left: "butterfly_left1.png", right: svgFrame1,                 delay: 65  }, // 2번 (미세 접힘)
+      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 60  }, // 3번 (중간 접힘)
+      { left: "butterfly_left2.png", right: svgFrame2,                 delay: 60  }, // 4번 (많이 접힘)
+      { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 70  }, // 5번 (완전히 세워짐)
+      { left: "butterfly_left3.png", right: svgFrame3,                 delay: 65  }, // 6번 (입체 측면 돌입)
+      { left: "butterfly_left3.png", right: "butterfly_left3.png",  delay: 110 }, // 7번 (정점: 완전 접힘)
       
-      // ◀ 여기서부터 완전 대칭 구조로 돌아가는 리턴 라인 매칭
-      { left: "butterfly_left3.png", right: svgFrame3,                 delay: 60  }, // 6번 프레임 복제 역재생
+      // 역순 리턴 매칭 (끝에서 다시 1번으로 매끄럽게 가기 위한 중간 단계 스냅샷들)
+      { left: "butterfly_left3.png", right: svgFrame3,                 delay: 65  }, // 6번 프레임 복제 역재생
       { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 70  }, // 5번 프레임 복제 역재생
-      { left: "butterfly_left2.png", right: svgFrame2,                 delay: 55  }, // 4번 프레임 복제 역재생
-      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 55  }, // 3번 프레임 복제 역재생
-      { left: "butterfly_left1.png", right: svgFrame1,                 delay: 60  }  // 2번 프레임 복제 역재생
+      { left: "butterfly_left2.png", right: svgFrame2,                 delay: 60  }, // 4번 프레임 복제 역재생
+      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 60  }, // 3번 프레임 복제 역재생
+      { left: "butterfly_left1.png", right: svgFrame1,                 delay: 65  }  // 2번 프레임 복제 역재생
     ];
 
     let currentFrame = 0;
 
-    // 타임라인 순환 애니메이션 실행 함수
+    // 타임라인 무한 루프 애니메이션 스크립트
     function runButterflyAnimation() {
       const frameData = butterflyTimeline[currentFrame];
       const leftImg = document.getElementById("butterflyLeft");
@@ -550,68 +557,80 @@
       setTimeout(runButterflyAnimation, frameData.delay);
     }
 
+    // 초기 실행 관리
     window.addEventListener('DOMContentLoaded', () => {
       startCherryBlossoms();
       initWeddingTimer();
-      runButterflyAnimation(); // 애니메이션 틱 개시
+      runButterflyAnimation();
+      
+      // 글자 타이핑 인터렉션 효과
+      const intro = document.getElementById('intro');
+      if (intro) {
+        const text = intro.innerText;
+        intro.innerText = '';
+        [...text].forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = 'char';
+          span.innerText = char;
+          span.style.animationDelay = `${i * 0.12}s`;
+          intro.appendChild(span);
+        });
+      }
     });
 
-    const intro = document.getElementById('intro');
-    const text = intro.innerText;
-    intro.innerText = '';
-    [...text].forEach((char, i) => {
-      const span = document.createElement('span');
-      span.className = 'char';
-      span.innerText = char;
-      span.style.animationDelay = `${i * 0.12}s`;
-      intro.appendChild(span);
-    });
-
-    // 오버레이 제거 및 브라우저 오디오 보안 우회 강제 실행 함수
+    // 인트로 화면 지우기 및 배경음악 초기화 활성화
     function closeIntroOverlay() {
       const overlay = document.getElementById('intro-overlay');
-      if(!overlay) return;
-
       const audio = document.getElementById('weddingBgm');
+      const btn = document.querySelector('.bgm-control-btn');
+
       if (audio) {
-        // 하객이 오버레이 화면을 누르는 동작(User Interaction)을 캐치해 강제 활성화합니다.
+        // 하객 클릭 이벤트를 받아 브라우저 오디오 보안 정책 우회 및 실행
         audio.play().then(() => {
-          console.log("배경음악 재생 완료");
+          if (btn) btn.classList.remove('muted');
+          console.log("BGM 재생 시작");
         }).catch(err => {
-          console.log("브라우저 자동재생 제한 조치 예외 처리:", err);
+          console.log("자동재생 정책 제한 예외 발생:", err);
         });
       }
 
-      overlay.style.opacity = '0';
-      setTimeout(() => { overlay.remove(); }, 1200);
+      if (overlay) {
+        overlay.classList.add('hidden');
+        // 애니메이션 완료 후 확실하게 DOM 트리에서 제거하여 터치 방해 및 재방문 버그 방지
+        setTimeout(() => { overlay.remove(); }, 1200);
+      }
     }
 
-    // 터치하지 않아도 5.5초 뒤 자동으로 걷히도록 안전 설계 (단, 브라우저 정책상 터치없이 걷히면 소리가 안 날 수 있음)
+    // 모바일 환경 대응: 상단 오버레이 무반응 버그 방지용 백업 타이머 (5.5초 후 자동 페이드아웃)
     setTimeout(() => {
       const overlay = document.getElementById('intro-overlay');
-      if(overlay && overlay.parentNode) {
+      if (overlay && !overlay.classList.contains('hidden')) {
         closeIntroOverlay();
       }
     }, 5500);
 
+    // 음악 수동 온오프 제어 함수
     function toggleBgm(event) {
-      event.stopPropagation();
+      if (event) event.stopPropagation();
       const audio = document.getElementById('weddingBgm');
       const btn = document.querySelector('.bgm-control-btn');
       
       if (!audio || !btn) return;
 
       if (audio.paused) {
-        audio.play();
-        btn.classList.remove('muted');
+        audio.play().then(() => {
+          btn.classList.remove('muted');
+        });
       } else {
         audio.pause();
         btn.classList.add('muted');
       }
     }
 
+    // 🌸 벚꽃 잎 떨어지는 효과 스크립트
     function startCherryBlossoms() {
       const blossomBox = document.getElementById('blossom-box');
+      if (!blossomBox) return;
       const maxPetals = 22;
       function createPetal(isInitial = false) {
         const petal = document.createElement('div');
@@ -630,10 +649,34 @@
       for (let i = 0; i < maxPetals; i++) { createPetal(true); }
     }
 
+    // 모달창 팝업 스크립트
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(event) { if (event.target === document.getElementById('contactModal')) { closeContactModal(); } }
 
+    // 아코디언 메뉴 스크립트
+    function toggleAccordion(element) {
+      const wrapper = element.parentElement;
+      wrapper.classList.toggle('active');
+    }
+
+    // 계좌번호 복사 함수
+    function copyAccountNumber(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("계좌번호가 복사되었습니다.");
+      }).catch(err => {
+        // 구형 브라우저 대체 처리
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        alert("계좌번호가 복사되었습니다.");
+      });
+    }
+
+    // 디데이 연산기 스크립트
     function initWeddingTimer() {
       const targetDate = new Date(2026, 9, 18, 12, 50, 0).getTime();
       function updateTimer() {
@@ -650,4 +693,4 @@
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
