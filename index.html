@@ -32,7 +32,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* 🛑 [변경] 인트로가 떠 있는 동안 메인 스크롤이 안 내려가게 막았던 설정을 풀기 위해 바디 조정 */
     body.intro-active {
       overflow: transparent; 
     }
@@ -42,7 +41,7 @@
       position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* 🛑 [수정] 위로 스르르 올라가거나 사라지는 효과를 위한 인트로 레이어 */
+    /* 인트로 레이어 (위로 스르르 걷히는 효과) */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
@@ -52,7 +51,6 @@
       opacity: 1;
       visibility: visible;
     }
-    /* 사라질 때 위로 올라가면서 투명해짐 (스크롤 하거나 자동 시간 만료 시) */
     #intro-overlay.hidden {
       transform: translateY(-100vh);
       opacity: 0;
@@ -124,19 +122,19 @@
     .relation-row .child { width: 60px; text-align: left; font-weight: bold; }
     .contact-btn { padding: 10px 36px; background-color: #ffffff; border: 1px solid #c1bba2; color: #555555; font-size: 1.35rem; border-radius: 6px; cursor: pointer; font-family: 'GangwonSaeeum', sans-serif; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
 
-    /* 📞 혼주 연락처 모달 팝업 */
+    /* 📞 축하 연락처 모달 팝업 */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
     .modal-overlay.active .modal-content { transform: translateY(0); }
     .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.2rem; color: #aaaaaa; cursor: pointer; background: none; border: none; font-family: sans-serif; }
     .modal-grid { display: flex; width: 100%; gap: 10px; }
-    .grid-column { width: 50%; display: flex; flex-direction: column; gap: 24px; }
-    .side-title { font-size: 1.55rem; font-weight: bold; margin-bottom: 6px; text-align: center; }
+    .grid-column { width: 50%; display: flex; flex-direction: column; gap: 20px; }
+    .side-title { font-size: 1.55rem; font-weight: bold; margin-bottom: 6px; text-align: center; border-bottom: 1px dashed #e2ded5; padding-bottom: 6px; }
     .grid-column.groom-side .side-title { color: #5c849e; }
     .grid-column.bride-side .side-title { color: #b57a7a; }
     .member-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 10px; }
+    .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 8px; }
     .action-icons { display: flex; justify-content: center; gap: 22px; }
     .action-icons a { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
     .icon-phone, .icon-mail { width: 20px; height: 20px; }
@@ -198,7 +196,7 @@
   <!-- 🎵 배경음악 오디오 레이어 -->
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop preload="auto"></audio>
 
-  <!-- 🛑 [수정] 자동 타이머 소멸 + 스크롤 즉시 소멸을 지원하는 인트로 레이어 -->
+  <!-- 인트로 레이어 -->
   <div id="intro-overlay">
     <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
   </div>
@@ -275,7 +273,7 @@
           <span class="child">양지</span>
         </div>
       </div>
-      <button class="contact-btn" onclick="openContactModal()">혼주에게 연락하기</button>
+      <button class="contact-btn" onclick="openContactModal()">신랑 ∙ 신부 및 혼주에게 연락하기</button>
     </div>
 
     <!-- 달력 구역 -->
@@ -354,13 +352,23 @@
       </div>
     </div>
 
-    <!-- 혼주 연락처 팝업 -->
+    <!-- 📞 [복구 및 수정] 신랑 ∙ 신부 본인 연락처가 포함된 모달 팝업 -->
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
         <button class="modal-close" onclick="closeContactModal()">✕</button>
         <div class="modal-grid">
+          
+          <!-- 신랑측 열 -->
           <div class="grid-column groom-side">
             <div class="side-title">신랑측</div>
+            <!-- 신랑 본인 추가 -->
+            <div class="member-box">
+              <div class="member-info"><strong>신랑 조민수</strong></div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
             <div class="member-box">
               <div class="member-info">아버지 조병도</div>
               <div class="action-icons">
@@ -376,8 +384,18 @@
               </div>
             </div>
           </div>
+
+          <!-- 신부측 열 -->
           <div class="grid-column bride-side">
             <div class="side-title">신부측</div>
+            <!-- 신부 본인 추가 -->
+            <div class="member-box">
+              <div class="member-info"><strong>신부 김양지</strong></div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
             <div class="member-box">
               <div class="member-info">아버지 김승묵</div>
               <div class="action-icons">
@@ -393,6 +411,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -400,23 +419,24 @@
   </div>
 
   <script>
-    // 나비 날개짓 애니메이션
-    const butterflyTimeline = [
+    // 🦋 [수정] 나비 날개짓 왕복 애니메이션 타임라인 (1 -> 2 -> 3 -> 2 -> 1)
+    const butterflyFrames = [
       { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 350 },
-      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 320 },
-      { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 350 }
+      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 180 },
+      { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 350 },
+      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 180 }
     ];
     let currentFrame = 0;
 
     function runButterflyAnimation() {
-      const frameData = butterflyTimeline[currentFrame];
+      const frameData = butterflyFrames[currentFrame];
       const leftImg = document.getElementById("butterflyLeft");
       const rightImg = document.getElementById("butterflyRight");
       if (leftImg && rightImg) {
         leftImg.src = frameData.left;
         rightImg.src = frameData.right;
       }
-      currentFrame = (currentFrame + 1) % butterflyTimeline.length;
+      currentFrame = (currentFrame + 1) % butterflyFrames.length;
       setTimeout(runButterflyAnimation, frameData.delay);
     }
 
@@ -452,35 +472,32 @@
       }, 1000);
     }
 
-    // 🛑 [핵심 수정] 인트로가 걷히는 함수 (시간 마료 또는 스크롤 다운 발생 시 실행됨)
+    // 인트로가 걷히는 함수
     let isIntroClosed = false;
     function closeIntroOverlay() {
       if (isIntroClosed) return;
       isIntroClosed = true;
 
       const overlay = document.getElementById('intro-overlay');
-      document.body.classList.remove('intro-active'); // 스크롤 잠금 완전 해제
+      document.body.classList.remove('intro-active');
 
       if (overlay) {
-        overlay.classList.add('hidden'); // 커튼이 위로 위이잉 걷히는 CSS 구동
+        overlay.classList.add('hidden');
         setTimeout(() => { overlay.remove(); }, 1200);
       }
 
-      // 인트로가 걷힌 직후, 사용자가 스크롤을 하거나 메인을 탭할 때 오디오를 켭니다 (브라우저 우회 정책)
       window.addEventListener('click', autoPlayOnFirstTouch, { passive: true });
       window.addEventListener('touchstart', autoPlayOnFirstTouch, { passive: true });
     }
 
-    // 인트로가 닫힌 상태에서 사용자가 화면을 터치하는 최초 1회 오디오를 재생시켜주는 방어 함수
     function autoPlayOnFirstTouch() {
       const audio = document.getElementById('weddingBgm');
       const btn = document.querySelector('.bgm-control-btn');
       if (audio && audio.paused) {
         audio.play().then(() => {
           if (btn) btn.classList.remove('muted');
-        }).catch(e => console.log("최초 터치 재생 대기"));
+        }).catch(e => console.log("플레이 백 우회 대기"));
       }
-      // 목적 달성 후 이벤트 제거
       window.removeEventListener('click', autoPlayOnFirstTouch);
       window.removeEventListener('touchstart', autoPlayOnFirstTouch);
     }
@@ -500,7 +517,7 @@
       }
     }
 
-    // 기타 UI 함수
+    // 모달 팝업 함수
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(e) { if (e.target.id === 'contactModal') closeContactModal(); }
@@ -527,14 +544,14 @@
         });
       }
 
-      // 🛑 [구현] 1. 스크롤을 내리면 인트로가 바로 걷히게 연동
+      // 스크롤 시 인트로 해제
       window.addEventListener('scroll', () => {
         if (window.scrollY > 10) {
           closeIntroOverlay();
         }
       }, { passive: true });
 
-      // 🛑 [구현] 2. 스크롤을 안 내려도 2.8초 뒤에는 자동으로 스르르 걷히게 타이머 세팅
+      // 자동 인트로 해제 타이머 (2.8초)
       setTimeout(() => {
         closeIntroOverlay();
       }, 2800); 
