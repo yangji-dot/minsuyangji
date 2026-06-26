@@ -6,7 +6,7 @@
   <title>조민수 ∙ 김양지 모바일 초대장</title>
   
   <style>
-    /* ✨ [폰트 파일 직접 서버 내장 매칭] */
+    /* 폰트 파일 매칭 */
     @font-face {
       font-family: 'InkLipquid';
       src: url('InkLipquid.woff2') format('woff2'), url('InkLipquid.woff') format('woff');
@@ -95,7 +95,7 @@
     .note-space { height: 30px; }
     .note-author { font-size: 1.3rem; color: #666666; }
 
-    /* 🦋 소개글 섹션 스타일 및 부드러운 나비 박스 크기 슬림화 */
+    /* 🦋 나비 박스 구조 구역 */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
     .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 30px; height: 50px; }
     .butterfly-left, .butterfly-right { width: 48px; height: 44px; object-fit: contain; }
@@ -112,7 +112,7 @@
     .contact-btn { padding: 10px 36px; background-color: #ffffff; border: 1px solid #c1bba2; color: #555555; font-size: 1.35rem; border-radius: 6px; cursor: pointer; transition: background-color 0.1s; font-family: 'GangwonSaeeum', sans-serif; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
     .contact-btn:active { background-color: #f9f8f5; }
 
-    /* 🛠️ 혼주에게 연락하기 팝업창 디자인 */
+    /* 혼주에게 연락하기 팝업창 디자인 */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
@@ -214,7 +214,8 @@
 </head>
 <body>
 
-  <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts (mp3cut.net).mp3" loop></audio>
+  <!-- 🎵 배경음악 오디오 레이어 (※ 파일 경로 확인용으로 띄어쓰기를 %20으로 매칭했습니다) -->
+  <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop prefetch></audio>
 
   <div id="intro-overlay" onclick="closeIntroOverlay()">
     <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
@@ -224,6 +225,7 @@
     <div class="cherry-blossom-container" id="blossom-box"></div>
 
     <div class="main-content">
+      <!-- 우측 상단 음악 ON/OFF 제어 버튼 -->
       <button class="bgm-control-btn" onclick="toggleBgm(event)" title="배경음악 토글">
         <svg class="bgm-icon icon-playing" viewBox="0 0 24 24">
           <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -257,6 +259,7 @@
       </div>
     </div>
 
+    <!-- 🦋 완벽히 동기화된 순환형 나비 애니메이션 구역 -->
     <div class="butterfly-area">
       <div class="butterfly-top">
         <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
@@ -291,6 +294,7 @@
       <button class="contact-btn" onclick="openContactModal()">혼주에게 연락하기</button>
     </div>
 
+    <!-- 📅 달력 구역 -->
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
@@ -324,6 +328,7 @@
       <div class="calendar-bottom-line"></div>
     </div>
 
+    <!-- ⏱️ 디데이 카운트다운 구역 -->
     <div class="dday-section">
       <div class="dday-title">민수 ♥ 양지  결혼식까지</div>
       <div class="dday-container">
@@ -346,6 +351,7 @@
       </div>
     </div>
 
+    <!-- 💝 마음 전하실 곳 섹션 -->
     <div class="account-section">
       <div class="account-main-title">마음 전하실 곳</div>
       <div class="account-intro-text">
@@ -358,6 +364,7 @@
         따뜻한 마음에 깊이 감사드립니다.
       </div>
 
+      <!-- 신랑측 아코디언 -->
       <div class="accordion-wrapper groom-acc">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>신랑측</span>
@@ -391,6 +398,7 @@
         </div>
       </div>
 
+      <!-- 신부측 아코디언 -->
       <div class="accordion-wrapper bride-acc">
         <div class="accordion-header" onclick="toggleAccordion(this)">
           <span>신부측</span>
@@ -425,6 +433,7 @@
       </div>
     </div>
 
+    <!-- 📸 최하단 갤러리 섹션 -->
     <div class="gallery-section">
       <div class="gallery-title">Gallery</div>
       <div class="gallery-container">
@@ -441,6 +450,7 @@
       </div>
     </div>
 
+    <!-- 연락하기 모달 -->
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
         <button class="modal-close" onclick="closeContactModal()">✕</button>
@@ -499,33 +509,35 @@
   </div>
 
   <script>
-    // 🦋 코드 내장용 고화질 맞춤형 추가 SVG 데이터 매칭 (따로 업로드 안 하셔도 작동합니다)
+    // 🎨 색상을 일관되게 단일 톤(#CBD396)으로 통일한 내장형 SVG 데이터 매칭
     const svgFrame1 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M300 280 C310 250, 340 130, 490 105 C520 100, 540 140, 510 210 C480 280, 420 300, 420 300 C420 300, 450 360, 420 410 C390 460, 340 430, 310 380 C300 360, 300 300, 300 300 C300 300, 300 360, 290 380 C260 430, 210 460, 180 410 C150 360, 180 300, 180 300 C180 300, 120 280, 90 210 C60 140, 80 100, 110 105 C260 130, 290 250, 300 280 Z" fill="%23CBD396"/><path d="M295 240 Q290 200, 275 180 M305 240 Q310 200, 325 180" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M295 240 C295 230, 305 230, 305 240 L303 350 C303 355, 297 355, 297 350 Z" fill="%23CBD396"/></svg>';
     const svgFrame2 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M300 280 C308 250, 330 140, 430 115 C455 110, 475 145, 450 220 C425 295, 385 310, 385 310 C385 310, 410 370, 385 415 C360 460, 325 435, 308 385 C300 365, 300 300, 300 300 C300 300, 300 365, 292 385 C275 435, 240 460, 215 415 C190 370, 215 310, 215 310 C215 310, 175 295, 150 220 C125 145, 145 110, 170 115 C270 140, 292 250, 300 280 Z" fill="%23CBD396"/><path d="M295 240 Q291 200, 278 182 M305 240 Q309 200, 322 182" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M295 240 C295 230, 305 230, 305 240 L303 350 C303 355, 297 355, 297 350 Z" fill="%23CBD396"/></svg>';
-    const svgFrame3 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M290 290 C285 260, 250 160, 190 140 C170 135, 155 165, 175 230 C195 295, 230 320, 230 320 C230 320, 210 375, 230 415 C250 455, 280 430, 290 385 Z" fill="%23B8C085"/><path d="M300 295 C305 265, 340 135, 415 105 C440 95, 460 130, 440 210 C420 290, 370 315, 370 315 C370 315, 395 375, 370 425 C345 475, 315 445, 302 395 Z" fill="%23CBD396"/><path d="M290 250 Q285 210, 270 190 M298 252 Q305 212, 318 192" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M288 255 C285 245, 298 240, 302 250 L290 360 C288 365, 282 362, 285 355 Z" fill="%23CBD396"/></svg>';
-    const svgFrame4 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M330 320 C330 290, 370 160, 460 140 C490 135, 510 165, 490 240 C470 315, 410 340, 410 340 C410 340, 420 400, 390 440 C360 480, 330 450, 330 390 Z" fill="%23B8C085"/><path d="M310 330 C300 295, 250 160, 140 145 C100 140, 80 180, 110 270 C140 360, 220 380, 220 380 C220 380, 190 445, 230 490 C270 535, 310 470, 310 410 Z" fill="%23CBD396"/><path d="M315 290 Q300 255, 280 240 M322 295 Q315 260, 305 242" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M310 300 C305 290, 320 285, 325 295 L340 395 C342 400, 335 403, 332 398 Z" fill="%23CBD396"/></svg>';
+    const svgFrame3 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M290 290 C285 260, 250 160, 190 140 C170 135, 155 165, 175 230 C195 295, 230 320, 230 320 C230 320, 210 375, 230 415 C250 455, 280 430, 290 385 Z" fill="%23CBD396"/><path d="M300 295 C305 265, 340 135, 415 105 C440 95, 460 130, 440 210 C420 290, 370 315, 370 315 C370 315, 395 375, 370 425 C345 475, 315 445, 302 395 Z" fill="%23CBD396"/><path d="M290 250 Q285 210, 270 190 M298 252 Q305 212, 318 192" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M288 255 C285 245, 298 240, 302 250 L290 360 C288 365, 282 362, 285 355 Z" fill="%23CBD396"/></svg>';
+    const svgFrame4 = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500"><path d="M330 320 C330 290, 370 160, 460 140 C490 135, 510 165, 490 240 C470 315, 410 340, 410 340 C410 340, 420 400, 390 440 C360 480, 330 450, 330 390 Z" fill="%23CBD396"/><path d="M310 330 C300 295, 250 160, 140 145 C100 140, 80 180, 110 270 C140 360, 220 380, 220 380 C220 380, 190 445, 230 490 C270 535, 310 470, 310 410 Z" fill="%23CBD396"/><path d="M315 290 Q300 255, 280 240 M322 295 Q315 260, 305 242" stroke="%23CBD396" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M310 300 C305 290, 320 285, 325 295 L340 395 C342 400, 335 403, 332 398 Z" fill="%23CBD396"/></svg>';
 
-    // 🎬 부드럽고 자연스러운 우아한 날개짓을 위한 타임라인 10개 세트 배열 매칭
-    // 구조: [ {왼쪽날개소스, 오른쪽날개소스, 이 프레임이 켜져있을 시간(ms)} ... ]
+    // 🔄 무한대칭 완전순환형 타임라인 배치 구조 (1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 반복)
     const butterflyTimeline = [
-      { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 120 }, // 1. 최대 개방 (오래 유지)
-      { left: "butterfly_left1.png", right: svgFrame1,                 delay: 60  }, // 2. 정면 살짝 접힘 (새로추가)
-      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 50  }, // 3. 중간 정면 접힘
-      { left: "butterfly_left2.png", right: svgFrame2,                 delay: 50  }, // 4. 정면 많이 접힘 (새로추가)
+      { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 130 }, // 1. 정면 활짝 (진입 정점)
+      { left: "butterfly_left1.png", right: svgFrame1,                 delay: 60  }, // 2. 정면 살짝 접힘 (내려가는 중)
+      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 55  }, // 3. 중간 정면 접힘
+      { left: "butterfly_left2.png", right: svgFrame2,                 delay: 55  }, // 4. 정면 많이 접힘
       { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 70  }, // 5. 최대 수직 접힘
-      { left: "butterfly_left3.png", right: svgFrame3,                 delay: 60  }, // 6. 입체 측면 전환 (새로추가)
-      { left: "butterfly_left3.png", right: "butterfly_left3.png",  delay: 90  }, // 7. 측면 완전히 접힘
-      { left: "butterfly_left2.png", right: "butterfly_left2.png",  delay: 60  }, // 8. 측면 펴지기 시작
-      { left: svgFrame4,              right: "butterfly_left1.png",  delay: 70  }, // 9. 측면 크게 펼쳐짐 (새로추가)
-      { left: "butterfly_left1.png", right: "butterfly_left1.png",  delay: 80  }  // 10. 복귀 전 부드러운 감속
+      { left: "butterfly_left3.png", right: svgFrame3,                 delay: 60  }, // 6. 입체 측면 과도기
+      { left: "butterfly_left3.png", right: "butterfly_left3.png",  delay: 110 }, // 7. 측면 완전 접힘 (반환 정점)
+      
+      // ◀ 여기서부터 완전 대칭 구조로 돌아가는 리턴 라인 매칭
+      { left: "butterfly_left3.png", right: svgFrame3,                 delay: 60  }, // 6번 프레임 복제 역재생
+      { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 70  }, // 5번 프레임 복제 역재생
+      { left: "butterfly_left2.png", right: svgFrame2,                 delay: 55  }, // 4번 프레임 복제 역재생
+      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 55  }, // 3번 프레임 복제 역재생
+      { left: "butterfly_left1.png", right: svgFrame1,                 delay: 60  }  // 2번 프레임 복제 역재생
     ];
 
     let currentFrame = 0;
 
-    // 타임라인을 유동적 딜레이로 순환시키는 똑똑한 애니메이션 틱(Tick) 함수
+    // 타임라인 순환 애니메이션 실행 함수
     function runButterflyAnimation() {
       const frameData = butterflyTimeline[currentFrame];
-      
       const leftImg = document.getElementById("butterflyLeft");
       const rightImg = document.getElementById("butterflyRight");
       
@@ -534,7 +546,6 @@
         rightImg.src = frameData.right;
       }
       
-      // 다음 프레임 지정 및 해당 프레임에 설정된 지연 시간만큼 기다린 뒤 재귀 호출
       currentFrame = (currentFrame + 1) % butterflyTimeline.length;
       setTimeout(runButterflyAnimation, frameData.delay);
     }
@@ -542,7 +553,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       startCherryBlossoms();
       initWeddingTimer();
-      runButterflyAnimation(); // 🦋 나비 우아한 프레임 틱 작동 시작
+      runButterflyAnimation(); // 애니메이션 틱 개시
     });
 
     const intro = document.getElementById('intro');
@@ -556,22 +567,32 @@
       intro.appendChild(span);
     });
 
+    // 오버레이 제거 및 브라우저 오디오 보안 우회 강제 실행 함수
     function closeIntroOverlay() {
       const overlay = document.getElementById('intro-overlay');
       if(!overlay) return;
 
       const audio = document.getElementById('weddingBgm');
       if (audio) {
-        audio.play().catch(err => console.log("자동재생 보호 우회 정책 작동:", err));
+        // 하객이 오버레이 화면을 누르는 동작(User Interaction)을 캐치해 강제 활성화합니다.
+        audio.play().then(() => {
+          console.log("배경음악 재생 완료");
+        }).catch(err => {
+          console.log("브라우저 자동재생 제한 조치 예외 처리:", err);
+        });
       }
 
       overlay.style.opacity = '0';
       setTimeout(() => { overlay.remove(); }, 1200);
     }
 
+    // 터치하지 않아도 5.5초 뒤 자동으로 걷히도록 안전 설계 (단, 브라우저 정책상 터치없이 걷히면 소리가 안 날 수 있음)
     setTimeout(() => {
-      closeIntroOverlay();
-    }, 4200);
+      const overlay = document.getElementById('intro-overlay');
+      if(overlay && overlay.parentNode) {
+        closeIntroOverlay();
+      }
+    }, 5500);
 
     function toggleBgm(event) {
       event.stopPropagation();
@@ -629,38 +650,4 @@
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        document.getElementById('dday-days').innerText = String(days).padStart(2, '0');
-        document.getElementById('dday-hours').innerText = String(hours).padStart(2, '0');
-        document.getElementById('dday-minutes').innerText = String(minutes).padStart(2, '0');
-        document.getElementById('dday-seconds').innerText = String(seconds).padStart(2, '0');
-      }
-      updateTimer();
-      const timerInterval = setInterval(updateTimer, 1000);
-    }
-
-    function toggleAccordion(headerElement) {
-      const wrapper = headerElement.parentElement;
-      if (wrapper.classList.contains('active')) {
-        wrapper.classList.remove('active');
-      } else {
-        wrapper.classList.add('active');
-      }
-    }
-
-    function copyAccountNumber(accountNum) {
-      navigator.clipboard.writeText(accountNum).then(() => {
-        alert("계좌번호가 복사되었습니다.");
-      }).catch(err => {
-        const dummy = document.createElement("textarea");
-        document.body.appendChild(dummy);
-        dummy.value = accountNum;
-        dummy.select();
-        document.execCommand("copy");
-        document.body.removeChild(dummy);
-        alert("계좌번호가 복사되었습니다.");
-      });
-    }
-  </script>
-</body>
-</html>
+        const seconds = Math.floor((distance % (1000 * Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
