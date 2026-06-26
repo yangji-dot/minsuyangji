@@ -41,7 +41,7 @@
       position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* 인트로 레이어 (위로 스르르 걷히는 효과) */
+    /* 인트로 레이어 */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
@@ -107,9 +107,9 @@
     .note-space { height: 30px; }
     .note-author { font-size: 1.3rem; color: #666666; }
 
-    /* 🦋 나비 구역 */
+    /* 🦋 나비 구역 (간격 0.3cm 조율 완료) */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
-    .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 30px; height: 50px; }
+    .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 11px; margin-bottom: 30px; height: 50px; }
     .butterfly-left, .butterfly-right { width: 48px; height: 44px; object-fit: contain; }
     .greeting-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; line-height: 1.8; color: #444444; word-break: keep-all; text-align: center; max-width: 320px; margin: 0 auto; }
 
@@ -120,26 +120,46 @@
     .relation-row .parents { width: 140px; text-align: right; }
     .relation-row .relation { color: #888888; width: 30px; text-align: center; }
     .relation-row .child { width: 60px; text-align: left; font-weight: bold; }
-    .contact-btn { padding: 10px 36px; background-color: #ffffff; border: 1px solid #c1bba2; color: #555555; font-size: 1.35rem; border-radius: 6px; cursor: pointer; font-family: 'GangwonSaeeum', sans-serif; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+    
+    /* ✉️ [변경] image_aef366.png의 인디핑크 스타일을 적용한 '축하 연락하기' 버튼 */
+    .contact-btn { 
+      padding: 12px 55px; 
+      background-color: #EAAFA1; 
+      border: none; 
+      color: #ffffff; 
+      font-size: 1.45rem; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      font-family: 'GangwonSaeeum', sans-serif; 
+      box-shadow: 0 4px 10px rgba(234, 175, 161, 0.3);
+      transition: opacity 0.2s;
+    }
+    .contact-btn:active { opacity: 0.85; }
 
-    /* 📞 축하 연락처 모달 팝업 */
+    /* 📞 축하 연락처 모달 팝업 (서체 및 파랑/분홍 색상 맞춤) */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
     .modal-overlay.active .modal-content { transform: translateY(0); }
     .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.2rem; color: #aaaaaa; cursor: pointer; background: none; border: none; font-family: sans-serif; }
-    .modal-grid { display: flex; width: 100%; gap: 10px; }
+    
+    .modal-grid { display: flex; width: 100%; gap: 14px; font-family: 'GangwonSaeeum', sans-serif; }
     .grid-column { width: 50%; display: flex; flex-direction: column; gap: 20px; }
-    .side-title { font-size: 1.55rem; font-weight: bold; margin-bottom: 6px; text-align: center; border-bottom: 1px dashed #e2ded5; padding-bottom: 6px; }
-    .grid-column.groom-side .side-title { color: #5c849e; }
-    .grid-column.bride-side .side-title { color: #b57a7a; }
+    
+    .side-title { font-size: 1.6rem; font-weight: bold; margin-bottom: 6px; text-align: center; border-bottom: 1px dashed #e2ded5; padding-bottom: 6px; font-family: 'GangwonSaeeum', sans-serif; }
+    
+    /* 파란색 / 분홍색 포인트 세팅 */
+    .grid-column.groom-side .side-title { color: #7FA6C2; }
+    .grid-column.bride-side .side-title { color: #E29B9B; }
+    
     .member-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 8px; }
+    .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 8px; font-family: 'GangwonSaeeum', sans-serif; }
     .action-icons { display: flex; justify-content: center; gap: 22px; }
     .action-icons a { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
     .icon-phone, .icon-mail { width: 20px; height: 20px; }
-    .grid-column.groom-side svg { fill: #5c849e; }
-    .grid-column.bride-side svg { fill: #b57a7a; }
+    
+    .grid-column.groom-side svg { fill: #7FA6C2; }
+    .grid-column.bride-side svg { fill: #E29B9B; }
 
     /* 📅 달력 섹션 */
     .calendar-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
@@ -193,10 +213,8 @@
 </head>
 <body class="intro-active">
 
-  <!-- 🎵 배경음악 오디오 레이어 -->
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop preload="auto"></audio>
 
-  <!-- 인트로 레이어 -->
   <div id="intro-overlay">
     <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
   </div>
@@ -205,7 +223,6 @@
     <div class="cherry-blossom-container" id="blossom-box"></div>
 
     <div class="main-content">
-      <!-- 우측 상단 음악 제어 버튼 -->
       <button class="bgm-control-btn muted" onclick="toggleBgm(event)">
         <svg class="bgm-icon icon-playing" viewBox="0 0 24 24">
           <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -227,7 +244,6 @@
       <div class="main-date">상주 마리앙스, 마리앙스 홀</div>
     </div>
 
-    <!-- 초대글 섹션 -->
     <div class="invitation-section">
       <div class="leaf-icon">🌿</div>
       <div class="note-pad">
@@ -240,7 +256,7 @@
       </div>
     </div>
 
-    <!-- 나비 및 축사 인사말 구역 -->
+    <!-- 나비 및 축사 구역 (간격 축소 완정) -->
     <div class="butterfly-area">
       <div class="butterfly-top">
         <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
@@ -259,7 +275,6 @@
       </div>
     </div>
 
-    <!-- 부모님 정보 섹션 -->
     <div class="family-section">
       <div class="family-relations">
         <div class="relation-row">
@@ -273,10 +288,10 @@
           <span class="child">양지</span>
         </div>
       </div>
-      <button class="contact-btn" onclick="openContactModal()">신랑 ∙ 신부 및 혼주에게 연락하기</button>
+      <!-- [변경] 축하 연락하기 지정 인디핑크 버튼 -->
+      <button class="contact-btn" onclick="openContactModal()">축하 연락하기</button>
     </div>
 
-    <!-- 달력 구역 -->
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
@@ -298,7 +313,6 @@
       <div class="calendar-bottom-line"></div>
     </div>
 
-    <!-- 디데이 카운트다운 구역 -->
     <div class="dday-section">
       <div class="dday-title">민수 ♥ 양지 결혼식까지</div>
       <div class="dday-container">
@@ -309,7 +323,6 @@
       </div>
     </div>
 
-    <!-- 양가 축의금 계좌번호 리스트 -->
     <div class="account-section">
       <div class="account-main-title">마음 전하실 곳</div>
       <div class="account-intro-text">
@@ -322,7 +335,6 @@
         따뜻한 마음에 깊이 감사드립니다.
       </div>
       
-      <!-- 신랑측 -->
       <div class="accordion-wrapper groom-acc">
         <div class="accordion-header" onclick="toggleAccordion(this)"><span>신랑측</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
         <div class="accordion-content">
@@ -332,7 +344,6 @@
         </div>
       </div>
 
-      <!-- 신부측 -->
       <div class="accordion-wrapper bride-acc">
         <div class="accordion-header" onclick="toggleAccordion(this)"><span>신부측</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
         <div class="accordion-content">
@@ -343,7 +354,6 @@
       </div>
     </div>
 
-    <!-- 갤러리 레이아웃 -->
     <div class="gallery-section">
       <div class="gallery-title">Gallery</div>
       <div class="gallery-container">
@@ -352,16 +362,15 @@
       </div>
     </div>
 
-    <!-- 📞 [복구 및 수정] 신랑 ∙ 신부 본인 연락처가 포함된 모달 팝업 -->
+    <!-- 📞 모달 팝업 레이어 (디자인 통일 및 색상 파란색/분홍색 튜닝) -->
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
         <button class="modal-close" onclick="closeContactModal()">✕</button>
         <div class="modal-grid">
           
-          <!-- 신랑측 열 -->
+          <!-- 신랑측 (블루 계열 포인트) -->
           <div class="grid-column groom-side">
             <div class="side-title">신랑측</div>
-            <!-- 신랑 본인 추가 -->
             <div class="member-box">
               <div class="member-info"><strong>신랑 조민수</strong></div>
               <div class="action-icons">
@@ -385,10 +394,9 @@
             </div>
           </div>
 
-          <!-- 신부측 열 -->
+          <!-- 신부측 (핑크 계열 포인트) -->
           <div class="grid-column bride-side">
             <div class="side-title">신부측</div>
-            <!-- 신부 본인 추가 -->
             <div class="member-box">
               <div class="member-info"><strong>신부 김양지</strong></div>
               <div class="action-icons">
@@ -419,7 +427,6 @@
   </div>
 
   <script>
-    // 🦋 [수정] 나비 날개짓 왕복 애니메이션 타임라인 (1 -> 2 -> 3 -> 2 -> 1)
     const butterflyFrames = [
       { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 350 },
       { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 180 },
@@ -440,7 +447,6 @@
       setTimeout(runButterflyAnimation, frameData.delay);
     }
 
-    // 🌸 벚꽃 애니메이션
     function startCherryBlossoms() {
       const blossomBox = document.getElementById('blossom-box');
       if (!blossomBox) return;
@@ -457,7 +463,6 @@
       }
     }
 
-    // ⏱️ 디데이 타이머
     function initWeddingTimer() {
       const targetDate = new Date(2026, 9, 18, 12, 50, 0).getTime();
       setInterval(() => {
@@ -472,7 +477,6 @@
       }, 1000);
     }
 
-    // 인트로가 걷히는 함수
     let isIntroClosed = false;
     function closeIntroOverlay() {
       if (isIntroClosed) return;
@@ -502,7 +506,6 @@
       window.removeEventListener('touchstart', autoPlayOnFirstTouch);
     }
 
-    // 음악 수동 제어 버튼
     function toggleBgm(event) {
       if (event) event.stopPropagation();
       const audio = document.getElementById('weddingBgm');
@@ -517,7 +520,6 @@
       }
     }
 
-    // 모달 팝업 함수
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(e) { if (e.target.id === 'contactModal') closeContactModal(); }
@@ -526,13 +528,11 @@
       navigator.clipboard.writeText(val).then(() => alert("계좌번호가 복사되었습니다."));
     }
 
-    // DOM 로드 완료 시
     window.addEventListener('DOMContentLoaded', () => {
       startCherryBlossoms();
       initWeddingTimer();
       runButterflyAnimation();
 
-      // 인트로 타이핑 효과
       const intro = document.getElementById('intro');
       if (intro) {
         const text = intro.innerText; intro.innerText = '';
@@ -544,17 +544,11 @@
         });
       }
 
-      // 스크롤 시 인트로 해제
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-          closeIntroOverlay();
-        }
+        if (window.scrollY > 10) { closeIntroOverlay(); }
       }, { passive: true });
 
-      // 자동 인트로 해제 타이머 (2.8초)
-      setTimeout(() => {
-        closeIntroOverlay();
-      }, 2800); 
+      setTimeout(() => { closeIntroOverlay(); }, 2800); 
     });
   </script>
 </body>
