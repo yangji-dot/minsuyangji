@@ -32,22 +32,29 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* 🛑 [변경] 인트로가 떠 있는 동안 메인 스크롤이 안 내려가게 막았던 설정을 풀기 위해 바디 조정 */
+    body.intro-active {
+      overflow: transparent; 
+    }
+
     .container {
       width: 100%; max-width: 450px; margin: 0 auto; background-color: #f5f4f0;
       position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* 1. 인트로 오버레이 */
+    /* 🛑 [수정] 위로 스르르 올라가거나 사라지는 효과를 위한 인트로 레이어 */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
       z-index: 9999; display: flex; justify-content: center; align-items: center;
-      transition: opacity 1.0s ease-in-out, visibility 1.0s ease-in-out;
-      cursor: pointer;
+      transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease;
+      transform: translateY(0);
       opacity: 1;
       visibility: visible;
     }
+    /* 사라질 때 위로 올라가면서 투명해짐 (스크롤 하거나 자동 시간 만료 시) */
     #intro-overlay.hidden {
+      transform: translateY(-100vh);
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -72,7 +79,7 @@
     .bgm-control-btn.muted .icon-playing { display: none; }
     .bgm-control-btn.muted .icon-muted { display: block; fill: #999999; }
 
-    /* 2. 메인 콘텐츠 스타일 */
+    /* 메인 콘텐츠 스타일 */
     .main-content { padding: 55px 24px; text-align: center; position: relative; }
     .top-text-group { font-family: 'GangwonSaeeum', sans-serif; word-break: keep-all; }
     .sub-title { font-size: 1.15rem; letter-spacing: 2px; color: #666666; margin-bottom: 14px; }
@@ -186,11 +193,13 @@
     .left-col .item-short, .right-col .item-short { height: 120px; }
   </style>
 </head>
-<body>
+<body class="intro-active">
 
+  <!-- 🎵 배경음악 오디오 레이어 -->
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop preload="auto"></audio>
 
-  <div id="intro-overlay" onclick="closeIntroOverlay()">
+  <!-- 🛑 [수정] 자동 타이머 소멸 + 스크롤 즉시 소멸을 지원하는 인트로 레이어 -->
+  <div id="intro-overlay">
     <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
   </div>
 
@@ -198,6 +207,7 @@
     <div class="cherry-blossom-container" id="blossom-box"></div>
 
     <div class="main-content">
+      <!-- 우측 상단 음악 제어 버튼 -->
       <button class="bgm-control-btn muted" onclick="toggleBgm(event)">
         <svg class="bgm-icon icon-playing" viewBox="0 0 24 24">
           <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -219,6 +229,7 @@
       <div class="main-date">상주 마리앙스, 마리앙스 홀</div>
     </div>
 
+    <!-- 초대글 섹션 -->
     <div class="invitation-section">
       <div class="leaf-icon">🌿</div>
       <div class="note-pad">
@@ -231,6 +242,7 @@
       </div>
     </div>
 
+    <!-- 나비 및 축사 인사말 구역 -->
     <div class="butterfly-area">
       <div class="butterfly-top">
         <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
@@ -249,6 +261,7 @@
       </div>
     </div>
 
+    <!-- 부모님 정보 섹션 -->
     <div class="family-section">
       <div class="family-relations">
         <div class="relation-row">
@@ -265,6 +278,7 @@
       <button class="contact-btn" onclick="openContactModal()">혼주에게 연락하기</button>
     </div>
 
+    <!-- 달력 구역 -->
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
@@ -286,6 +300,7 @@
       <div class="calendar-bottom-line"></div>
     </div>
 
+    <!-- 디데이 카운트다운 구역 -->
     <div class="dday-section">
       <div class="dday-title">민수 ♥ 양지 결혼식까지</div>
       <div class="dday-container">
@@ -296,6 +311,7 @@
       </div>
     </div>
 
+    <!-- 양가 축의금 계좌번호 리스트 -->
     <div class="account-section">
       <div class="account-main-title">마음 전하실 곳</div>
       <div class="account-intro-text">
@@ -308,6 +324,7 @@
         따뜻한 마음에 깊이 감사드립니다.
       </div>
       
+      <!-- 신랑측 -->
       <div class="accordion-wrapper groom-acc">
         <div class="accordion-header" onclick="toggleAccordion(this)"><span>신랑측</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
         <div class="accordion-content">
@@ -317,6 +334,7 @@
         </div>
       </div>
 
+      <!-- 신부측 -->
       <div class="accordion-wrapper bride-acc">
         <div class="accordion-header" onclick="toggleAccordion(this)"><span>신부측</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
         <div class="accordion-content">
@@ -327,6 +345,7 @@
       </div>
     </div>
 
+    <!-- 갤러리 레이아웃 -->
     <div class="gallery-section">
       <div class="gallery-title">Gallery</div>
       <div class="gallery-container">
@@ -335,6 +354,7 @@
       </div>
     </div>
 
+    <!-- 혼주 연락처 팝업 -->
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
         <button class="modal-close" onclick="closeContactModal()">✕</button>
@@ -380,7 +400,7 @@
   </div>
 
   <script>
-    // 🔄 나비 날개짓 애니메이션 (천천히 우아하게 유지)
+    // 나비 날개짓 애니메이션
     const butterflyTimeline = [
       { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 350 },
       { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 320 },
@@ -432,35 +452,42 @@
       }, 1000);
     }
 
-    // 🛑 [핵심 수정] 터치 시에만 안전하게 실행되는 음악 재생 및 인트로 제거 함수
+    // 🛑 [핵심 수정] 인트로가 걷히는 함수 (시간 마료 또는 스크롤 다운 발생 시 실행됨)
     let isIntroClosed = false;
     function closeIntroOverlay() {
       if (isIntroClosed) return;
       isIntroClosed = true;
 
       const overlay = document.getElementById('intro-overlay');
-      const audio = document.getElementById('weddingBgm');
-      const btn = document.querySelector('.bgm-control-btn');
+      document.body.classList.remove('intro-active'); // 스크롤 잠금 완전 해제
 
-      // 1. 유저의 터치 행위가 발생했으므로 여기서 재생하면 모바일 브라우저가 승인해 줍니다.
-      if (audio) {
-        audio.play().then(() => {
-          if (btn) btn.classList.remove('muted'); // 재생 성공 시 뮤트 아이콘 변경
-        }).catch(err => {
-          console.log("오디오 재생 오류 보정 완료");
-        });
-      }
-
-      // 2. 부드럽게 화면을 걷어내는 인터랙션 구동
       if (overlay) {
-        overlay.classList.add('hidden');
-        setTimeout(() => { overlay.remove(); }, 1000);
+        overlay.classList.add('hidden'); // 커튼이 위로 위이잉 걷히는 CSS 구동
+        setTimeout(() => { overlay.remove(); }, 1200);
       }
+
+      // 인트로가 걷힌 직후, 사용자가 스크롤을 하거나 메인을 탭할 때 오디오를 켭니다 (브라우저 우회 정책)
+      window.addEventListener('click', autoPlayOnFirstTouch, { passive: true });
+      window.addEventListener('touchstart', autoPlayOnFirstTouch, { passive: true });
     }
 
-    // 음악 상단 버튼 수동 제어
+    // 인트로가 닫힌 상태에서 사용자가 화면을 터치하는 최초 1회 오디오를 재생시켜주는 방어 함수
+    function autoPlayOnFirstTouch() {
+      const audio = document.getElementById('weddingBgm');
+      const btn = document.querySelector('.bgm-control-btn');
+      if (audio && audio.paused) {
+        audio.play().then(() => {
+          if (btn) btn.classList.remove('muted');
+        }).catch(e => console.log("최초 터치 재생 대기"));
+      }
+      // 목적 달성 후 이벤트 제거
+      window.removeEventListener('click', autoPlayOnFirstTouch);
+      window.removeEventListener('touchstart', autoPlayOnFirstTouch);
+    }
+
+    // 음악 수동 제어 버튼
     function toggleBgm(event) {
-      if (event) event.stopPropagation(); // 오버레이 클릭 버블링 방지
+      if (event) event.stopPropagation();
       const audio = document.getElementById('weddingBgm');
       const btn = document.querySelector('.bgm-control-btn');
       if (!audio || !btn) return;
@@ -473,7 +500,7 @@
       }
     }
 
-    // 기능 컨트롤러
+    // 기타 UI 함수
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(e) { if (e.target.id === 'contactModal') closeContactModal(); }
@@ -482,13 +509,13 @@
       navigator.clipboard.writeText(val).then(() => alert("계좌번호가 복사되었습니다."));
     }
 
-    // DOM 렌더 완료 시 트리거 연동
+    // DOM 로드 완료 시
     window.addEventListener('DOMContentLoaded', () => {
       startCherryBlossoms();
       initWeddingTimer();
       runButterflyAnimation();
 
-      // 타이핑 애니메이션
+      // 인트로 타이핑 효과
       const intro = document.getElementById('intro');
       if (intro) {
         const text = intro.innerText; intro.innerText = '';
@@ -499,6 +526,18 @@
           intro.appendChild(span);
         });
       }
+
+      // 🛑 [구현] 1. 스크롤을 내리면 인트로가 바로 걷히게 연동
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          closeIntroOverlay();
+        }
+      }, { passive: true });
+
+      // 🛑 [구현] 2. 스크롤을 안 내려도 2.8초 뒤에는 자동으로 스르르 걷히게 타이머 세팅
+      setTimeout(() => {
+        closeIntroOverlay();
+      }, 2800); 
     });
   </script>
 </body>
