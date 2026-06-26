@@ -196,41 +196,17 @@
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
 
-    /* 📍 오시는 길 섹션 스타일 (컨테이너 내부에 맞춤) */
-<!-- 📍 오시는 길 섹션 -->
-    <div class="location-section" style="padding: 60px 24px; background-color: #f5f4f0; text-align: center;">
-      <div class="location-title" style="font-family: 'InkLipquid', sans-serif; font-size: 2.2rem; margin-bottom: 30px;">LOCATION</div>
-      
-      <div class="hall-name" style="font-family: 'GangwonSaeeum', sans-serif; font-size: 1.65rem; font-weight: bold; margin-bottom: 10px;">상주 마리앙스 마리앙스홀</div>
-      <div class="hall-address-box" style="display: flex; justify-content: center; align-items: center; gap: 6px; margin-bottom: 30px;">
-        <span class="hall-address" id="targetAddress" style="font-family: 'GangwonSaeeum', sans-serif; font-size: 1.45rem;">경상북도 상주시 삼백로 343</span>
-        <button class="address-copy-icon" onclick="copyAddressText()" style="background:none; border:none; cursor:pointer;">
-          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: #888888;"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-        </button>
-      </div>
-
-      <!-- 지도 클릭 시 네이버 지도 이동 -->
-      <a href="https://map.naver.com/v5/entry/place/19864213" target="_blank" style="display:block; width:100%; height:300px; border-radius:14px; overflow:hidden; margin-bottom:25px;">
-        <img src="지도이미지파일.png" style="width:100%; height:100%; object-fit:cover;">
-      </a>
-
-      <div class="map-apps-group" style="display: flex; justify-content: center; gap: 12px;">
-        <a href="https://map.naver.com/v5/entry/place/19864213" target="_blank" class="map-app-btn" style="flex:1; max-width:110px; height:42px; background:#fff; border-radius:8px; display:flex; justify-content:center; align-items:center; text-decoration:none; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-          <img src="naver_icon.png" style="width:20px; margin-right:5px;">
-          <span style="font-family: 'GangwonSaeeum', sans-serif; font-size: 1.2rem; font-weight:bold; color:#444;">네이버</span>
-        </a>
-        <a href="https://tmap.life/" target="_blank" class="map-app-btn" style="flex:1; max-width:110px; height:42px; background:#fff; border-radius:8px; display:flex; justify-content:center; align-items:center; text-decoration:none; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-          <img src="tmap_icon.png" style="width:20px; margin-right:5px;">
-          <span style="font-family: 'GangwonSaeeum', sans-serif; font-size: 1.2rem; font-weight:bold; color:#444;">T MAP</span>
-        </a>
-        <a href="https://maps.app.goo.gl/..." target="_blank" class="map-app-btn" style="flex:1; max-width:110px; height:42px; background:#fff; border-radius:8px; display:flex; justify-content:center; align-items:center; text-decoration:none; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-          <img src="google_icon.png" style="width:20px; margin-right:5px;">
-          <span style="font-family: 'GangwonSaeeum', sans-serif; font-size: 1.2rem; font-weight:bold; color:#444;">구글맵</span>
-        </a>
-      </div>
-    </div>
-
-  </style>
+/* 📍 오시는 길 섹션 스타일 */
+    .location-section { padding: 50px 24px; background-color: #f5f4f0; text-align: center; }
+    .location-title { font-family: 'InkLipquid', sans-serif; font-size: 1.95rem; color: #f2b2b2; margin-bottom: 20px; }
+    .hall-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 8px; color: #333; }
+    .hall-address-box { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 25px; }
+    .hall-address { font-size: 1.3rem; color: #666; }
+    .address-copy-icon { background: none; border: none; cursor: pointer; display: flex; align-items: center; }
+    .map-wrapper { width: 100%; height: 220px; border-radius: 14px; overflow: hidden; margin-bottom: 20px; border: 1px solid #e2ded5; }
+    .map-apps-group { display: flex; justify-content: center; gap: 10px; }
+    .map-app-btn { padding: 10px 20px; background-color: #ffffff; border: 1px solid #e2ded5; border-radius: 8px; text-decoration: none; color: #444; font-size: 1.25rem; }
+ </style>
 </head>
 <body class="intro-active">
 
@@ -381,22 +357,32 @@
       </div>
     </div>
 
-    <!-- 📍 오시는 길 섹션 (컨테이너 안으로 이동) -->
+<!-- 📍 오시는 길 섹션 -->
     <div class="location-section">
-      <div class="location-title">Location</div>
-      <div class="hall-name">상주 마리앙스</div>
+      <div class="location-title">LOCATION</div>
+      <div class="hall-name">상주 마리앙스 마리앙스홀</div>
       <div class="hall-address-box">
-        <span class="hall-address" id="targetAddress">경북 상주시 삼백로 343</span>
-        <button class="address-copy-icon" onclick="copyAddressText()" title="주소 복사">
-          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: #888888;"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+        <span class="hall-address" id="targetAddress">경상북도 상주시 삼백로 343</span>
+        <button class="address-copy-icon" onclick="copyAddressText()">
+          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: #888;"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
         </button>
       </div>
-      <div class="map-wrapper">
-        <iframe src="https://map.naver.com/v5/search/%EC%83%81%EC%A3%BC%EB%A7%88%EB%A6%AC%EC%95%94%EC%8A%A4/place/19864213" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
-      </div>
+
+      <!-- 지도 클릭 시 네이버 지도 이동 -->
+      <a href="https://map.naver.com/v5/entry/place/19864213" target="_blank" class="map-wrapper">
+        <img src="지도이미지파일.png" style="width:100%; height:100%; object-fit:cover;" alt="지도">
+      </a>
+
       <div class="map-apps-group">
-        <a href="https://map.naver.com/v5/search/%EA%B2%BD%EB%B6%85%20%EC%83%81%EC%A3%BC%EC%8B%9C%20%EC%82%BC%EB%B0%B1%EB%A1%9C%20343" target="_blank" class="map-app-btn"><span class="map-app-text">네이버</span></a>
-        <a href="https://www.google.com/maps/search/?api=1&query=경북+상주시+삼백로+343" target="_blank" class="map-app-btn"><span class="map-app-text">구글맵</span></a>
+        <a href="https://map.naver.com/v5/entry/place/19864213" target="_blank" class="map-app-btn">
+          <img src="naver_icon.png" alt="N">네이버
+        </a>
+        <a href="https://tmap.life/" target="_blank" class="map-app-btn">
+          <img src="tmap_icon.png" alt="T">T MAP
+        </a>
+        <a href="https://maps.app.goo.gl/" target="_blank" class="map-app-btn">
+          <img src="google_icon.png" alt="G">구글맵
+        </a>
       </div>
     </div>
 
