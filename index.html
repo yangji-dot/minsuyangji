@@ -265,11 +265,11 @@
     }
 
 /* -------------------------------------------------- */
-    /* 📝 [방명록] 섹션 전체 디자인 스타일 */
+    /* 📝 [방명록] 섹션 전체 및 팝업 디자인 스타일 */
     /* -------------------------------------------------- */
     .guestbook-section {
       padding: 60px 24px;
-      background-color: #ffffff;
+      background-color: #f5f4f0; /* 모청 기본 배경색과 완벽 통일 */
       text-align: center;
       font-family: 'GangwonSaeeum', sans-serif;
     }
@@ -279,14 +279,57 @@
       margin-bottom: 25px;
       letter-spacing: 2px;
     }
-    /* 입력 폼 상자 */
-    .guestbook-form {
+    /* 방명록 작성하기 팝업 열기 버튼 */
+    .gb-open-btn {
+      display: inline-block;
+      width: 100%;
       max-width: 380px;
-      margin: 0 auto 30px auto;
-      background: #f5f4f0;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+      padding: 14px;
+      background-color: #EAAFA1; /* 인디핑크 */
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'GangwonSaeeum', sans-serif;
+      box-shadow: 0 4px 10px rgba(234, 175, 161, 0.2);
+      margin-bottom: 30px;
+    }
+    /* 팝업 모달 전체 배경 레이어 */
+    .gb-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 2000;
+      font-family: 'GangwonSaeeum', sans-serif;
+    }
+    .gb-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    /* 팝업 내부 상자 */
+    .gb-modal-content {
+      background-color: #ffffff;
+      width: 90%;
+      max-width: 360px;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      position: relative;
+      text-align: left;
+    }
+    .gb-modal-title {
+      font-size: 1.8rem;
+      color: #111111;
+      margin-bottom: 18px;
+      text-align: center;
     }
     .gb-input-row {
       display: flex;
@@ -300,67 +343,78 @@
       border-radius: 6px;
       font-size: 1.2rem;
       font-family: 'GangwonSaeeum', sans-serif;
+      outline: none;
     }
     .gb-textarea {
       width: 100%;
-      height: 80px;
+      height: 90px;
       padding: 10px;
       border: 1px solid #e2ded5;
       border-radius: 6px;
       font-size: 1.2rem;
       font-family: 'GangwonSaeeum', sans-serif;
       resize: none;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      outline: none;
     }
-    /* 핑크색 축하글 남기기 버튼 */
-    .gb-submit-btn {
-      width: 100%;
+    /* 팝업 안의 등록/취소 버튼 */
+    .gb-btn-group {
+      display: flex;
+      gap: 8px;
+    }
+    .gb-action-btn {
+      flex: 1;
       padding: 12px;
-      background-color: #EAAFA1;
       border: none;
-      color: white;
-      font-size: 1.4rem;
-      font-weight: bold;
       border-radius: 6px;
+      font-size: 1.35rem;
+      font-weight: bold;
       cursor: pointer;
       font-family: 'GangwonSaeeum', sans-serif;
-      box-shadow: 0 4px 6px rgba(234, 175, 161, 0.2);
+    }
+    .gb-btn-submit {
+      background-color: #EAAFA1;
+      color: white;
+    }
+    .gb-btn-close {
+      background-color: #eee;
+      color: #666;
     }
     /* 방명록 리스트 구역 */
     .guestbook-list {
+      width: 100%;
       max-width: 380px;
       margin: 0 auto;
       text-align: left;
     }
     .gb-card {
-      background: #fbfbfa;
+      background: #ffffff;
       border: 1px solid #e8e5dd;
-      padding: 15px;
-      border-radius: 8px;
+      padding: 16px;
+      border-radius: 10px;
       margin-bottom: 12px;
-      position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
     .gb-card-meta {
       display: flex;
       justify-content: space-between;
       color: #888888;
       font-size: 1.15rem;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .gb-card-content {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       color: #333333;
       line-height: 1.4;
       white-space: pre-wrap;
     }
-    /* 마스터 삭제 버튼 */
     .gb-delete-btn {
       background: none;
       border: none;
       color: #f2b2b2;
       cursor: pointer;
       font-family: 'GangwonSaeeum', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
     }
 
   </style>
@@ -530,20 +584,27 @@
         <button class="addr-copy-btn" onclick="copyAddressText('경북 상주시 삼백로 343')" style="margin-top: 16px; padding: 6px 20px; font-size: 1.35rem;">주소 복사하기</button>
       </div>
  
-<div class="guestbook-section">
-      <div class="guestbook-title">GUESTBOOK</div>
+<div class="guestbook-title">GUESTBOOK</div>
       
-      <div class="guestbook-form">
+      <button class="gb-open-btn" onclick="openGbModal()">방명록 작성하기</button>
+
+      <div class="guestbook-list" id="guestbookList">
+        </div>
+    </div>
+
+    <div class="gb-modal" id="gbModal" onclick="closeGbModalOutside(e)">
+      <div class="gb-modal-content">
+        <div class="gb-modal-title">방명록 작성</div>
         <div class="gb-input-row">
           <input type="text" id="gbName" class="gb-input" placeholder="이름">
           <input type="password" id="gbPassword" class="gb-input" placeholder="삭제 비밀번호">
         </div>
         <textarea id="gbMessage" class="gb-textarea" placeholder="신랑 신부에게 축하의 메시지를 남겨주세요."></textarea>
-        <button class="gb-submit-btn" onclick="addGuestbookMessage()">축하글 남기기</button>
-      </div>
-
-      <div class="guestbook-list" id="guestbookList">
+        <div class="gb-btn-group">
+          <button class="gb-action-btn gb-btn-close" onclick="closeGbModal()">취소</button>
+          <button class="gb-action-btn gb-btn-submit" onclick="addGuestbookMessage()">등록하기</button>
         </div>
+      </div>
     </div>
 
     <!-- 📞 모달 팝업 레이어 (디자인 통일 및 색상 파란색/분홍색 튜닝) -->
@@ -743,17 +804,32 @@
       setTimeout(() => { closeIntroOverlay(); }, 2800); 
     });
 
-javascript
+```javascript
     /* -------------------------------------------------- */
-    /* 📝 [방명록] 등록 및 마스터 비밀번호 삭제 처리 기능 스크립트 */
+    /* 📝 [방명록] 팝업 제어, 등록 및 마스터 삭제 스크립트 */
     /* -------------------------------------------------- */
+    
+    // 👑 마스터 비밀번호 설정 구역 (신랑 신부 전용 삭제 비번)
+    const MASTER_PASSWORD = '원하는_마스터_비밀번호_입력';
+
+    // 팝업 열기/닫기 제어 함수
+    function openGbModal() { document.getElementById('gbModal').classList.add('active'); }
+    function closeGbModal() {
+      document.getElementById('gbModal').classList.remove('active');
+      document.getElementById('gbName').value = '';
+      document.getElementById('gbPassword').value = '';
+      document.getElementById('gbMessage').value = '';
+    }
+    function closeGbModalOutside(e) { if(e.target.id === 'gbModal') closeGbModal(); }
+
+    // 방명록 리스트 로드 함수
     function loadGuestbook() {
       const listContainer = document.getElementById('guestbookList');
       const messages = JSON.parse(localStorage.getItem('wedding_gb') || '[]');
       listContainer.innerHTML = '';
 
       if(messages.length === 0) {
-        listContainer.innerHTML = '<p style="text-align:center; color:#999; font-size:1.3rem;">첫 번째 축하 메시지를 남겨주세요!</p>';
+        listContainer.innerHTML = '<p style="text-align:center; color:#999; font-size:1.35rem; padding: 20px 0;">첫 번째 축하 메시지를 남겨주세요!</p>';
         return;
       }
 
@@ -771,6 +847,7 @@ javascript
       });
     }
 
+    // 새로운 축하메시지 저장 함수
     function addGuestbookMessage() {
       const name = document.getElementById('gbName').value.trim();
       const password = document.getElementById('gbPassword').value.trim();
@@ -785,28 +862,21 @@ javascript
       const now = new Date();
       const dateString = `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`;
 
-      messages.unshift({ name, password, message, date: dateString }); // 최신글이 맨 위로
+      messages.unshift({ name, password, message, date: dateString });
       localStorage.setItem('wedding_gb', JSON.stringify(messages));
 
-      // 입력창 비우기
-      document.getElementById('gbName').value = '';
-      document.getElementById('gbPassword').value = '';
-      document.getElementById('gbMessage').value = '';
-
+      closeGbModal();
       loadGuestbook();
       alert('축하 메시지가 등록되었습니다!');
     }
 
-function deleteGuestbookMessage(index) {
-      // 👑 여기에 신랑·신부님만 사용할 마스터 비밀번호를 설정하세요!
-      const MASTER_PASSWORD = '원하는_마스터_비밀번호_입력'; 
-
-      const password = prompt('글 작성 시 입력했던 비밀번호를 입력하세요:');
+    // 글 삭제 (하객 비밀번호 또는 마스터 비밀번호로 작동)
+    function deleteGuestbookMessage(index) {
+      const password = prompt('글 작성 시 입력했던 비밀번호나 마스터 비밀번호를 입력하세요:');
       if (!password) return;
 
       const messages = JSON.parse(localStorage.getItem('wedding_gb') || '[]');
       
-      // [권한 체크] 하객이 입력한 글 비밀번호와 맞거나, 혹은 마스터 비밀번호를 입력했을 때 삭제 성공!
       if (messages[index] && (messages[index].password === password || password === MASTER_PASSWORD)) {
         messages.splice(index, 1);
         localStorage.setItem('wedding_gb', JSON.stringify(messages));
@@ -817,7 +887,7 @@ function deleteGuestbookMessage(index) {
       }
     }
 
-    // 화면 로드 시 방명록 불러오기 명령어 연동
+    // 초기 화면 실행 시 방명록 리스트 자동 로드
     window.addEventListener('DOMContentLoaded', () => {
       loadGuestbook();
     });
