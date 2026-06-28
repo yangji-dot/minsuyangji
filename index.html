@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
   <meta property="og:title" content="조민수 ∙ 김양지 결혼식에 초대합니다">
   <meta property="og:description" content="2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스">
   <meta property="og:image" content="다운로드.jpg">
@@ -11,8 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>조민수 ∙ 김양지 모바일 초대장</title>
 
-  <!-- 카카오톡 SDK 불러오기 -->
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649YKqqG09IFdgukqDcGXV72hzFfybNMwLfU4RAdpXt1G96tcia75MJA" crossorigin="anonymous"></script>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649YKqqG09IFdgukqDcGXV72hzFfybNMwLfU4RAdpXt1G96tcia75MJA" crossorigin="anonymous"></script>
 
   <style>
     /* 폰트 설정 */
@@ -116,7 +115,7 @@
     .note-space { height: 30px; }
     .note-author { font-size: 1.3rem; color: #666666; }
 
-    /* 🦋 나비 구역 (간격 0.3cm 조율 완료) */
+    /* 🦋 나비 구역 */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
     .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 11px; margin-bottom: 30px; height: 50px; }
     .butterfly-left, .butterfly-right { width: 48px; height: 44px; object-fit: contain; }
@@ -130,7 +129,6 @@
     .relation-row .relation { color: #888888; width: 30px; text-align: center; }
     .relation-row .child { width: 60px; text-align: left; font-weight: bold; }
     
-    /* ✉️ [변경] image_aef366.png의 인디핑크 스타일을 적용한 '축하 연락하기' 버튼 */
     .contact-btn { 
       padding: 12px 55px; 
       background-color: #EAAFA1; 
@@ -145,7 +143,7 @@
     }
     .contact-btn:active { opacity: 0.85; }
 
-    /* 📞 축하 연락처 모달 팝업 (서체 및 파랑/분홍 색상 맞춤) */
+    /* 📞 축하 연락처 모달 팝업 */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
@@ -157,7 +155,6 @@
     
     .side-title { font-size: 1.6rem; font-weight: bold; margin-bottom: 6px; text-align: center; border-bottom: 1px dashed #e2ded5; padding-bottom: 6px; font-family: 'GangwonSaeeum', sans-serif; }
     
-    /* 파란색 / 분홍색 포인트 세팅 */
     .grid-column.groom-side .side-title { color: #7FA6C2; }
     .grid-column.bride-side .side-title { color: #E29B9B; }
     
@@ -219,7 +216,7 @@
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
 
-    /* 📍 [오시는 길 제목/주소/지도 디자인 스타일 코드] */
+    /* 📍 오시는 길 */
     .location-section {
       padding: 60px 24px;
       background-color: #f5f4f0;
@@ -252,13 +249,7 @@
       box-shadow: 0 2px 6px rgba(234, 175, 161, 0.2);
     }
 
-    /* 📝 [방명록] 섹션 전체 및 팝업 디자인 스타일 */
-    .guestbook-section {
-      padding: 60px 24px;
-      background-color: #f5f4f0; 
-      text-align: center;
-      font-family: 'GangwonSaeeum', sans-serif;
-    }
+    /* 📝 방명록 및 팝업 스타일 */
     .guestbook-title {
       font-size: 2.2rem;
       color: #f2b2b2;
@@ -314,14 +305,8 @@
       margin-bottom: 18px;
       text-align: center;
     }
-    .gb-input-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
     .gb-input {
-width: 100%; 
-      flex: 1;
+      width: 100%; /* 가로 폭 100% 가득 채우기 */
       padding: 10px;
       border: 1px solid #e2ded5;
       border-radius: 6px;
@@ -559,7 +544,13 @@ width: 100%;
         <button class="addr-copy-btn" onclick="copyAddressText('경북 상주시 삼백로 343')" style="margin-top: 16px; padding: 6px 20px; font-size: 1.35rem;">주소 복사하기</button>
       </div>
  
-      <div class="guestbook-title" style="margin-top: 50px;">GUESTBOOK</div>
+      <div style="text-align: center; margin: 40px 0 15px 0;">
+        <button id="kakaotalk-sharing-btn" style="background-color: #FEE500; color: #191919; border: none; width: 100%; max-width: 380px; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+          💬 카카오톡으로 청첩장 공유하기
+        </button>
+      </div>
+
+      <div class="guestbook-title" style="margin-top: 40px;">GUESTBOOK</div>
       <button class="gb-open-btn" onclick="openGbModal()">방명록 작성하기</button>
       <div class="guestbook-list" id="guestbookList"></div>
     </div>
@@ -567,21 +558,15 @@ width: 100%;
     <div class="gb-modal" id="gbModal" onclick="closeGbModalOutside(event)">
       <div class="gb-modal-content" onclick="event.stopPropagation()">
         <div class="gb-modal-title">방명록 작성</div>
-<div>
-  <input type="text" id="gbName" class="gb-input" placeholder="이름" style="margin-bottom: 10px;">
-  <input type="password" id="gbPassword" class="gb-input" placeholder="삭제 비밀번호" style="margin-bottom: 10px;">
-</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;">
+          <input type="text" id="gbName" class="gb-input" placeholder="이름">
+          <input type="password" id="gbPassword" class="gb-input" placeholder="삭제 비밀번호">
+        </div>
         <textarea id="gbMessage" class="gb-textarea" placeholder="신랑 신부에게 축하의 메시지를 남겨주세요."></textarea>
         <div class="gb-btn-group">
           <button class="gb-action-btn gb-btn-close" onclick="closeGbModal()">취소</button>
           <button class="gb-action-btn gb-btn-submit" onclick="addGuestbookMessage()">등록하기</button>
         </div>
-      </div>
-
-<div style="text-align: center; margin: 10px 0 25px 0;">
-        <button id="kakaotalk-sharing-btn" style="background-color: #FEE500; color: #191919; border: none; width: 100%; max-width: 380px; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-          💬 카카오톡으로 청첩장 공유하기
-        </button>
       </div>
     </div>
 
@@ -644,7 +629,7 @@ width: 100%;
   </div>
 
   <script>
-    const MASTER_PASSWORD = '원하는_마스터_비밀번호_입력';261018
+    const MASTER_PASSWORD = '원하는_마스터_비밀번호_입력';
 
     const butterflyFrames = [
       { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 350 },
@@ -810,7 +795,7 @@ width: 100%;
     }
 
     function deleteGuestbookMessage(index) {
-      const password = prompt('글 작성 시 입력했던 비밀번호를 입력해 주세요.');
+      const password = prompt('글 작성 시 입력했던 비밀번호나 마스터 비밀번호를 입력하세요:');
       if (!password) return;
 
       const messages = JSON.parse(localStorage.getItem('wedding_gb') || '[]');
@@ -849,42 +834,38 @@ width: 100%;
       setTimeout(() => { closeIntroOverlay(); }, 2800); 
     });
 
-<script>
-  // 1. 카카오 SDK 초기화 (본인의 자바스크립트 키를 입력하세요)
-  Kakao.init('e928516c9eb2da1ed2e99df14d4ca403'); 
+    // 👑 3. 카카오톡 공유 이벤트 설정 (전체 하나의 script 태그 내로 병합 완료)
+    Kakao.init('e928516c9eb2da1ed2e99df14d4ca403'); 
 
-  // 2. 카카오톡 공유 버튼 이벤트 연결
-  Kakao.Share.createDefaultButton({
-    container: '#kakaotalk-sharing-btn',
-    objectType: 'feed',
-    content: {
-      title: '조민수 ∙ 김양지 결혼식에 초대합니다',
-      description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
-      imageUrl: 'https://본인사이트주소.com/다운로드.jpg', // ⚠️ 카톡 카드는 반드시 인터넷 주소(http/https)로 된 이미지 경로여야 사진이 뜹니다!
-      link: {
-        mobileWebUrl: 'https://https://github.com/yangji-dot/minsuyangji.git.com',
-        webUrl: 'https://https://github.com/yangji-dot/minsuyangji.git.com',
-      },
-    },
-    buttons: [
-      {
-        title: '청첩장 보기',
+    Kakao.Share.createDefaultButton({
+      container: '#kakaotalk-sharing-btn',
+      objectType: 'feed',
+      content: {
+        title: '조민수 ∙ 김양지 결혼식에 초대합니다',
+        description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
+        imageUrl: 'https://github.com/yangji-dot/minsuyangji/blob/main/%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%AB%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3.jpg?raw=true', 
         link: {
-          mobileWebUrl: 'https://https://github.com/yangji-dot/minsuyangji.git.com',
-          webUrl: 'https://https://github.com/yangji-dot/minsuyangji.git.com',
+          mobileWebUrl: 'https://yangji-dot.github.io/minsuyangji/',
+          webUrl: 'https://yangji-dot.github.io/minsuyangji/',
         },
       },
-      {
-        title: '위치보기',
-        link: {
-          // 카카오맵 식장 주소 링크를 넣으면 하객들이 바로 내비게이션으로 연결되어 편리합니다.
-          mobileWebUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP', 
-          webUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP',
+      buttons: [
+        {
+          title: '청첩장 보기',
+          link: {
+            mobileWebUrl: 'https://yangji-dot.github.io/minsuyangji/',
+            webUrl: 'https://yangji-dot.github.io/minsuyangji/',
+          },
         },
-      },
-    ],
-  });
-
+        {
+          title: '위치보기',
+          link: {
+            mobileWebUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP', 
+            webUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP',
+          },
+        },
+      ],
+    });
   </script>
 </body>
 </html>
