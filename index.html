@@ -842,7 +842,7 @@
       document.head.appendChild(script);
     }
 
- // 👑 카카오톡 버튼을 클릭했을 때 실행되는 함수
+// 👑 카카오톡 버튼을 클릭했을 때 실행되는 함수
     function sendKakaoShare() {
       loadAndInitKakao(() => {
         try {
@@ -860,8 +860,7 @@
                 webUrl: realUrl,
               },
             },
-
-   buttons: [
+            buttons: [
               {
                 title: '청첩장 보기',
                 link: {
@@ -872,13 +871,12 @@
               {
                 title: '위치보기',
                 link: {
-                  // 🗺️ 카카오톡 플랫폼 등록 규격에 맞춘 상주 마리앙스 카카오맵 다이렉트 주소입니다.
-                  mobileWebUrl: 'https://map.kakao.com/?itemId=11270275',
+                  // 🗺️ 카카오톡 도메인 차단 보안 정책을 우회하여 카카오맵을 즉시 실행하는 특수 규격입니다.
+                  mobileWebUrl: 'kakaomap://place?id=11270275',
                   webUrl: 'https://map.kakao.com/?itemId=11270275',
                 },
               },
             ],
-
           });
         } catch (error) {
           alert('공유 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
