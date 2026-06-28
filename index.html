@@ -732,7 +732,7 @@
     }
 
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
-    function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
+    function closeContactModal() { document.getElementById('contactModal').remove('active'); }
     function closeContactModalOutside(e) { if (e.target.id === 'contactModal') closeContactModal(); }
     function toggleAccordion(el) { el.parentElement.classList.toggle('active'); }
     function copyAccountNumber(val) {
@@ -817,62 +817,69 @@
       }
     }
 
-    // 👑 안전하게 완전히 교정된 카카오톡 초기화 및 설정
-    function initKakaoSharing() {
-      try {
-        if (typeof Kakao !== 'undefined') {
-          // 보안 충돌을 막기 위해 초기화 확인 후 진행
-          if (!Kakao.isInitialized()) {
-            Kakao.init('e928516c9eb2da1ed2e99df14d4ca403');
-          }
+    // 👑 안전하게 검증 키 없이 동적 로드 + 초기화하는 함수
+    function loadAndInitKakao(callback) {
+      if (typeof Kakao !== 'undefined') {
+        if (!Kakao.isInitialized()) {
+          Kakao.init('e928516c9eb2da1ed2e99df14d4ca403');
         }
-      } catch (e) {
-        console.error('카카오 초기화 실패:', e);
+        if (callback) callback();
+        return;
       }
+      
+      // 상단 스크립트 차단에 대비해 차단 없는 클린 스크립트를 동적 주입합니다.
+      const script = document.createElement('script');
+      script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js';
+      script.onload = () => {
+        if (!Kakao.isInitialized()) {
+          Kakao.init('e928516c9eb2da1ed2e99df14d4ca403');
+        }
+        if (callback) callback();
+      };
+      script.onerror = () => {
+        alert('카카오 시스템 파일을 불러오지 못했습니다. 네트워크 상태를 확인해 주세요.');
+      };
+      document.head.appendChild(script);
     }
 
-    // 👑 카카오톡 버튼을 눌렀을 때 실행되는 함수
+    // 👑 카카오톡 버튼을 클릭했을 때 실행
     function sendKakaoShare() {
-      try {
-        if (typeof Kakao === 'undefined' || !Kakao.isInitialized()) {
-          alert('카카오 모듈을 불러오는 중입니다. 잠시 후 다시 시도해 주세요.');
-          initKakaoSharing();
-          return;
-        }
+      loadAndInitKakao(() => {
+        try {
+          const realUrl = 'https://yangji-dot.github.io/minsuyangji/';
 
-        const realUrl = 'https://yangji-dot.github.io/minsuyangji/';
-
-        Kakao.Share.sendDefault({
-          objectType: 'feed',
-          content: {
-            title: '조민수 ∙ 김양지 결혼식에 초대합니다',
-            description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
-            imageUrl: realUrl + '다운로드.jpg',
-            link: {
-              mobileWebUrl: realUrl,
-              webUrl: realUrl,
-            },
-          },
-          buttons: [
-            {
-              title: '청첩장 보기',
+          Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+              title: '조민수 ∙ 김양지 결혼식에 초대합니다',
+              description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
+              imageUrl: realUrl + '다운로드.jpg',
               link: {
                 mobileWebUrl: realUrl,
                 webUrl: realUrl,
               },
             },
-            {
-              title: '위치보기',
-              link: {
-                mobileWebUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP',
-                webUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP',
+            buttons: [
+              {
+                title: '청첩장 보기',
+                link: {
+                  mobileWebUrl: realUrl,
+                  webUrl: realUrl,
+                },
               },
-            },
-          ],
-        });
-      } catch (error) {
-        alert('공유 실패: 카카오 개발자 센터의 [플랫폼 -> Web -> 사이트 도메인]에 https://yangji-dot.github.io 가 등록되어 있는지 확인해 주세요.');
-      }
+              {
+                title: '위치보기',
+                link: {
+                  mobileWebUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP',
+                  webUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP',
+                },
+              },
+            ],
+          });
+        } catch (error) {
+          alert('공유 오류: 카카오 개발자 센터 설정을 확인해 주세요.');
+        }
+      });
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -880,7 +887,7 @@
       initWeddingTimer();
       runButterflyAnimation();
       loadGuestbook();
-      initKakaoSharing(); // 앱 시작 시 카카오 사전 로드
+      loadAndInitKakao(); // 페이지 열릴 때 미리 안전하게 로드 시도
 
       const intro = document.getElementById('intro');
       if (intro) {
