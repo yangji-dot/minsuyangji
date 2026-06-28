@@ -210,7 +210,8 @@
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
 
-  /* 📍 [오시는 길] 섹션 전체 디자인 스타일 */
+  /* -------------------------------------------------- */
+    /* 📍 [오시는 길 제목/주소/지도 디자인 스타일 코드] */
     /* -------------------------------------------------- */
     .location-section {
       padding: 60px 24px;
@@ -218,26 +219,26 @@
       text-align: center;
       font-family: 'GangwonSaeeum', sans-serif;
     }
-    /* 제목 (LOCATION) 디자인 */
+    /* 오시는 길 타이틀 디자인 */
     .location-title {
       font-size: 2.2rem;
       color: #f2b2b2;
       margin-bottom: 20px;
       letter-spacing: 2px;
     }
-    /* 식장 이름 및 주소 텍스트 디자인 */
+    /* 식장 이름과 주소 글자 디자인 */
     .location-info {
       font-size: 1.45rem;
       color: #444444;
       line-height: 1.6;
       margin-bottom: 25px;
     }
-    /* 핑크색 주소 복사 버튼 디자인 */
+    /* 핑크색 [주소 복사] 버튼 디자인 */
     .addr-copy-btn {
       display: inline-block;
       margin-top: 10px;
       padding: 4px 16px;
-      background-color: #EAAFA1;
+      background-color: #EAAFA1; /* 축하 연락하기 버튼과 동일한 인디핑크 */
       border: none;
       color: #ffffff;
       font-size: 1.25rem;
@@ -246,17 +247,23 @@
       font-family: 'GangwonSaeeum', sans-serif;
       box-shadow: 0 2px 6px rgba(234, 175, 161, 0.2);
     }
-    /* 실제 움직이는 지도 상자 디자인 */
+    /* 움직이는 네이버 지도 상자 크기 디자인 */
     .map-container {
       width: 100%;
       max-width: 380px;
-      height: 300px;
+      height: 320px;
       margin: 0 auto;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       border: 1px solid #e2ded5;
     }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+/* -------------------------------------------------- */
   </style>
 </head>
 
@@ -410,18 +417,10 @@
         <div class="gallery-col right-col"><div class="gallery-item item-short"></div><div class="gallery-item item-tall"></div></div>
       </div>
     </div>
-<!-- ... 기존 갤러리 코드 생략 ... -->
-    <div class="gallery-section">
-      <div class="gallery-title">Gallery</div>
-      <div class="gallery-container">
-        <div class="gallery-col left-col"><div class="gallery-item item-tall"></div><div class="gallery-item item-short"></div></div>
-        <div class="gallery-col right-col"><div class="gallery-item item-short"></div><div class="gallery-item item-tall"></div></div>
-      </div>
-    </div>
 
     <!-- -------------------------------------------------- -->
     <!-- 📍 [오시는 길] 화면 HTML 코드 시작 -->
- <div class="location-section">
+<div class="location-section">
       <div class="location-title">LOCATION</div>
       
       <div class="location-info">
@@ -431,9 +430,10 @@
       </div>
 
       <div class="map-container">
-        <iframe src="https://maps.google.com/maps?q=%EA%B2%BD%EB%B6%8A%20%EC%83%81%EC%A3%BC%EC%8B%9C%20%EC%82%BC%EB%B0%B1%EB%A1%9C%20343&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://m.map.naver.com/p/search/%EC%83%81%EC%A3%BC%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4/address/14234057.2520846,4347714.7735313,37166174,PLACE_A?c=15.00,0,0,0,dh" allowfullscreen></iframe>
       </div>
     </div>
+
     <!-- 📞 모달 팝업 레이어 (디자인 통일 및 색상 파란색/분홍색 튜닝) -->
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
