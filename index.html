@@ -841,48 +841,48 @@
       setTimeout(() => { closeIntroOverlay(); }, 2800); 
     });
 
-// 👑 카카오톡 공유 함수 (파일이 없으면 강제로 다시 불러오는 기능 포함)
+// 👑 카카오톡 공유 함수
     function sendKakaoShare() {
-      // 1. 만약 카카오 파일이 아직 안 불러와졌다면, 동적으로 즉시 주입해 줍니다.
       if (typeof Kakao === 'undefined') {
         const script = document.createElement('script');
         script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js';
         script.onload = () => {
-          if (!Kakao.isInitialized()) {
-            Kakao.init('953f3be94c527d00b6e056a4aee05d3c');
-          }
-          executeKakaoShare(); // 로드 완료 후 실행
+          initAndExecuteKakao();
         };
         document.head.appendChild(script);
       } else {
-        // 2. 이미 파일이 있다면 즉시 초기화 확인 후 실행
-        if (!Kakao.isInitialized()) {
-          Kakao.init('953f3be94c527d00b6e056a4aee05d3c');
-        }
-        executeKakaoShare();
+        initAndExecuteKakao();
       }
     }
 
-    // 👑 실제 카카오톡으로 데이터를 날리는 핵심 기능
-    function executeKakaoShare() {
+    // 👑 초기화 및 실행 안전 구역
+    function initAndExecuteKakao() {
       try {
+        if (!Kakao.isInitialized()) {
+          Kakao.init('953f3be94c527d00b6e056a4aee05d3c');
+        }
+        
+        // 카카오 서버와 100% 일치하도록 도메인 주소 고정 지정
+        const realUrl = 'https://yangji-dot.github.io/minsuyangji/';
+        
         Kakao.Share.sendDefault({
           objectType: 'feed',
           content: {
             title: '조민수 ∙ 김양지 결혼식에 초대합니다',
             description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
-            imageUrl: 'https://yangji-dot.github.io/minsuyangji/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.jpg', 
+            // 한글 이미지 파일명을 인코딩하지 않고 안전한 절대 경로로 지정
+            imageUrl: realUrl + '다운로드.jpg', 
             link: {
-              mobileWebUrl: 'https://yangji-dot.github.io/minsuyangji/',
-              webUrl: 'https://yangji-dot.github.io/minsuyangji/',
+              mobileWebUrl: realUrl,
+              webUrl: realUrl,
             },
           },
           buttons: [
             {
               title: '청첩장 보기',
               link: {
-                mobileWebUrl: 'https://yangji-dot.github.io/minsuyangji/',
-                webUrl: 'https://yangji-dot.github.io/minsuyangji/',
+                mobileWebUrl: realUrl,
+                webUrl: realUrl,
               },
             },
             {
@@ -895,7 +895,7 @@
           ],
         });
       } catch (e) {
-        alert('카카오 공유 중 오류가 발생했습니다: ' + e.message);
+        alert('카카오 실행 에러: ' + e.message);
       }
     }
   </script>
