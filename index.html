@@ -841,52 +841,62 @@
       setTimeout(() => { closeIntroOverlay(); }, 2800); 
     });
 
-// 👑 카카오톡 SDK 초기화 (스크립트가 읽히자마자 즉시 실행)
-    try {
-      if (typeof Kakao !== 'undefined') {
+// 👑 카카오톡 공유 함수 (파일이 없으면 강제로 다시 불러오는 기능 포함)
+    function sendKakaoShare() {
+      // 1. 만약 카카오 파일이 아직 안 불러와졌다면, 동적으로 즉시 주입해 줍니다.
+      if (typeof Kakao === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js';
+        script.onload = () => {
+          if (!Kakao.isInitialized()) {
+            Kakao.init('953f3be94c527d00b6e056a4aee05d3c');
+          }
+          executeKakaoShare(); // 로드 완료 후 실행
+        };
+        document.head.appendChild(script);
+      } else {
+        // 2. 이미 파일이 있다면 즉시 초기화 확인 후 실행
         if (!Kakao.isInitialized()) {
-          Kakao.init('953f3be94c527d00b6e056a4aee05d3c'); // 확인하신 자바스크립트 키
+          Kakao.init('953f3be94c527d00b6e056a4aee05d3c');
         }
+        executeKakaoShare();
       }
-    } catch (e) {
-      console.error("카카오 초기화 에러:", e);
     }
 
-    // 👑 버튼을 누르면 실행될 카카오 공유 함수
-    function sendKakaoShare() {
-      if (typeof Kakao === 'undefined' || !Kakao.isInitialized()) {
-        alert('카카오톡 공유 기능을 불러오는 중입니다. 잠시 후 다시 시도해 주세요.');
-        return;
-      }
-
-      Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: '조민수 ∙ 김양지 결혼식에 초대합니다',
-          description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
-          imageUrl: 'https://yangji-dot.github.io/minsuyangji/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.jpg', 
-          link: {
-            mobileWebUrl: 'https://yangji-dot.github.io/minsuyangji/',
-            webUrl: 'https://yangji-dot.github.io/minsuyangji/',
-          },
-        },
-        buttons: [
-          {
-            title: '청첩장 보기',
+    // 👑 실제 카카오톡으로 데이터를 날리는 핵심 기능
+    function executeKakaoShare() {
+      try {
+        Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: '조민수 ∙ 김양지 결혼식에 초대합니다',
+            description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
+            imageUrl: 'https://yangji-dot.github.io/minsuyangji/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.jpg', 
             link: {
               mobileWebUrl: 'https://yangji-dot.github.io/minsuyangji/',
               webUrl: 'https://yangji-dot.github.io/minsuyangji/',
             },
           },
-          {
-            title: '위치보기',
-            link: {
-              mobileWebUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP', 
-              webUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP',
+          buttons: [
+            {
+              title: '청첩장 보기',
+              link: {
+                mobileWebUrl: 'https://yangji-dot.github.io/minsuyangji/',
+                webUrl: 'https://yangji-dot.github.io/minsuyangji/',
+              },
             },
-          },
-        ],
-      });
+            {
+              title: '위치보기',
+              link: {
+                mobileWebUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP', 
+                webUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP',
+              },
+            },
+          ],
+        });
+      } catch (e) {
+        alert('카카오 공유 중 오류가 발생했습니다: ' + e.message);
+      }
     }
   </script>
 </body>
