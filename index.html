@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<meta property="og:type" content="website">
+  <meta property="og:title" content="조민수 ∙ 김양지 결혼식에 초대합니다">
+  <meta property="og:description" content="2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스">
+  <meta property="og:image" content="다운로드.jpg">
+  <meta property="og:url" content="">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>조민수 ∙ 김양지 모바일 초대장</title>
@@ -629,7 +635,7 @@ width: 100%;
   </div>
 
   <script>
-    const MASTER_PASSWORD = '원하는_마스터_비밀번호_입력';
+    const MASTER_PASSWORD = '원하는_마스터_비밀번호_입력';261018
 
     const butterflyFrames = [
       { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 350 },
@@ -795,7 +801,7 @@ width: 100%;
     }
 
     function deleteGuestbookMessage(index) {
-      const password = prompt('글 작성 시 입력했던 비밀번호나 마스터 비밀번호를 입력하세요:');
+      const password = prompt('글 작성 시 입력했던 비밀번호를 입력해 주세요.');
       if (!password) return;
 
       const messages = JSON.parse(localStorage.getItem('wedding_gb') || '[]');
