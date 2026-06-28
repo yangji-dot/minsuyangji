@@ -209,6 +209,50 @@
     .gallery-item { width: 100%; background-color: #dbdbdb; border-radius: 14px; overflow: hidden; }
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
+
+/* 📍 오시는길 섹션 스타일 (앱 연동 버튼 제외 버전) */
+    .location-section {
+      padding: 60px 24px;
+      background-color: #f5f4f0;
+      text-align: center;
+      font-family: 'GangwonSaeeum', sans-serif;
+    }
+    .location-title {
+      font-size: 2.2rem;
+      color: #f2b2b2;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+    .location-info {
+      font-size: 1.45rem;
+      color: #444444;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    .location-address {
+      font-size: 1.25rem;
+      color: #666666;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .map-container {
+      width: 100%;
+      max-width: 380px;
+      height: 300px; /* 지도가 더 시원하게 보이도록 높이를 조금 늘렸습니다 */
+      margin: 0 auto;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border: 1px solid #e2ded5;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
   </style>
 </head>
 <body class="intro-active">
@@ -359,6 +403,22 @@
       <div class="gallery-container">
         <div class="gallery-col left-col"><div class="gallery-item item-tall"></div><div class="gallery-item item-short"></div></div>
         <div class="gallery-col right-col"><div class="gallery-item item-short"></div><div class="gallery-item item-tall"></div></div>
+      </div>
+    </div>
+
+<!-- 📍 오시는길 섹션 (앱 연동 버튼 없음) -->
+    <div class="location-section">
+      <div class="location-title">LOCATION</div>
+      <div class="location-info">
+        <strong>상주 마리앙스</strong><br>
+        <div class="location-address" onclick="copyAccountNumber('경북 상주시 삼백로 343')">
+          경북 상주시 삼백로 343 <span>📋</span>
+        </div>
+      </div>
+
+      <!-- 움직이는 네이버 지도 -->
+      <div class="map-container">
+        <iframe src="https://v5.map.naver.com/share/1551842812" allowfullscreen></iframe>
       </div>
     </div>
 
