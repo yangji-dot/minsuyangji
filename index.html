@@ -10,7 +10,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>조민수 ∙ 김양지 모바일 초대장</title>
-  
+
+  <!-- 카카오톡 SDK 불러오기 -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649YKqqG09IFdgukqDcGXV72hzFfybNMwLfU4RAdpXt1G96tcia75MJA" crossorigin="anonymous"></script>
+
   <style>
     /* 폰트 설정 */
     @font-face {
@@ -574,6 +577,12 @@ width: 100%;
           <button class="gb-action-btn gb-btn-submit" onclick="addGuestbookMessage()">등록하기</button>
         </div>
       </div>
+
+<div style="text-align: center; margin: 10px 0 25px 0;">
+        <button id="kakaotalk-sharing-btn" style="background-color: #FEE500; color: #191919; border: none; width: 100%; max-width: 380px; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+          💬 카카오톡으로 청첩장 공유하기
+        </button>
+      </div>
     </div>
 
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
@@ -839,6 +848,44 @@ width: 100%;
 
       setTimeout(() => { closeIntroOverlay(); }, 2800); 
     });
+
+<script>
+  // 1. 카카오 SDK 초기화 (본인의 자바스크립트 키를 입력하세요)
+  Kakao.init('e928516c9eb2da1ed2e99df14d4ca403'); 
+
+  // 2. 카카오톡 공유 버튼 이벤트 연결
+  Kakao.Share.createDefaultButton({
+    container: '#kakaotalk-sharing-btn',
+    objectType: 'feed',
+    content: {
+      title: '조민수 ∙ 김양지 결혼식에 초대합니다',
+      description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
+      imageUrl: 'https://본인사이트주소.com/다운로드.jpg', // ⚠️ 카톡 카드는 반드시 인터넷 주소(http/https)로 된 이미지 경로여야 사진이 뜹니다!
+      link: {
+        mobileWebUrl: 'https://https://github.com/yangji-dot/minsuyangji.git.com',
+        webUrl: 'https://https://github.com/yangji-dot/minsuyangji.git.com',
+      },
+    },
+    buttons: [
+      {
+        title: '청첩장 보기',
+        link: {
+          mobileWebUrl: 'https://https://github.com/yangji-dot/minsuyangji.git.com',
+          webUrl: 'https://https://github.com/yangji-dot/minsuyangji.git.com',
+        },
+      },
+      {
+        title: '위치보기',
+        link: {
+          // 카카오맵 식장 주소 링크를 넣으면 하객들이 바로 내비게이션으로 연결되어 편리합니다.
+          mobileWebUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP', 
+          webUrl: 'https://map.kakao.com/?urlX=661423&urlY=838123&urlLevel=3&map_type=TYPE_MAP',
+        },
+      },
+    ],
+  });
+</script>
+
   </script>
 </body>
 </html>
