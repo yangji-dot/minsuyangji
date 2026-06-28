@@ -5,7 +5,7 @@
   <meta property="og:title" content="조민수 ∙ 김양지 결혼식에 초대합니다">
   <meta property="og:description" content="2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스">
   <meta property="og:image" content="다운로드.jpg">
-  <meta property="og:url" content="">
+  <meta property="og:url" content="https://yangji-dot.github.io/minsuyangji/">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -306,7 +306,7 @@
       text-align: center;
     }
     .gb-input {
-      width: 100%; /* 가로 폭 100% 가득 채우기 */
+      width: 100%; 
       padding: 10px;
       border: 1px solid #e2ded5;
       border-radius: 6px;
@@ -535,7 +535,7 @@
       </div>
     </div>
 
-<div class="location-section">
+    <div class="location-section">
       <div class="location-title">LOCATION</div>
       <div class="location-info" style="margin-bottom: 0;">
         <strong style="font-size: 1.7rem; color: #111111; display: block; margin-bottom: 2px;">상주 마리앙스</strong>
@@ -548,28 +548,20 @@
       <button class="gb-open-btn" onclick="openGbModal()">방명록 작성하기</button>
       <div class="guestbook-list" id="guestbookList"></div>
 
-      <!-- 💡 이미지(image_fa255e.png) 스타일을 반영한 2개 버튼 구역 (방명록 밑에 배치) -->
       <div style="display: flex; flex-direction: column; gap: 14px; margin: 40px auto 20px auto; width: 100%; max-width: 380px; padding: 0 10px; box-sizing: border-box;">
-        
-        <!-- 1. 카카오톡으로 청첩장 전하기 (노란색) -->
         <button id="kakaotalk-sharing-btn" style="background-color: #FFE677; color: #333333; border: none; width: 100%; padding: 18px 24px; border-radius: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.03); -webkit-appearance: none;">
           <span>카카오톡으로 청첩장 전하기</span>
-          <!-- 화살표 아이콘 (↗) -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
         </button>
 
-        <!-- 2. 청첩장 주소 복사하기 (분홍색) -->
-        <!-- 클릭 시 현재 페이지의 주소(URL)를 복사하는 함수를 연결해 두었습니다 -->
         <button onclick="copyAddressText(window.location.href); alert('청첩장 주소가 복사되었습니다.');" style="background-color: #EFAAAA; color: #FFFFFF; border: none; width: 100%; padding: 18px 24px; border-radius: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.03); -webkit-appearance: none;">
           <span>청첩장 주소 복사하기</span>
-          <!-- 복사 아이콘 (겹친 사각형) -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
         </button>
-
       </div>
     </div>
 
-    <!-- 방명록 작성 모달 팝업 (내부에서 공유 버튼 완전 제거됨) -->
+    <!-- 방명록 작성 모달 팝업 -->
     <div class="gb-modal" id="gbModal" onclick="closeGbModalOutside(event)">
       <div class="gb-modal-content" onclick="event.stopPropagation()">
         <div class="gb-modal-title">방명록 작성</div>
@@ -579,7 +571,7 @@
         </div>
         <textarea id="gbMessage" class="gb-textarea" placeholder="신랑 신부에게 축하의 메시지를 남겨주세요."></textarea>
         <div class="gb-btn-group">
-          <button class="gb-action-btn gb-btn-close" onclick="closeIntroOverlay(); closeGbModal();">취소</button>
+          <button class="gb-action-btn gb-btn-close" onclick="closeGbModal();">취소</button>
           <button class="gb-action-btn gb-btn-submit" onclick="addGuestbookMessage()">등록하기</button>
         </div>
       </div>
@@ -849,7 +841,7 @@
       setTimeout(() => { closeIntroOverlay(); }, 2800); 
     });
 
-    // 👑 3. 카카오톡 공유 이벤트 설정 (전체 하나의 script 태그 내로 병합 완료)
+    // 👑 카카오톡 공유 이벤트 설정 
     Kakao.init('953f3be94c527d00b6e056a4aee05d3c'); 
 
     Kakao.Share.createDefaultButton({
@@ -858,7 +850,7 @@
       content: {
         title: '조민수 ∙ 김양지 결혼식에 초대합니다',
         description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
-        imageUrl: 'https://github.com/yangji-dot/minsuyangji/blob/main/%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%AB%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3.jpg?raw=true', 
+        imageUrl: 'https://yangji-dot.github.io/minsuyangji/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.jpg', 
         link: {
           mobileWebUrl: 'https://yangji-dot.github.io/minsuyangji/',
           webUrl: 'https://yangji-dot.github.io/minsuyangji/',
