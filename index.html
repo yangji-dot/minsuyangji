@@ -871,9 +871,10 @@
               {
                 title: '위치보기',
                 link: {
-                  // 🗺️ 내 깃허브 안의 중간 다리 페이지로 연결하여 카카오톡 차단을 우회합니다.
-                  mobileWebUrl: realUrl + 'https://map.naver.com/v5/search/상주 마리앙스',
-                  webUrl: realUrl + 'https://map.naver.com/v5/search/상주 마리앙스',
+                  // ⚠️ 앞서 생성한 map.html 중간 다리 페이지 주소만 정확히 지정합니다.
+                  // (뒤에 네이버 지도 주소를 더하지 않고, 오직 map.html 파일만 열리도록 합니다.)
+                  mobileWebUrl: realUrl + 'map.html',
+                  webUrl: realUrl + 'map.html',
                 },
               },
             ],
