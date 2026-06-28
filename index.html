@@ -66,7 +66,8 @@
       font-size: 2.5rem; color: #FFB6C1; text-align: center; white-space: pre-line; 
       font-family: 'InkLipquid', sans-serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
       user-select: none;
-      pointer-events: none; /* 텍스트가 클릭 이벤트를 막지 않도록 설정 */
+      pointer-events: none;
+      border-right: 2px solid transparent; /* 타이핑 커서 느낌용 */
     }
 
     /* 🎵 배경음악 컨트롤 버튼 */
@@ -111,10 +112,24 @@
     .note-space { height: 30px; }
     .note-author { font-size: 1.3rem; color: #666666; }
 
-    /* 🦋 나비 구역 */
+    /* 🦋 나비 구역 및 움직임 애니메이션 추가 */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
     .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 11px; margin-bottom: 30px; height: 50px; }
-    .butterfly-left, .butterfly-right { width: 48px; height: 44px; object-fit: contain; }
+    .butterfly-left, .butterfly-right { width: 48px; height: 44px; object-fit: contain; transform-origin: center bottom; }
+    
+    /* 나비 양날개 실시간 움직임 효과 */
+    .butterfly-left { animation: flapLeft 0.6s ease-in-out infinite alternate; }
+    .butterfly-right { animation: flapRight 0.6s ease-in-out infinite alternate; }
+
+    @keyframes flapLeft {
+      0% { transform: rotate(0deg) scaleX(1); }
+      100% { transform: rotate(-15deg) scaleX(0.8); }
+    }
+    @keyframes flapRight {
+      0% { transform: rotate(0deg) scaleX(1); }
+      100% { transform: rotate(15deg) scaleX(0.8); }
+    }
+
     .greeting-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; line-height: 1.8; color: #444444; word-break: keep-all; text-align: center; max-width: 320px; margin: 0 auto; }
 
     /* 👥 부모님 정보 섹션 */
@@ -199,35 +214,36 @@
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
 
-    /* 📍 오시는 길 섹션 스타일 */
+    /* 📍 오시는 길 섹션 스타일 (지도 연동 시스템 탑재) */
     .location-section { padding: 50px 24px; background-color: #f5f4f0; text-align: center; }
     .location-title { font-family: 'InkLipquid', sans-serif; font-size: 1.95rem; color: #f2b2b2; margin-bottom: 20px; }
     .hall-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 8px; color: #333333; }
     .hall-address-box { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 25px; }
     .hall-address { font-size: 1.3rem; color: #666666; }
     .address-copy-icon { background: none; border: none; cursor: pointer; display: flex; align-items: center; }
-    .map-wrapper { display: block; width: 100%; height: 220px; border-radius: 14px; overflow: hidden; margin-bottom: 20px; border: 1px solid #e2ded5; }
+    
+    /* 실제 지도가 로드될 동적 뷰포트 엘리먼트 */
+    .map-wrapper { display: block; width: 100%; height: 250px; border-radius: 14px; overflow: hidden; margin-bottom: 20px; border: 1px solid #e2ded5; background-color: #e5e5e5; }
+    
     .map-apps-group { display: flex; justify-content: center; gap: 10px; }
-    .map-app-btn { padding: 10px 20px; background-color: #ffffff; border: 1px solid #e2ded5; border-radius: 8px; text-decoration: none; color: #444444; font-size: 1.25rem; display: inline-flex; align-items: center; gap: 4px; }
+    .map-app-btn { padding: 10px 14px; background-color: #ffffff; border: 1px solid #e2ded5; border-radius: 8px; text-decoration: none; color: #444444; font-size: 1.25rem; display: inline-flex; align-items: center; gap: 6px; font-family: 'GangwonSaeeum', sans-serif; font-weight: bold; }
     .map-app-btn img { width: 16px; height: 16px; object-fit: contain; }
- </style>
+  </style>
+  
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=71c63390f70a1492ba667ffc76d2139b"></script>
 </head>
 <body class="intro-active">
 
-  <!-- 배경음악 파일 -->
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop preload="auto"></audio>
 
-  <!-- 인트로 레이어 -->
   <div id="intro-overlay">
-    <div class="intro-text">♥결혼식에 초대합니다♥</div>
+    <div class="intro-text" id="intro-typing-text"></div>
   </div>
 
   <div class="container">
-    <!-- 꽃잎 컨테이너 -->
     <div class="cherry-blossom-container" id="blossom-box"></div>
 
     <div class="main-content">
-      <!-- BGM 컨트롤 버튼 -->
       <button class="bgm-control-btn muted" onclick="toggleBgm(event)">
         <svg class="bgm-icon icon-playing" viewBox="0 0 24 24">
           <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -249,7 +265,6 @@
       <div class="main-date">상주 마리앙스, 마리앙스 홀</div>
     </div>
 
-    <!-- 초대글 섹션 -->
     <div class="invitation-section">
       <div class="leaf-icon">🌿</div>
       <div class="note-pad">
@@ -262,7 +277,6 @@
       </div>
     </div>
 
-    <!-- 나비 구역 -->
     <div class="butterfly-area">
       <div class="butterfly-top">
         <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
@@ -281,7 +295,6 @@
       </div>
     </div>
 
-    <!-- 부모님 정보 섹션 -->
     <div class="family-section">
       <div class="family-relations">
         <div class="relation-row">
@@ -298,7 +311,6 @@
       <button class="contact-btn" onclick="openContactModal()">축하 연락하기</button>
     </div>
 
-    <!-- 달력 섹션 -->
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
@@ -320,7 +332,6 @@
       <div class="calendar-bottom-line"></div>
     </div>
 
-    <!-- 디데이 카운트다운 -->
     <div class="dday-section">
       <div class="dday-title">민수 ♥ 양지 결혼식까지</div>
       <div class="dday-container">
@@ -331,7 +342,6 @@
       </div>
     </div>
 
-    <!-- 계좌번호 안내 섹션 -->
     <div class="account-section">
       <div class="account-main-title">마음 전하실 곳</div>
       <div class="account-intro-text">
@@ -363,7 +373,6 @@
       </div>
     </div>
 
-    <!-- 📸 갤러리 섹션 -->
     <div class="gallery-section">
       <div class="gallery-title">Gallery</div>
       <div class="gallery-container">
@@ -372,7 +381,6 @@
       </div>
     </div>
 
-    <!-- 📍 오시는 길 섹션 -->
     <div class="location-section">
       <div class="location-title">LOCATION</div>
       <div class="hall-name">상주 마리앙스 마리앙스홀</div>
@@ -383,25 +391,21 @@
         </button>
       </div>
 
-      <!-- 지도 구역 -->
-      <a href="https://map.naver.com/v5/entry/place/19864213" target="_blank" class="map-wrapper">
-        <img src="지도이미지파일.png" style="width:100%; height:100%; object-fit:cover;" alt="지도">
-      </a>
+      <div id="daumKakaoMap" class="map-wrapper"></div>
 
       <div class="map-apps-group">
-        <a href="https://map.naver.com/v5/entry/place/19864213" target="_blank" class="map-app-btn">
+        <a href="https://map.naver.com/v5/search/%EC%83%81%EC%A3%BC%20%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4" target="_blank" class="map-app-btn">
           <img src="naver_icon.png" alt="N">네이버
         </a>
-        <a href="https://tmap.life/" target="_blank" class="map-app-btn">
+        <a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=발급받은_티맵_API키_입력&name=%EC%83%81%EC%A3%BC+%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4" target="_blank" class="map-app-btn">
           <img src="tmap_icon.png" alt="T">T MAP
         </a>
-        <a href="https://maps.app.goo.gl/" target="_blank" class="map-app-btn">
+        <a href="https://www.google.com/maps/search/?api=1&query=%EC%83%81%EC%A3%BC+%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4" target="_blank" class="map-app-btn">
           <img src="google_icon.png" alt="G">구글맵
         </a>
       </div>
     </div>
 
-    <!-- 연락처 모달 -->
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
         <button class="modal-close" onclick="closeContactModal()">✕</button>
@@ -433,7 +437,23 @@
   </div>
 
   <script>
-    // 1. 인트로 제어 및 터치 버그 완전 차단 시스템
+    // 1-1. 인트로 전용 타이핑 효과 스크립트 구축
+    const typingContent = "♥결혼식에 초대합니다♥";
+    const typingTarget = document.getElementById("intro-typing-text");
+    let typingIndex = 0;
+
+    function startIntroTyping() {
+      if (typingIndex < typingContent.length) {
+        typingTarget.textContent += typingContent.charAt(typingIndex);
+        typingIndex++;
+        setTimeout(startIntroTyping, 150); // 한 글자씩 찍히는 속도 제어
+      }
+    }
+    // 인트로 타이핑 즉시 시작
+    if(typingTarget) startIntroTyping();
+
+
+    // 1-2. 인트로 제어 및 터치 버그 완전 차단 시스템
     const introOverlay = document.getElementById('intro-overlay');
     let isIntroClosed = false;
 
@@ -471,8 +491,8 @@
       introOverlay.addEventListener('touchstart', handleIntroClose, { passive: true });
     }
 
-    // 2.8초 뒤 자동 해제 백업 장치
-    setTimeout(handleIntroClose, 2800);
+    // 4.5초 뒤 자동 해제 백업 장치 (글자가 타이핑될 시간을 확보하기 위해 조금 연장)
+    setTimeout(handleIntroClose, 4500);
 
     // 2. 아코디언 핸들러
     function toggleAccordion(el) { 
@@ -526,7 +546,7 @@
     }
     setInterval(createPetal, 400);
 
-    // 7. 실시간 디데이 타이머 (정상 수식 복구 완완료)
+    // 7. 실시간 디데이 타이머
     function updateWeddingDday() {
       const targetDate = new Date("2026-10-18T12:50:00").getTime();
       const now = new Date().getTime();
@@ -551,9 +571,34 @@
       document.getElementById("dday-seconds").innerText = String(seconds).padStart(2, '0');
     }
     
-    // 즉시 실행 후 1초 간격 동기화 루프 작동
     updateWeddingDday();
     setInterval(updateWeddingDday, 1000);
+
+
+    // 📍 8. 상주 마리앙스 실시간 카카오 지도 동적 생성 처리
+    const mapContainer = document.getElementById('daumKakaoMap'); 
+    // 상주 마리앙스 예식장 위경도 좌표 세팅
+    const marianceCoords = new kakao.maps.LatLng(36.417245, 128.169134); 
+    
+    const mapOption = { 
+        center: marianceCoords, 
+        level: 3 
+    };
+
+    try {
+        const map = new kakao.maps.Map(mapContainer, mapOption); 
+        const marker = new kakao.maps.Marker({
+            position: marianceCoords
+        });
+        marker.setMap(map);
+
+        // 지도 줌 컨트롤러 추가
+        const zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+    } catch (error) {
+        console.error("카카오 지도 생성 중 에러가 발생했습니다.", error);
+        mapContainer.innerHTML = "<p style='padding:110px 0; font-size:1.2rem; color:#777;'>지도를 불러오는 중입니다.</p>";
+    }
   </script>
 </body>
 </html>
