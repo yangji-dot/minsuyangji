@@ -842,13 +842,11 @@
       document.head.appendChild(script);
     }
 
-   // 👑 카카오톡 버튼을 클릭했을 때 실행되는 함수
+ // 👑 카카오톡 버튼을 클릭했을 때 실행되는 함수
     function sendKakaoShare() {
       loadAndInitKakao(() => {
         try {
           const realUrl = 'https://yangji-dot.github.io/minsuyangji/';
-          
-          // 한글 파일명(다운로드.jpg)이 카카오 서버에서 깨지지 않도록 안전하게 인코딩합니다.
           const imageUrl = realUrl + encodeURIComponent('다운로드.jpg');
 
           Kakao.Share.sendDefault({
@@ -856,7 +854,7 @@
             content: {
               title: '조민수 ∙ 김양지 결혼식에 초대합니다',
               description: '2026년 10월 18일 일요일 오후 12시 50분 | 상주 마리앙스',
-              imageUrl: imageUrl, // 📸 여기에 신랑신부님 사진 주소가 들어갑니다!
+              imageUrl: imageUrl,
               link: {
                 mobileWebUrl: realUrl,
                 webUrl: realUrl,
@@ -873,9 +871,9 @@
               {
                 title: '위치보기',
                 link: {
-                  // 🗺️ 상주 마리앙스 웨딩홀 실제 카카오맵 위치 링크입니다.
-                  mobileWebUrl: 'https://kko.to/vshV37R4vD', 
-                  webUrl: 'https://kko.to/vshV37R4vD',
+                  // 🗺️ 모바일과 PC에서 상주 마리앙스 위치가 바로 로딩되는 카카오맵 공식 주소입니다.
+                  mobileWebUrl: 'https://kko.to/19B-9M21C8', 
+                  webUrl: 'https://map.kakao.com/?itemId=11270275',
                 },
               },
             ],
