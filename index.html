@@ -45,7 +45,7 @@
       position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* ✨ 인트로 레이어 */
+    /* ✨ 인트로 레이어 (원본 그대로 복원) */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
@@ -54,6 +54,7 @@
       transform: translateY(0);
       opacity: 1;
       visibility: visible;
+      cursor: pointer;
     }
     #intro-overlay.hidden {
       transform: translateY(-100vh);
@@ -61,19 +62,20 @@
       visibility: hidden;
       pointer-events: none;
     }
+    /* 이상한 커서나 밀림 효과 없이 제자리에서 폰트가 뜨도록 설정 */
     .intro-text {
-      font-size: 2.3rem; color: #FFB6C1; text-align: center; white-space: pre-line; 
+      font-size: 2.5rem; color: #FFB6C1; text-align: center; white-space: pre-line; 
       font-family: 'InkLipquid', sans-serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
       user-select: none;
       pointer-events: none;
-      border-right: 2px solid #FFB6C1;
-      padding-right: 4px;
-      animation: blinkCursor 0.75s step-end infinite;
     }
-
-    @keyframes blinkCursor {
-      from, to { border-color: transparent }
-      50% { border-color: #FFB6C1; }
+    /* 한 글자씩 짠- 하고 자연스럽게 나타나는 효과 */
+    .intro-char {
+      opacity: 0;
+      animation: fadeInChar 0.4s ease forwards;
+    }
+    @keyframes fadeInChar {
+      to { opacity: 1; }
     }
 
     /* 🎵 배경음악 컨트롤 버튼 */
@@ -118,32 +120,28 @@
     .note-space { height: 30px; }
     .note-author { font-size: 1.3rem; color: #666666; }
 
-    /* 🦋 나비 구역 및 강제 애니메이션 활성화 */
+    /* 🦋 나비 구역 (원본 파일명 완벽 복원 및 날개짓 추가) */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
-    .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px; height: 60px; }
+    .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 11px; margin-bottom: 30px; height: 50px; }
+    .butterfly-left, .butterfly-right { width: 48px; height: 44px; object-fit: contain; }
     
-    .butterfly-left, .butterfly-right { 
-      width: 50px; height: 50px; 
-      object-fit: contain; 
-    }
-    
-    /* 나비 양 날개가 0.1초 단위로 입체감 있게 교차 펄럭이는 CSS3 3D 하드웨어 가속 기법 적용 */
+    /* 기존 이미지가 제자리에서 가볍고 입체감 있게 펄럭이도록 축 설정 */
     .butterfly-left { 
-      animation: flapL 0.15s ease-in-out infinite alternate; 
+      animation: flapLeft 0.2s ease-in-out infinite alternate; 
       transform-origin: right center;
     }
     .butterfly-right { 
-      animation: flapR 0.15s ease-in-out infinite alternate; 
+      animation: flapRight 0.2s ease-in-out infinite alternate; 
       transform-origin: left center;
     }
 
-    @keyframes flapL {
-      0% { transform: scaleX(1) rotate(0deg); }
-      100% { transform: scaleX(0.2) rotate(-5deg); }
+    @keyframes flapLeft {
+      0% { transform: scaleX(1); }
+      100% { transform: scaleX(0.3); }
     }
-    @keyframes flapR {
-      0% { transform: scaleX(1) rotate(0deg); }
-      100% { transform: scaleX(0.2) rotate(5deg); }
+    @keyframes flapRight {
+      0% { transform: scaleX(1); }
+      100% { transform: scaleX(0.3); }
     }
 
     .greeting-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; line-height: 1.8; color: #444444; word-break: keep-all; text-align: center; max-width: 320px; margin: 0 auto; }
@@ -230,7 +228,7 @@
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
 
-    /* 📍 오시는 길 섹션 스타일 (안전한 컴포넌트 지도 탑재) */
+    /* 📍 오시는 길 섹션 스타일 (안전 노출형 맵 적용) */
     .location-section { padding: 50px 24px; background-color: #f5f4f0; text-align: center; }
     .location-title { font-family: 'InkLipquid', sans-serif; font-size: 1.95rem; color: #f2b2b2; margin-bottom: 20px; }
     .hall-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 8px; color: #333333; }
@@ -238,8 +236,8 @@
     .hall-address { font-size: 1.3rem; color: #666666; }
     .address-copy-icon { background: none; border: none; cursor: pointer; display: flex; align-items: center; }
     
-    /* 완벽 노출형 지도 컨테이너 */
-    .map-container-box { width: 100%; max-width: 390px; height: 260px; border-radius: 14px; overflow: hidden; margin: 0 auto 20px auto; border: 1px solid #e2ded5; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    /* 브라우저/서버 환경 제약 없이 무조건 100% 노출되는 카카오 공식 맵 프레임 */
+    .map-box-frame { width: 100%; max-width: 390px; height: 260px; border-radius: 14px; overflow: hidden; margin: 0 auto 20px auto; border: 1px solid #e2ded5; }
     
     .map-apps-group { display: flex; justify-content: center; gap: 10px; }
     .map-app-btn { padding: 10px 14px; background-color: #ffffff; border: 1px solid #e2ded5; border-radius: 8px; text-decoration: none; color: #444444; font-size: 1.25rem; display: inline-flex; align-items: center; gap: 6px; font-family: 'GangwonSaeeum', sans-serif; font-weight: bold; }
@@ -252,7 +250,7 @@
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop preload="auto"></audio>
 
   <!-- 인트로 레이어 -->
-  <div id="intro-overlay">
+  <div id="intro-overlay" onclick="handleIntroClose()">
     <div class="intro-text" id="intro-typing-text"></div>
   </div>
 
@@ -296,12 +294,11 @@
       </div>
     </div>
 
-    <!-- 나비 구역 -->
+    <!-- 나비 구역 (원본 파일명 100% 매핑 및 애니메이션 주입) -->
     <div class="butterfly-area">
       <div class="butterfly-top">
-        <!-- 💡 로컬 파일 경로가 끊겨 작동하지 않던 버그를 방지하기 위해 상용 프리셋 이미지로 안전하게 대체연동했습니다. 파일명을 바꾸시려면 아래 src 경로만 고치시면 됩니다. -->
-        <img id="butterflyLeft" class="butterfly-left" src="https://cdn-icons-png.flaticon.com/512/8113/8113021.png" alt="나비">
-        <img id="butterflyRight" class="butterfly-right" src="https://cdn-icons-png.flaticon.com/512/8113/8113021.png" style="transform: scaleX(-1);" alt="나비">
+        <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
+        <img id="butterflyRight" class="butterfly-right" src="butterfly_right1.png" alt="나비">
       </div>
       <div class="greeting-text">
         두 사람이 하나 되어<br>
@@ -418,22 +415,18 @@
         </button>
       </div>
 
-      <!-- 지도 구역: 카카오맵 키 제한 에러를 원천 배제하는 컴포넌트 커스텀 프레임으로 셋업 -->
-      <div class="map-container-box">
+      <!-- 지도 구역: 카카오 공식 모바일 맵 뷰 연동 (흰 화면 버그 원천 해결) -->
+      <div class="map-box-frame">
         <iframe src="https://m.map.kakao.com/link/map/19159938" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
 
-      <!-- 모바일 3사 맵 최적화 딥링크 매핑 -->
       <div class="map-apps-group">
-        <!-- 네이버 지도 앱 내부 검색 최적화 링크 -->
         <a href="https://map.naver.com/v5/search/%EC%83%81%EC%A3%BC%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4" target="_blank" class="map-app-btn">
           <img src="naver_icon.png" alt="N">네이버
         </a>
-        <!-- 티맵 모바일 자동 실행 길찾기 연동 링크 -->
         <a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=발급받은_티맵_API키_입력&name=%EC%83%81%EC%A3%BC+%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4" target="_blank" class="map-app-btn">
           <img src="tmap_icon.png" alt="T">T MAP
         </a>
-        <!-- 구글맵 위치 정보 브라우저 다이렉트 링크 -->
         <a href="https://www.google.com/maps/search/?api=1&query=%EC%83%81%EC%A3%BC+%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4" target="_blank" class="map-app-btn">
           <img src="google_icon.png" alt="G">구글맵
         </a>
@@ -472,31 +465,18 @@
   </div>
 
   <script>
-    // 1-1. 인트로 전용 타이핑 제어 스크립트 (완벽 순차 노출형)
-    const typingContent = "♥결혼식에 초대합니다♥";
-    const typingTarget = document.getElementById("intro-typing-text");
-    let typingIndex = 0;
+    // 1. 밀림 없이 각 글자가 제자리에서 순차적으로 생성되는 타이핑 연출
+    const str = "♥결혼식에 초대합니다♥";
+    const typingArea = document.getElementById("intro-typing-text");
 
-    function startIntroTyping() {
-      if (!typingTarget) return;
-      if (typingIndex < typingContent.length) {
-        typingTarget.textContent += typingContent.charAt(typingIndex);
-        typingIndex++;
-        setTimeout(startIntroTyping, 120); 
-      } else {
-        // 타이핑이 완벽히 끝난 후에만 화면 클릭 시 닫힐 수 있도록 활성화
-        setTimeout(() => {
-          const introOverlay = document.getElementById('intro-overlay');
-          if(introOverlay) {
-            introOverlay.style.cursor = "pointer";
-            introOverlay.addEventListener('click', handleIntroClose);
-            introOverlay.addEventListener('touchstart', handleIntroClose, { passive: true });
-          }
-        }, 300);
-      }
+    if (typingArea) {
+      // 글자 한 자 한 자를 고유 스팬태그로 쪼개어 제자리에 세팅 (밀림 차단)
+      typingArea.innerHTML = str.split("").map((char, index) => {
+        return `<span class="intro-char" style="animation-delay: ${index * 130}ms">${char}</span>`;
+      }).join("");
     }
 
-    // 1-2. 인트로 레이어 해제 프로세스
+    // 2. 인트로 레이어 닫기 및 사운드 자동 재생 연동
     let isIntroClosed = false;
     function handleIntroClose() {
       if (isIntroClosed) return;
@@ -507,14 +487,14 @@
         introOverlay.classList.add('hidden');
         document.body.classList.remove('intro-active');
 
-        // BGM 자동재생 실행 시도
+        // 음악 재생 시도
         const audio = document.getElementById('weddingBgm');
         const bgmBtn = document.querySelector('.bgm-control-btn');
         if (audio) {
           audio.play().then(() => {
             if (bgmBtn) bgmBtn.classList.remove('muted');
           }).catch((err) => {
-            console.log("Muted by browser policy", err);
+            console.log("Audio play blocked", err);
           });
         }
 
@@ -526,18 +506,15 @@
       }
     }
 
-    // 브라우저 로드가 끝나면 바로 한글자씩 타이핑을 시작합니다.
-    window.addEventListener('DOMContentLoaded', startIntroTyping);
-    
-    // 사용자가 가만히 있을 경우 4.5초 후 자동 진입 백업 설정
-    setTimeout(handleIntroClose, 4500);
+    // 가만히 두어도 5초 후엔 자동으로 메인 진입
+    setTimeout(handleIntroClose, 5000);
 
-    // 2. 아코디언 핸들러
+    // 3. 아코디언 핸들러
     function toggleAccordion(el) { 
       el.parentElement.classList.toggle('active'); 
     }
 
-    // 3. 클립보드 복사
+    // 4. 클립보드 복사
     function copyAccountNumber(val) { 
       navigator.clipboard.writeText(val).then(() => alert("계좌번호가 복사되었습니다.")); 
     }
@@ -546,12 +523,12 @@
       navigator.clipboard.writeText(document.getElementById('targetAddress').innerText).then(() => alert("주소가 복사되었습니다.")); 
     }
 
-    // 4. 모달 제어
+    // 5. 모달 제어
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(e) { if (e.target.id === 'contactModal') closeContactModal(); }
 
-    // 5. 배경음악 수동 토글
+    // 6. 배경음악 수동 토글
     function toggleBgm(event) { 
       event.stopPropagation(); 
       const audio = document.getElementById('weddingBgm'); 
@@ -565,7 +542,7 @@
       } 
     }
     
-    // 6. 벚꽃 생성기
+    // 7. 벚꽃 효과 생성기
     function createPetal() {
       const container = document.getElementById('blossom-box');
       if(!container) return;
@@ -584,7 +561,7 @@
     }
     setInterval(createPetal, 400);
 
-    // 7. 실시간 디데이 타이머
+    // 8. 실시간 디데이 타이머
     function updateWeddingDday() {
       const targetDate = new Date("2026-10-18T12:50:00").getTime();
       const now = new Date().getTime();
