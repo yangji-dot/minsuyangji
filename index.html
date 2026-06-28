@@ -860,7 +860,8 @@
                 webUrl: realUrl,
               },
             },
-            buttons: [
+
+   buttons: [
               {
                 title: '청첩장 보기',
                 link: {
@@ -871,12 +872,13 @@
               {
                 title: '위치보기',
                 link: {
-                  // 🗺️ 모바일과 PC에서 상주 마리앙스 위치가 바로 로딩되는 카카오맵 공식 주소입니다.
-                  mobileWebUrl: 'https://kko.to/19B-9M21C8', 
+                  // 🗺️ 카카오톡 플랫폼 등록 규격에 맞춘 상주 마리앙스 카카오맵 다이렉트 주소입니다.
+                  mobileWebUrl: 'https://map.kakao.com/?itemId=11270275',
                   webUrl: 'https://map.kakao.com/?itemId=11270275',
                 },
               },
             ],
+
           });
         } catch (error) {
           alert('공유 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
