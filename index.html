@@ -45,12 +45,12 @@
       position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* ✨ 인트로 레이어 (클릭/터치 영역 확보 및 버그 수정) */
+    /* ✨ 인트로 레이어 */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
       z-index: 999999; display: flex; justify-content: center; align-items: center;
-      transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
       transform: translateY(0);
       opacity: 1;
       visibility: visible;
@@ -66,7 +66,7 @@
       font-size: 2.5rem; color: #FFB6C1; text-align: center; white-space: pre-line; 
       font-family: 'InkLipquid', sans-serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
       user-select: none;
-      pointer-events: none; /* 텍스트가 클릭 이벤트를 방해하지 않도록 설정 */
+      pointer-events: none; /* 텍스트가 클릭 이벤트를 막지 않도록 설정 */
     }
 
     /* 🎵 배경음악 컨트롤 버튼 */
@@ -109,7 +109,7 @@
     .note-pad { max-width: 250px; margin: 0 auto; padding: 4px 0; background-image: linear-gradient(#e1dfda 1px, transparent 1px); background-size: 100% 30px; background-position: 0 0; font-family: 'GangwonSaeeum', sans-serif; word-break: keep-all; }
     .note-text { font-size: 1.3rem; color: #333333; line-height: 30px; text-align: center; transform: translateY(-5px); display: block; }
     .note-space { height: 30px; }
-    .note-text note-author { font-size: 1.3rem; color: #666666; }
+    .note-author { font-size: 1.3rem; color: #666666; }
 
     /* 🦋 나비 구역 */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
@@ -217,7 +217,7 @@
   <!-- 배경음악 파일 -->
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop preload="auto"></audio>
 
-  <!-- 인트로 레이어 (전체 화면 클릭 및 터치 바인딩 해결) -->
+  <!-- 인트로 레이어 -->
   <div id="intro-overlay">
     <div class="intro-text">♥결혼식에 초대합니다♥</div>
   </div>
@@ -433,7 +433,7 @@
   </div>
 
   <script>
-    // 🛠️ 1. 완벽한 인트로 해제 및 버그 수정 시스템
+    // 1. 인트로 제어 및 터치 버그 완전 차단 시스템
     const introOverlay = document.getElementById('intro-overlay');
     let isIntroClosed = false;
 
@@ -445,37 +445,34 @@
         introOverlay.classList.add('hidden');
         document.body.classList.remove('intro-active');
 
-        // 음악 자동 재생 트리거
+        // 오디오 자동 재생 시도
         const audio = document.getElementById('weddingBgm');
         const bgmBtn = document.querySelector('.bgm-control-btn');
         if (audio) {
           audio.play().then(() => {
             if (bgmBtn) bgmBtn.classList.remove('muted');
           }).catch((err) => {
-            console.log("브라우저 정책으로 음소거 상태를 유지합니다. 버튼으로 켜실 수 있습니다.", err);
+            console.log("자동 재생 제한으로 음소거를 유지합니다.", err);
           });
         }
 
-        // 애니메이션 완료 후 DOM에서 물리적으로 제거하여 터치 방해 전면 차단
+        // 0.8초 애니메이션이 끝난 후 완전히 노드 삭제하여 터치 간섭 방지
         setTimeout(() => {
           if (introOverlay.parentNode) {
             introOverlay.parentNode.removeChild(introOverlay);
           }
-        }, 900);
+        }, 800);
       }
     }
 
-    // 모바일 터치 및 클릭 이벤트 전체 바인딩 (안넘어가는 현상 완전 해결)
+    // 인트로 레이어에 터치 및 클릭 이벤트 명시적 바인딩
     if (introOverlay) {
       introOverlay.addEventListener('click', handleIntroClose);
       introOverlay.addEventListener('touchstart', handleIntroClose, { passive: true });
     }
 
-    // 사용자가 클릭하지 않아도 2.8초 후 자동으로 넘어가는 안전장치 복원
-    setTimeout(() => {
-      handleIntroClose();
-    }, 2800);
-
+    // 2.8초 뒤 자동 해제 백업 장치
+    setTimeout(handleIntroClose, 2800);
 
     // 2. 아코디언 핸들러
     function toggleAccordion(el) { 
@@ -510,7 +507,7 @@
       } 
     }
     
-    // 6. 벚꽃 생성 시스템
+    // 6. 벚꽃 생성기
     function createPetal() {
       const container = document.getElementById('blossom-box');
       if(!container) return;
@@ -529,7 +526,7 @@
     }
     setInterval(createPetal, 400);
 
-    // 7. 실시간 디데이 타이머
+    // 7. 실시간 디데이 타이머 (정상 수식 복구 완완료)
     function updateWeddingDday() {
       const targetDate = new Date("2026-10-18T12:50:00").getTime();
       const now = new Date().getTime();
@@ -546,4 +543,17 @@
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60))Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("dday-days").innerText = String(days).padStart(2, '0');
+      document.getElementById("dday-hours").innerText = String(hours).padStart(2, '0');
+      document.getElementById("dday-minutes").innerText = String(minutes).padStart(2, '0');
+      document.getElementById("dday-seconds").innerText = String(seconds).padStart(2, '0');
+    }
+    
+    // 즉시 실행 후 1초 간격 동기화 루프 작동
+    updateWeddingDday();
+    setInterval(updateWeddingDday, 1000);
+  </script>
+</body>
+</html>
