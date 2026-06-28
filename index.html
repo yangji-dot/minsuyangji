@@ -32,12 +32,8 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* 인트로 활성화 시 스크롤 잠금 */
     body.intro-active {
-      overflow: hidden; 
-      position: fixed;
-      width: 100%;
-      height: 100%;
+      overflow: transparent; 
     }
 
     .container {
@@ -45,16 +41,15 @@
       position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
-    /* ✨ 인트로 레이어 (원본 그대로 복원) */
+    /* 인트로 레이어 */
     #intro-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('다운로드.jpg') no-repeat center center / cover;
-      z-index: 999999; display: flex; justify-content: center; align-items: center;
-      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
+      z-index: 9999; display: flex; justify-content: center; align-items: center;
+      transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease;
       transform: translateY(0);
       opacity: 1;
       visibility: visible;
-      cursor: pointer;
     }
     #intro-overlay.hidden {
       transform: translateY(-100vh);
@@ -62,21 +57,13 @@
       visibility: hidden;
       pointer-events: none;
     }
-    /* 이상한 커서나 밀림 효과 없이 제자리에서 폰트가 뜨도록 설정 */
     .intro-text {
       font-size: 2.5rem; color: #FFB6C1; text-align: center; white-space: pre-line; 
       font-family: 'InkLipquid', sans-serif; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
       user-select: none;
-      pointer-events: none;
     }
-    /* 한 글자씩 짠- 하고 자연스럽게 나타나는 효과 */
-    .intro-char {
-      opacity: 0;
-      animation: fadeInChar 0.4s ease forwards;
-    }
-    @keyframes fadeInChar {
-      to { opacity: 1; }
-    }
+    .char { opacity: 0; display: inline-block; animation: fadeInChar 0.4s forwards; }
+    @keyframes fadeInChar { to { opacity: 1; } }
 
     /* 🎵 배경음악 컨트롤 버튼 */
     .bgm-control-btn {
@@ -120,30 +107,10 @@
     .note-space { height: 30px; }
     .note-author { font-size: 1.3rem; color: #666666; }
 
-    /* 🦋 나비 구역 (원본 파일명 완벽 복원 및 날개짓 추가) */
+    /* 🦋 나비 구역 (간격 0.3cm 조율 완료) */
     .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 24px 40px 24px; }
     .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 11px; margin-bottom: 30px; height: 50px; }
     .butterfly-left, .butterfly-right { width: 48px; height: 44px; object-fit: contain; }
-    
-    /* 기존 이미지가 제자리에서 가볍고 입체감 있게 펄럭이도록 축 설정 */
-    .butterfly-left { 
-      animation: flapLeft 0.2s ease-in-out infinite alternate; 
-      transform-origin: right center;
-    }
-    .butterfly-right { 
-      animation: flapRight 0.2s ease-in-out infinite alternate; 
-      transform-origin: left center;
-    }
-
-    @keyframes flapLeft {
-      0% { transform: scaleX(1); }
-      100% { transform: scaleX(0.3); }
-    }
-    @keyframes flapRight {
-      0% { transform: scaleX(1); }
-      100% { transform: scaleX(0.3); }
-    }
-
     .greeting-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; line-height: 1.8; color: #444444; word-break: keep-all; text-align: center; max-width: 320px; margin: 0 auto; }
 
     /* 👥 부모님 정보 섹션 */
@@ -154,28 +121,43 @@
     .relation-row .relation { color: #888888; width: 30px; text-align: center; }
     .relation-row .child { width: 60px; text-align: left; font-weight: bold; }
     
-    /* ✉️ 축하 연락하기 버튼 */
+    /* ✉️ [변경] image_aef366.png의 인디핑크 스타일을 적용한 '축하 연락하기' 버튼 */
     .contact-btn { 
-      padding: 12px 55px; background-color: #EAAFA1; border: none; color: #ffffff; font-size: 1.45rem; border-radius: 10px; cursor: pointer; font-family: 'GangwonSaeeum', sans-serif; box-shadow: 0 4px 10px rgba(234, 175, 161, 0.3); transition: opacity 0.2s;
+      padding: 12px 55px; 
+      background-color: #EAAFA1; 
+      border: none; 
+      color: #ffffff; 
+      font-size: 1.45rem; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      font-family: 'GangwonSaeeum', sans-serif; 
+      box-shadow: 0 4px 10px rgba(234, 175, 161, 0.3);
+      transition: opacity 0.2s;
     }
     .contact-btn:active { opacity: 0.85; }
 
-    /* 📞 축하 연락처 모달 팝업 */
+    /* 📞 축하 연락처 모달 팝업 (서체 및 파랑/분홍 색상 맞춤) */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
     .modal-overlay.active .modal-content { transform: translateY(0); }
     .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.2rem; color: #aaaaaa; cursor: pointer; background: none; border: none; font-family: sans-serif; }
+    
     .modal-grid { display: flex; width: 100%; gap: 14px; font-family: 'GangwonSaeeum', sans-serif; }
     .grid-column { width: 50%; display: flex; flex-direction: column; gap: 20px; }
+    
     .side-title { font-size: 1.6rem; font-weight: bold; margin-bottom: 6px; text-align: center; border-bottom: 1px dashed #e2ded5; padding-bottom: 6px; font-family: 'GangwonSaeeum', sans-serif; }
+    
+    /* 파란색 / 분홍색 포인트 세팅 */
     .grid-column.groom-side .side-title { color: #7FA6C2; }
     .grid-column.bride-side .side-title { color: #E29B9B; }
+    
     .member-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 8px; font-family: 'GangwonSaeeum', sans-serif; }
     .action-icons { display: flex; justify-content: center; gap: 22px; }
     .action-icons a { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
     .icon-phone, .icon-mail { width: 20px; height: 20px; }
+    
     .grid-column.groom-side svg { fill: #7FA6C2; }
     .grid-column.bride-side svg { fill: #E29B9B; }
 
@@ -227,39 +209,20 @@
     .gallery-item { width: 100%; background-color: #dbdbdb; border-radius: 14px; overflow: hidden; }
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
-
-    /* 📍 오시는 길 섹션 스타일 (안전 노출형 맵 적용) */
-    .location-section { padding: 50px 24px; background-color: #f5f4f0; text-align: center; }
-    .location-title { font-family: 'InkLipquid', sans-serif; font-size: 1.95rem; color: #f2b2b2; margin-bottom: 20px; }
-    .hall-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 8px; color: #333333; }
-    .hall-address-box { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 25px; }
-    .hall-address { font-size: 1.3rem; color: #666666; }
-    .address-copy-icon { background: none; border: none; cursor: pointer; display: flex; align-items: center; }
-    
-    /* 브라우저/서버 환경 제약 없이 무조건 100% 노출되는 카카오 공식 맵 프레임 */
-    .map-box-frame { width: 100%; max-width: 390px; height: 260px; border-radius: 14px; overflow: hidden; margin: 0 auto 20px auto; border: 1px solid #e2ded5; }
-    
-    .map-apps-group { display: flex; justify-content: center; gap: 10px; }
-    .map-app-btn { padding: 10px 14px; background-color: #ffffff; border: 1px solid #e2ded5; border-radius: 8px; text-decoration: none; color: #444444; font-size: 1.25rem; display: inline-flex; align-items: center; gap: 6px; font-family: 'GangwonSaeeum', sans-serif; font-weight: bold; }
-    .map-app-btn img { width: 16px; height: 16px; object-fit: contain; }
   </style>
 </head>
 <body class="intro-active">
 
-  <!-- 배경음악 파일 -->
   <audio id="weddingBgm" src="sonyeoleum-deubwisi-dalbic-c-debussy-clair-de-lune-pf-yeol-eum-son-128-ytshorts%20(mp3cut.net).mp3" loop preload="auto"></audio>
 
-  <!-- 인트로 레이어 -->
-  <div id="intro-overlay" onclick="handleIntroClose()">
-    <div class="intro-text" id="intro-typing-text"></div>
+  <div id="intro-overlay">
+    <div class="intro-text" id="intro">♥결혼식에 초대합니다♥</div>
   </div>
 
   <div class="container">
-    <!-- 꽃잎 컨테이너 -->
     <div class="cherry-blossom-container" id="blossom-box"></div>
 
     <div class="main-content">
-      <!-- BGM 컨트롤 버튼 -->
       <button class="bgm-control-btn muted" onclick="toggleBgm(event)">
         <svg class="bgm-icon icon-playing" viewBox="0 0 24 24">
           <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -281,7 +244,6 @@
       <div class="main-date">상주 마리앙스, 마리앙스 홀</div>
     </div>
 
-    <!-- 초대글 섹션 -->
     <div class="invitation-section">
       <div class="leaf-icon">🌿</div>
       <div class="note-pad">
@@ -294,7 +256,7 @@
       </div>
     </div>
 
-    <!-- 나비 구역 (원본 파일명 100% 매핑 및 애니메이션 주입) -->
+    <!-- 나비 및 축사 구역 (간격 축소 완정) -->
     <div class="butterfly-area">
       <div class="butterfly-top">
         <img id="butterflyLeft" class="butterfly-left" src="butterfly_left1.png" alt="나비">
@@ -313,7 +275,6 @@
       </div>
     </div>
 
-    <!-- 부모님 정보 섹션 -->
     <div class="family-section">
       <div class="family-relations">
         <div class="relation-row">
@@ -327,10 +288,10 @@
           <span class="child">양지</span>
         </div>
       </div>
+      <!-- [변경] 축하 연락하기 지정 인디핑크 버튼 -->
       <button class="contact-btn" onclick="openContactModal()">축하 연락하기</button>
     </div>
 
-    <!-- 달력 섹션 -->
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-month">시월의</div>
@@ -352,7 +313,6 @@
       <div class="calendar-bottom-line"></div>
     </div>
 
-    <!-- 디데이 카운트다운 -->
     <div class="dday-section">
       <div class="dday-title">민수 ♥ 양지 결혼식까지</div>
       <div class="dday-container">
@@ -363,7 +323,6 @@
       </div>
     </div>
 
-    <!-- 계좌번호 안내 섹션 -->
     <div class="account-section">
       <div class="account-main-title">마음 전하실 곳</div>
       <div class="account-intro-text">
@@ -395,7 +354,6 @@
       </div>
     </div>
 
-    <!-- 📸 갤러리 섹션 -->
     <div class="gallery-section">
       <div class="gallery-title">Gallery</div>
       <div class="gallery-container">
@@ -404,40 +362,13 @@
       </div>
     </div>
 
-    <!-- 📍 오시는 길 섹션 -->
-    <div class="location-section">
-      <div class="location-title">LOCATION</div>
-      <div class="hall-name">상주 마리앙스 마리앙스홀</div>
-      <div class="hall-address-box">
-        <span class="hall-address" id="targetAddress">경상북도 상주시 삼백로 343</span>
-        <button class="address-copy-icon" onclick="copyAddressText()">
-          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: #888;"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-        </button>
-      </div>
-
-      <!-- 지도 구역: 카카오 공식 모바일 맵 뷰 연동 (흰 화면 버그 원천 해결) -->
-      <div class="map-box-frame">
-        <iframe src="https://m.map.kakao.com/link/map/19159938" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-
-      <div class="map-apps-group">
-        <a href="https://map.naver.com/v5/search/%EC%83%81%EC%A3%BC%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4" target="_blank" class="map-app-btn">
-          <img src="naver_icon.png" alt="N">네이버
-        </a>
-        <a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=발급받은_티맵_API키_입력&name=%EC%83%81%EC%A3%BC+%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4" target="_blank" class="map-app-btn">
-          <img src="tmap_icon.png" alt="T">T MAP
-        </a>
-        <a href="https://www.google.com/maps/search/?api=1&query=%EC%83%81%EC%A3%BC+%EB%A7%88%EB%A6%AC%EC%95%99%EC%8A%A4" target="_blank" class="map-app-btn">
-          <img src="google_icon.png" alt="G">구글맵
-        </a>
-      </div>
-    </div>
-
-    <!-- 연락처 모달 -->
+    <!-- 📞 모달 팝업 레이어 (디자인 통일 및 색상 파란색/분홍색 튜닝) -->
     <div class="modal-overlay" id="contactModal" onclick="closeContactModalOutside(event)">
       <div class="modal-content">
         <button class="modal-close" onclick="closeContactModal()">✕</button>
         <div class="modal-grid">
+          
+          <!-- 신랑측 (블루 계열 포인트) -->
           <div class="grid-column groom-side">
             <div class="side-title">신랑측</div>
             <div class="member-box">
@@ -447,7 +378,23 @@
                 <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
               </div>
             </div>
+            <div class="member-box">
+              <div class="member-info">아버지 조병도</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
+            <div class="member-box">
+              <div class="member-info">어머니 김애경</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
           </div>
+
+          <!-- 신부측 (핑크 계열 포인트) -->
           <div class="grid-column bride-side">
             <div class="side-title">신부측</div>
             <div class="member-box">
@@ -457,7 +404,22 @@
                 <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
               </div>
             </div>
+            <div class="member-box">
+              <div class="member-info">아버지 김승묵</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
+            <div class="member-box">
+              <div class="member-info">어머니 안희숙</div>
+              <div class="action-icons">
+                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -465,129 +427,129 @@
   </div>
 
   <script>
-    // 1. 밀림 없이 각 글자가 제자리에서 순차적으로 생성되는 타이핑 연출
-    const str = "♥결혼식에 초대합니다♥";
-    const typingArea = document.getElementById("intro-typing-text");
+    const butterflyFrames = [
+      { left: "butterfly_left1.png", right: "butterfly_right1.png", delay: 350 },
+      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 180 },
+      { left: "butterfly_left3.png", right: "butterfly_right3.png", delay: 350 },
+      { left: "butterfly_left2.png", right: "butterfly_right2.png", delay: 180 }
+    ];
+    let currentFrame = 0;
 
-    if (typingArea) {
-      // 글자 한 자 한 자를 고유 스팬태그로 쪼개어 제자리에 세팅 (밀림 차단)
-      typingArea.innerHTML = str.split("").map((char, index) => {
-        return `<span class="intro-char" style="animation-delay: ${index * 130}ms">${char}</span>`;
-      }).join("");
+    function runButterflyAnimation() {
+      const frameData = butterflyFrames[currentFrame];
+      const leftImg = document.getElementById("butterflyLeft");
+      const rightImg = document.getElementById("butterflyRight");
+      if (leftImg && rightImg) {
+        leftImg.src = frameData.left;
+        rightImg.src = frameData.right;
+      }
+      currentFrame = (currentFrame + 1) % butterflyFrames.length;
+      setTimeout(runButterflyAnimation, frameData.delay);
     }
 
-    // 2. 인트로 레이어 닫기 및 사운드 자동 재생 연동
+    function startCherryBlossoms() {
+      const blossomBox = document.getElementById('blossom-box');
+      if (!blossomBox) return;
+      for (let i = 0; i < 20; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        const size = Math.random() * 5 + 5;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 1.4}px`;
+        petal.style.left = `${Math.random() * 100}%`;
+        petal.style.animationDuration = `${Math.random() * 4 + 6}s`;
+        petal.style.animationDelay = `${Math.random() * 5}s`;
+        blossomBox.appendChild(petal);
+      }
+    }
+
+    function initWeddingTimer() {
+      const targetDate = new Date(2026, 9, 18, 12, 50, 0).getTime();
+      setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        if (distance < 0) return;
+        
+        document.getElementById('dday-days').innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        document.getElementById('dday-hours').innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById('dday-minutes').innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById('dday-seconds').innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+      }, 1000);
+    }
+
     let isIntroClosed = false;
-    function handleIntroClose() {
+    function closeIntroOverlay() {
       if (isIntroClosed) return;
       isIntroClosed = true;
 
-      const introOverlay = document.getElementById('intro-overlay');
-      if (introOverlay) {
-        introOverlay.classList.add('hidden');
-        document.body.classList.remove('intro-active');
+      const overlay = document.getElementById('intro-overlay');
+      document.body.classList.remove('intro-active');
 
-        // 음악 재생 시도
-        const audio = document.getElementById('weddingBgm');
-        const bgmBtn = document.querySelector('.bgm-control-btn');
-        if (audio) {
-          audio.play().then(() => {
-            if (bgmBtn) bgmBtn.classList.remove('muted');
-          }).catch((err) => {
-            console.log("Audio play blocked", err);
-          });
-        }
+      if (overlay) {
+        overlay.classList.add('hidden');
+        setTimeout(() => { overlay.remove(); }, 1200);
+      }
 
-        setTimeout(() => {
-          if (introOverlay.parentNode) {
-            introOverlay.parentNode.removeChild(introOverlay);
-          }
-        }, 800);
+      window.addEventListener('click', autoPlayOnFirstTouch, { passive: true });
+      window.addEventListener('touchstart', autoPlayOnFirstTouch, { passive: true });
+    }
+
+    function autoPlayOnFirstTouch() {
+      const audio = document.getElementById('weddingBgm');
+      const btn = document.querySelector('.bgm-control-btn');
+      if (audio && audio.paused) {
+        audio.play().then(() => {
+          if (btn) btn.classList.remove('muted');
+        }).catch(e => console.log("플레이 백 우회 대기"));
+      }
+      window.removeEventListener('click', autoPlayOnFirstTouch);
+      window.removeEventListener('touchstart', autoPlayOnFirstTouch);
+    }
+
+    function toggleBgm(event) {
+      if (event) event.stopPropagation();
+      const audio = document.getElementById('weddingBgm');
+      const btn = document.querySelector('.bgm-control-btn');
+      if (!audio || !btn) return;
+
+      if (audio.paused) {
+        audio.play().then(() => btn.classList.remove('muted'));
+      } else {
+        audio.pause();
+        btn.classList.add('muted');
       }
     }
 
-    // 가만히 두어도 5초 후엔 자동으로 메인 진입
-    setTimeout(handleIntroClose, 5000);
-
-    // 3. 아코디언 핸들러
-    function toggleAccordion(el) { 
-      el.parentElement.classList.toggle('active'); 
-    }
-
-    // 4. 클립보드 복사
-    function copyAccountNumber(val) { 
-      navigator.clipboard.writeText(val).then(() => alert("계좌번호가 복사되었습니다.")); 
-    }
-    
-    function copyAddressText() { 
-      navigator.clipboard.writeText(document.getElementById('targetAddress').innerText).then(() => alert("주소가 복사되었습니다.")); 
-    }
-
-    // 5. 모달 제어
     function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
     function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
     function closeContactModalOutside(e) { if (e.target.id === 'contactModal') closeContactModal(); }
-
-    // 6. 배경음악 수동 토글
-    function toggleBgm(event) { 
-      event.stopPropagation(); 
-      const audio = document.getElementById('weddingBgm'); 
-      const btn = document.querySelector('.bgm-control-btn'); 
-      if(audio.paused) { 
-        audio.play().catch(() => {}); 
-        btn.classList.remove('muted'); 
-      } else { 
-        audio.pause(); 
-        btn.classList.add('muted'); 
-      } 
+    function toggleAccordion(el) { el.parentElement.classList.toggle('active'); }
+    function copyAccountNumber(val) {
+      navigator.clipboard.writeText(val).then(() => alert("계좌번호가 복사되었습니다."));
     }
-    
-    // 7. 벚꽃 효과 생성기
-    function createPetal() {
-      const container = document.getElementById('blossom-box');
-      if(!container) return;
-      
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = Math.random() * 5 + 5 + 's';
-      petal.style.width = petal.style.height = Math.random() * 8 + 6 + 'px';
-      
-      container.appendChild(petal);
-      
-      setTimeout(() => {
-        petal.remove();
-      }, 10000);
-    }
-    setInterval(createPetal, 400);
 
-    // 8. 실시간 디데이 타이머
-    function updateWeddingDday() {
-      const targetDate = new Date("2026-10-18T12:50:00").getTime();
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+    window.addEventListener('DOMContentLoaded', () => {
+      startCherryBlossoms();
+      initWeddingTimer();
+      runButterflyAnimation();
 
-      if (distance < 0) {
-        document.getElementById("dday-days").innerText = "00";
-        document.getElementById("dday-hours").innerText = "00";
-        document.getElementById("dday-minutes").innerText = "00";
-        document.getElementById("dday-seconds").innerText = "00";
-        return;
+      const intro = document.getElementById('intro');
+      if (intro) {
+        const text = intro.innerText; intro.innerText = '';
+        [...text].forEach((char, i) => {
+          const span = document.createElement('span');
+          span.className = 'char'; span.innerText = char;
+          span.style.animationDelay = `${i * 0.08}s`;
+          intro.appendChild(span);
+        });
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) { closeIntroOverlay(); }
+      }, { passive: true });
 
-      document.getElementById("dday-days").innerText = String(days).padStart(2, '0');
-      document.getElementById("dday-hours").innerText = String(hours).padStart(2, '0');
-      document.getElementById("dday-minutes").innerText = String(minutes).padStart(2, '0');
-      document.getElementById("dday-seconds").innerText = String(seconds).padStart(2, '0');
-    }
-    
-    updateWeddingDday();
-    setInterval(updateWeddingDday, 1000);
+      setTimeout(() => { closeIntroOverlay(); }, 2800); 
+    });
   </script>
 </body>
 </html>
