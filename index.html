@@ -41,11 +41,11 @@
     }
 
     body.intro-active {
-      overflow: hidden; 
+      overflow: hidden;
     }
 
     .container {
-      width: 100%; max-width: 450px; margin: 0 homeowner auto; background-color: #f5f4f0;
+      width: 100%; max-width: 450px; margin: 0 auto; background-color: #f5f4f0;
       position: relative; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.02);
     }
 
@@ -306,7 +306,7 @@
       text-align: center;
     }
     .gb-input {
-      width: 100%;
+      width: 100%; /* 가로 폭 100% 가득 채우기 */
       padding: 10px;
       border: 1px solid #e2ded5;
       border-radius: 6px;
@@ -535,7 +535,7 @@
       </div>
     </div>
 
-    <div class="location-section">
+<div class="location-section">
       <div class="location-title">LOCATION</div>
       <div class="location-info" style="margin-bottom: 0;">
         <strong style="font-size: 1.7rem; color: #111111; display: block; margin-bottom: 2px;">상주 마리앙스</strong>
@@ -548,21 +548,28 @@
       <button class="gb-open-btn" onclick="openGbModal()">방명록 작성하기</button>
       <div class="guestbook-list" id="guestbookList"></div>
 
+      <!-- 💡 이미지(image_fa255e.png) 스타일을 반영한 2개 버튼 구역 (방명록 밑에 배치) -->
       <div style="display: flex; flex-direction: column; gap: 14px; margin: 40px auto 20px auto; width: 100%; max-width: 380px; padding: 0 10px; box-sizing: border-box;">
         
+        <!-- 1. 카카오톡으로 청첩장 전하기 (노란색) -->
         <button id="kakaotalk-sharing-btn" style="background-color: #FFE677; color: #333333; border: none; width: 100%; padding: 18px 24px; border-radius: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.03); -webkit-appearance: none;">
           <span>카카오톡으로 청첩장 전하기</span>
+          <!-- 화살표 아이콘 (↗) -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
         </button>
 
+        <!-- 2. 청첩장 주소 복사하기 (분홍색) -->
+        <!-- 클릭 시 현재 페이지의 주소(URL)를 복사하는 함수를 연결해 두었습니다 -->
         <button onclick="copyAddressText(window.location.href); alert('청첩장 주소가 복사되었습니다.');" style="background-color: #EFAAAA; color: #FFFFFF; border: none; width: 100%; padding: 18px 24px; border-radius: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.03); -webkit-appearance: none;">
           <span>청첩장 주소 복사하기</span>
+          <!-- 복사 아이콘 (겹친 사각형) -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
         </button>
 
       </div>
     </div>
 
+    <!-- 방명록 작성 모달 팝업 (내부에서 공유 버튼 완전 제거됨) -->
     <div class="gb-modal" id="gbModal" onclick="closeGbModalOutside(event)">
       <div class="gb-modal-content" onclick="event.stopPropagation()">
         <div class="gb-modal-title">방명록 작성</div>
@@ -575,6 +582,13 @@
           <button class="gb-action-btn gb-btn-close" onclick="closeIntroOverlay(); closeGbModal();">취소</button>
           <button class="gb-action-btn gb-btn-submit" onclick="addGuestbookMessage()">등록하기</button>
         </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 40px 0 15px 0;">
+        <button id="kakaotalk-sharing-btn" style="background-color: #FEE500; color: #191919; border: none; width: 100%; max-width: 380px; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+          카카오톡으로 청첩장 공유하기
+        </button>
       </div>
     </div>
 
@@ -742,7 +756,7 @@
 
     function copyAddressText(val) {
       navigator.clipboard.writeText(val).then(() => {
-        // 주소 복사용 공통 함수
+        alert("주소가 복사되었습니다.");
       });
     }
 
@@ -842,8 +856,8 @@
       setTimeout(() => { closeIntroOverlay(); }, 2800); 
     });
 
-    // 👑 카카오톡 공유 기능 초기화 및 새 버튼 연동 완료
-    Kakao.init('e928516c9eb2da1ed2e99df14d4ca403'); 
+    // 👑 3. 카카오톡 공유 이벤트 설정 (전체 하나의 script 태그 내로 병합 완료)
+    Kakao.init('953f3be94c527d00b6e056a4aee05d3c'); 
 
     Kakao.Share.createDefaultButton({
       container: '#kakaotalk-sharing-btn',
