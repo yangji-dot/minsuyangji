@@ -219,7 +219,7 @@ padding-top: 25vh; /* 👈 숫자를 25vh, 20vh 등으로 줄이면 글자가 �
     /* 📞 축하 연락처 모달 팝업 */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; font-family: 'GangwonSaeeum', sans-serif; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
-    .modal-content { width: 92%; max-width: 360px; background-color: #ffffff; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
+    .modal-content { width: 92%; max-width: 360px; background-color: F6EDEF; border-radius: 12px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
     .modal-overlay.active .modal-content { transform: translateY(0); }
     .modal-close { position: absolute; top: 12px; right: 16px; font-size: 1.2rem; color: #aaaaaa; cursor: pointer; background: none; border: none; font-family: sans-serif; }
     
@@ -228,36 +228,36 @@ padding-top: 25vh; /* 👈 숫자를 25vh, 20vh 등으로 줄이면 글자가 �
     
     .side-title { font-size: 1.6rem; font-weight: bold; margin-bottom: 6px; text-align: center; border-bottom: 1px dashed #e2ded5; padding-bottom: 6px; font-family: 'GangwonSaeeum', sans-serif; }
     
-    .grid-column.groom-side .side-title { color: #7FA6C2; }
-    .grid-column.bride-side .side-title { color: #E29B9B; }
+    .grid-column.groom-side .side-title { color: #2E4461; }
+    .grid-column.bride-side .side-title { color: #E8C7CF; }
     
     .member-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .member-info { font-size: 1.45rem; color: #444444; margin-bottom: 8px; font-family: 'GangwonSaeeum', sans-serif; }
+    .member-info { font-size: 1.45rem; color: #2F2B28; margin-bottom: 8px; font-family: 'GangwonSaeeum', sans-serif; }
     .action-icons { display: flex; justify-content: center; gap: 22px; }
     .action-icons a { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
     .icon-phone, .icon-mail { width: 20px; height: 20px; }
     
-    .grid-column.groom-side svg { fill: #7FA6C2; }
-    .grid-column.bride-side svg { fill: #E29B9B; }
+    .grid-column.groom-side svg { fill: #2E4461; }
+    .grid-column.bride-side svg { fill: #E8C7CF; }
 
     /* 📅 달력 섹션 */
-    .calendar-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
+    .calendar-section { padding: 40px 24px; background-color: #FCFBF8; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .calendar-header { text-align: left; max-width: 340px; margin: 0 auto 15px auto; }
-    .calendar-month, .calendar-day-text { font-size: 2.2rem; color: #b18888; line-height: 1.2; }
-    .calendar-top-line, .calendar-bottom-line { max-width: 340px; height: 2px; background-color: #c18888; margin: 8px auto; }
-    .calendar-table { width: 100%; max-width: 340px; margin: 0 auto; border-collapse: collapse; color: #444444; }
+    .calendar-month, .calendar-day-text { font-size: 2.2rem; color: #C48A94; line-height: 1.2; }
+    .calendar-top-line, .calendar-bottom-line { max-width: 340px; height: 2px; background-color: #F1DDE2; margin: 8px auto; }
+    .calendar-table { width: 100%; max-width: 340px; margin: 0 auto; border-collapse: collapse; color: #2F2B28; }
     .calendar-table th, .calendar-table td { width: 14.28%; height: 38px; text-align: center; vertical-align: middle; position: relative; font-size: 1.45rem; }
     .calendar-table th.sun, .calendar-table td.sun { color: #d96868; }
     .calendar-table th.sat, .calendar-table td.sat { color: #4a86e8; }
-    .wedding-day-point { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; background-color: #f0b1b1; border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; color: #ffffff !important; font-weight: bold; }
+    .wedding-day-point { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; background-color: #E8C7CF; border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; color: #ffffff !important; font-weight: bold; }
 
     /* ⏱️ 디데이 카운트다운 */
-    .dday-section { padding: 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
-    .dday-title { font-size: 1.6rem; color: #555555; margin-bottom: 25px; }
+    .dday-section { padding: 40px 24px; background-color: F6EDEF; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
+    .dday-title { font-size: 1.6rem; color: #2F2B28; margin-bottom: 25px; }
     .dday-container { display: flex; justify-content: center; align-items: center; gap: 14px; max-width: 360px; margin: 0 auto; }
     .dday-item { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
-    .dday-circle { width: 62px; height: 62px; background-color: #f0b1b1; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 1.7rem; font-weight: bold; box-shadow: 0 4px 8px rgba(240, 177, 177, 0.25); }
-    .dday-label { font-size: 1.15rem; color: #666666; }
+    .dday-circle { width: 62px; height: 62px; background-color: #F6EDEF; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 1.9rem; font-weight: bold; box-shadow: 0 4px 8px rgba(240, 177, 177, 0.25); }
+    .dday-label { font-size: 1.15rem; color: F6EDEF; }
 
     /* 💝 계좌번호 안내 섹션 */
     .account-section { padding: 60px 24px 40px 24px; background-color: #f5f4f0; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
@@ -657,10 +657,10 @@ padding-top: 25vh; /* 👈 숫자를 25vh, 20vh 등으로 줄이면 글자가 �
           <div class="grid-column groom-side">
             <div class="side-title">신랑측</div>
             <div class="member-box">
-              <div class="member-info"><strong>신랑 조민수</strong></div>
+              <div class="member-info">신랑 조민수</div>
               <div class="action-icons">
-                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
-                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                <a href="tel:010-3850-3304"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-3850-3304"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
               </div>
             </div>
             <div class="member-box">
@@ -682,24 +682,24 @@ padding-top: 25vh; /* 👈 숫자를 25vh, 20vh 등으로 줄이면 글자가 �
           <div class="grid-column bride-side">
             <div class="side-title">신부측</div>
             <div class="member-box">
-              <div class="member-info"><strong>신부 김양지</strong></div>
+              <div class="member-info">신부 김양지</div>
               <div class="action-icons">
-                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
-                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                <a href="tel:010-3889-2852"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-3889-2852"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
               </div>
             </div>
             <div class="member-box">
               <div class="member-info">아버지 김승묵</div>
               <div class="action-icons">
-                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
-                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                <a href="tel:010-3822-2852"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-3822-2852"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
               </div>
             </div>
             <div class="member-box">
               <div class="member-info">어머니 안희숙</div>
               <div class="action-icons">
-                <a href="tel:010-0000-0000"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
-                <a href="sms:010-0000-0000"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                <a href="tel:010-4505-2852"><svg class="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                <a href="sms:010-4505-2852"><svg class="icon-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
               </div>
             </div>
           </div>
