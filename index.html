@@ -331,38 +331,86 @@ padding-top: 25vh; /* 👈 숫자를 25vh, 20vh 등으로 줄이면 글자가 �
 
 /* 💝 계좌번호 안내 섹션 */
 .account-section { 
-  padding: 20px 24px 20px 24px; 
+  padding: 30px 24px 30px 24px; 
   background-color: #fdfafa; 
   text-align: center; 
-  /* 본문 전체는 기존 강원새음체 유지 */
+  /* 본문 전체의 기본 서체는 원래대로 강원새음체 유지 */
   font-family: 'GangwonSaeeum', sans-serif; 
 }
 
-/* 🌟 '마음전하실곳' 메인 타이틀만 인천교육자람체로 변경 🌟 */
+/* 🌟 [여기 수정] '마음전하실곳' 제목만 인천교육자람체 + 얇게(보통) 설정 */
 .account-main-title { 
   font-size: 1.95rem; 
   color: #ab9494; 
-  margin-bottom: 20px; 
-  /* ⚠️ 불러오신 '인천교육자람' 폰트의 정확한 영문 이름을 따옴표 안에 적어주세요 */
-  font-family: 'IncheonEduZaram', '인천교육자람', sans-serif; 
-}    .account-intro-text, .account-sub-text { font-size: 1.5rem; color: #585454; line-height: 1.8; margin-bottom: 25px; word-break: keep-all; }
-    .accordion-wrapper { max-width: 300px; margin: 0 auto 14px auto; background-color: #ffeaea; border: 1px solid #dcdcdc; border-radius: 8px; overflow: hidden; text-align: left; }
-    .accordion-header { padding: 11px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-    .accordion-header span { font-size: 1.5rem; font-weight: 500; }
-    .arrow-icon { width: 14px; height: 14px; fill: #888888; transition: transform 0.3s ease; }
-    .groom-acc .accordion-header span { color: #213c77; }
-    .bride-acc .accordion-header span { color: #d27d95; }
-    .accordion-wrapper.active .arrow-icon { transform: rotate(180deg); }
-    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background-color: ##ffeaea; }
-    .accordion-wrapper.active .accordion-content { max-height: 500px; }
-    .account-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-top: 1px solid #eeeeee; }
-    .account-info-box { display: flex; flex-direction: column; gap: 2px; }
-    .account-owner { font-size: 1.45rem; font-weight: bold; }
-    .groom-acc .account-owner { color: #213c77; }
-    .bride-acc .account-owner { color: #d27d95; }
-    .account-number-detail, .account-bank { font-size: 1.35rem; color: #585454; }
-    .copy-btn { padding: 4px 14px; background-color: #ffffff; border: 1px solid #cccccc; color: #585454; font-size: 1.25rem; border-radius: 4px; cursor: pointer; }
+  margin-bottom: 35px; 
+  font-family: '인천교육자람', sans-serif; /* 인천교육자람체 적용 */
+  font-weight: normal;                     /* 굵게 되지 않도록 보통 두께 설정 */
+}
 
+/* 본문 안내 글씨들은 상위 설정에 따라 자연스럽게 강원새음체로 유지됩니다 */
+.account-intro-text, 
+.account-sub-text { 
+  font-size: 1.5rem; 
+  color: #585454; 
+  line-height: 1.8; 
+  margin-bottom: 25px; 
+  word-break: keep-all; 
+}
+
+.accordion-wrapper { 
+  max-width: 300px; 
+  margin: 0 auto 14px auto; 
+  background-color: #ffeaea; 
+  border: 1px solid #dcdcdc; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  text-align: left; 
+}
+
+.accordion-header { 
+  padding: 11px 20px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  cursor: pointer; 
+}
+
+.accordion-header span { 
+  font-size: 1.5rem; 
+  font-weight: 500; 
+}
+
+.arrow-icon { 
+  width: 14px; 
+  height: 14px; 
+  fill: #888888; 
+  transition: transform 0.3s ease; 
+}
+
+.groom-acc .accordion-header span { color: #213c77; }
+.bride-acc .accordion-header span { color: #d27d95; }
+.accordion-wrapper.active .arrow-icon { transform: rotate(180deg); }
+
+.accordion-content { 
+  max-height: 0; 
+  overflow: hidden; 
+  transition: max-height 0.3s ease-out; 
+  background-color: #ffeaea; 
+}
+
+.accordion-wrapper.active .accordion-content { max-height: 500px; }
+.account-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-top: 1px solid #eeeeee; }
+.account-info-box { display: flex; flex-direction: column; gap: 2px; }
+
+.account-owner { 
+  font-size: 1.45rem; 
+  font-weight: bold; 
+}
+
+.groom-acc .account-owner { color: #213c77; }
+.bride-acc .account-owner { color: #d27d95; }
+.account-number-detail, .account-bank { font-size: 1.35rem; color: #585454; }
+.copy-btn { padding: 4px 14px; background-color: #ffffff; border: 1px solid #cccccc; color: #585454; font-size: 1.25rem; border-radius: 4px; cursor: pointer; }
     /* 📸 갤러리 섹션 */
     .gallery-section { padding: 20px 20px 20px 20px; background-color: #fdfafa; text-align: center; }
     .gallery-title { font-family: 'InkLipquid', sans-serif; font-size: 1.95rem; color: #ab9494; margin-bottom: 25px; }
