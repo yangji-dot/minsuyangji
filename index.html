@@ -147,22 +147,22 @@
     .relation-row .child { width: 60px; text-align: left; font-weight: bold; }
     
     /* 🌟 [크기 수정] 축하 연락하기 버튼 사이즈를 방명록 버튼과 완벽히 일치하도록 조절 */
-    .contact-btn { 
-      display: inline-block; 
-      width: 100%;
-      max-width: 240px; 
-      padding: 10px; 
-      background-color: #ffeaea; 
-      border: none; 
-      color: #7F7878; 
-      font-size: 1.5rem; 
-      font-weight: bold;
-      border-radius: 8px; 
-      cursor: pointer; 
-      font-family: 'GangwonSaeeum', sans-serif;
-      box-shadow: 0 4px 10px rgba(234, 175, 161, 0.2);
-      transition: opacity 0.2s;
-    }
+.contact-btn { 
+  display: inline-block;
+  width: 100%;
+  max-width: 240px; 
+  padding: 10px; 
+  background-color: #ffeaea; 
+  border: none; 
+  color: #7F7878; 
+  font-size: 1.5rem; 
+  font-weight: bold; /* 👈 글씨를 진하게 만드는 속성 유지 */
+  border-radius: 8px; 
+  cursor: pointer;
+  font-family: 'GangwonSaeeum', sans-serif;
+  box-shadow: 0 4px 10px rgba(234, 175, 161, 0.2);
+  transition: opacity 0.2s;
+}
     .contact-btn:active { opacity: 0.85; }
 
     /* 📞 축하 연락처 모달 팝업 */
@@ -556,22 +556,23 @@ font-weight: bold !important;
       </div>
     </div>
 
-<div class="location-section">
-      <div class="location-title">LOCATION</div>
-      <div class="location-info" style="margin-bottom: 0;">
-        <strong style="font-size: 1.7rem; color: #585454; display: block; margin-bottom: 10px;">
-          상주 마리앙스 <span style="font-size: 1.5rem; font-weight: bold; margin-left: 6px;">마리앙스 홀</span>
-        </strong>
-        
-        <div style="display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap;">
-          <span style="font-size: 1.4rem; color: #585454;">경북 상주시 삼백로 343</span>
-<button class="addr-copy-btn" onclick="copyAddressText('경북 상주시 삼백로 343')" style="margin-top: 0; padding: 2px 8px; font-size: 1.1rem; height: 22px; line-height: 18px;">주소 복사하기</button>
-        </div>
-      </div>
-
       <div class="guestbook-title" style="margin-top: 2px;">방명록</div>
       <div class="guestbook-list" id="guestbookList"></div>
       <button class="gb-open-btn" onclick="openGbModal()">방명록 작성하기</button>
+
+<div class="location-section">
+      <div class="location-title" style="margin-bottom: 5px !important;">LOCATION</div>
+      <div class="location-info" style="margin-bottom: 0;">
+        <div style="font-size: 1.5rem; color: #585454; margin-top: 0; margin-bottom: 6px;">
+          상주 마리앙스, 마리앙스 홀
+        </div>
+        
+        <div style="display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="font-size: 1.4rem; color: #585454;">경북 상주시 삼백로 343</span>
+          <button class="addr-copy-btn" onclick="copyAddressText('경북 상주시 삼백로 343')" style="margin-top: 0; padding: 2px 8px; font-size: 1.1rem; height: 22px; line-height: 18px;">주소 복사하기</button>
+        </div>
+      </div>
+
 
       <div style="display: flex; flex-direction: column; gap: 14px; margin: 20px auto 20px auto; width: 100%; max-width: 380px; padding: 0 10px; box-sizing: border-box;">
 <div onclick="sendKakaoShare()" style="background-color: #FFE677; color: #333333; border: none; width: 100%; padding: 18px 24px; border-radius: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.3rem; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
