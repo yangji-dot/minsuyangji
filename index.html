@@ -372,7 +372,7 @@
       font-size: 2.2rem !important;
       color: #ab9494 !important;
       letter-spacing: 2px !important;
-      font-weight: normal !important;
+font-weight: bold !important;
       text-align: center !important;
       
       /* 위아래 여백도 일정하게 통일 (필요에 따라 조절 가능) */
@@ -482,7 +482,7 @@
     </div>
 
     <div class="gallery-section">
-      <div class="gallery-title">Gallery</div>
+      <div class="gallery-title">GALLERY</div>
       <div class="gallery-container">
         <div class="gallery-col left-col"><div class="gallery-item item-tall"></div><div class="gallery-item item-short"></div></div>
         <div class="gallery-col right-col"><div class="gallery-item item-short"></div><div class="gallery-item item-tall"></div></div>
@@ -556,18 +556,6 @@
         </button>
       </div>
     </div>
-
-    <div class="invitation-section">
-      <div class="note-pad">
-        <p class="note-text">우리는 매일 우리의 삶을 여행합니다.</p>
-        <p class="note-text">우리가 할 수 있는건,</p>
-        <p class="note-text">이 멋진 여행을 즐기기 위해</p>
-        <p class="note-text">매일 최선을 다하는 것입니다.</p>
-        <div class="note-space"></div>
-        <p class="note-text note-author">영화 &lt;어바웃 타임&gt;</p>
-      </div>
-    </div>
-
 
     <!-- 방명록 작성 모달 팝업 -->
     <div class="gb-modal" id="gbModal" onclick="closeGbModalOutside(event)">
@@ -956,25 +944,6 @@ function copyAddressText(val) {
   }
 }
 </script>
-
-<!-- 🎬 어바웃 타임 명대사 및 마무리 섹션 -->
-    <div style="padding: 60px 24px 20px 24px; text-align: center; background-color: #fdfafa;">
-      <!-- 엽서 느낌의 연한 구분선 -->
-      <div style="width: 30px; height: 1px; background-color: #ab9494; margin: 0 auto 30px auto; opacity: 0.5;"></div>
-      
-      <!-- 🌟 원래 보내주신 감성 노트를 그대로 반영 -->
-      <div class="note-pad" style="max-width: 280px; margin: 0 auto;">
-        <p style="font-family: 'GangwonSaeeum', sans-serif !important; font-size: 1.45rem !important; color: #585454 !important; line-height: 2.2 !important; margin: 0; padding: 0;">우리는 매일 우리의 삶을 여행합니다.</p>
-        <p style="font-family: 'GangwonSaeeum', sans-serif !important; font-size: 1.45rem !important; color: #585454 !important; line-height: 2.2 !important; margin: 0; padding: 0;">우리가 할 수 있는건,</p>
-        <p style="font-family: 'GangwonSaeeum', sans-serif !important; font-size: 1.45rem !important; color: #585454 !important; line-height: 2.2 !important; margin: 0; padding: 0;">이 멋진 여행을 즐기기 위해</p>
-        <p style="font-family: 'GangwonSaeeum', sans-serif !important; font-style: normal; font-size: 1.45rem !important; color: #585454 !important; line-height: 2.2 !important; margin: 0; padding: 0;">매일 최선을 다하는 것입니다.</p>
-        
-        <!-- 줄노트 간격 확보 -->
-        <div style="height: 25px;"></div>
-        
-        <p style="font-family: 'GangwonSaeeum', sans-serif !important; font-size: 1.35rem !important; color: #7F7878 !important; margin: 0; padding: 0; letter-spacing: 1px;">영화 &lt;어바웃 타임&gt;</p>
-      </div>
-
       <!-- 🕊️ 깔끔한 마무리를 위한 저작권 표시 (Footer) -->
       <div style="font-family: sans-serif; font-size: 0.75rem; color: #b5b0b0; letter-spacing: 1px; margin-top: 70px; padding-bottom: 20px; opacity: 0.6;">
         © 2026. Minsu & Yangji. All rights reserved.
