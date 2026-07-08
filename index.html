@@ -199,9 +199,33 @@
 
 /* 💝 계좌번호 안내 섹션 */
     .account-section { padding: 30px 24px 30px 24px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
-    .account-main-title { font-size: 1.95rem; color: #ab9494; margin-bottom: 35px; font-family: '인천교육자람', sans-serif; font-weight: normal; }
-    .account-intro-text, .account-sub-text { font-size: 1.3rem; color: #585454; line-height: 1.8; margin-bottom: 25px; word-break: keep-all; }
     
+    /* 🌟 주요 대제목 스타일 완전 통일 (인천교육자람체, 크기 2.2rem) */
+    .account-main-title {
+      font-family: '인천교육자람', sans-serif !important;
+      font-size: 2.2rem !important;
+      color: #ab9494 !important;
+      letter-spacing: 2px !important;
+      font-weight: normal !important;
+      text-align: center !important;
+      margin-top: 40px !important;
+      margin-bottom: 25px !important;
+      display: block !important;
+    }
+    
+    /* 🌟 본문 스타일을 '두 사람이 하나되어'와 동일하게 맞춤 (강원새음체, 크기 1.4rem) */
+    .account-intro-text, 
+    .account-sub-text,
+    .account-section p { 
+      font-family: 'GangwonSaeeum', sans-serif !important; 
+      font-size: 1.4rem !important; 
+      color: #585454 !important; 
+      line-height: 1.6 !important; 
+      word-break: keep-all !important;
+      text-align: center !important;
+      margin-bottom: 25px !important;
+    }
+
     /* 🌟 신랑측, 신부측 버튼 전체 틀 (방명록 스타일 세트) */
     .accordion-wrapper { 
       max-width: 240px; 
@@ -253,7 +277,7 @@
     
     /* 📸 갤러리 섹션 */
     .gallery-section { padding: 20px 20px 20px 20px; background-color: #fdfafa; text-align: center; }
-    .gallery-title { font-family: 'InkLipquid', sans-serif; font-size: 1.95rem; color: #ab9494; margin-bottom: 25px; }
+    .gallery-title { font-family: '인천교육자람', sans-serif; font-size: 2.2rem; color: #ab9494; margin-bottom: 25px; }
     .gallery-container { display: flex; gap: 12px; width: 100%; max-width: 380px; margin: 0 auto; }
     .gallery-col { display: flex; flex-direction: column; gap: 12px; width: 50%; }
     .gallery-item { width: 100%; background-color: #dbdbdb; border-radius: 14px; overflow: hidden; }
@@ -331,6 +355,24 @@
     .gb-card-meta { display: flex; justify-content: space-between; color: #888888; font-size: 1.15rem; margin-bottom: 8px; }
     .gb-card-content { font-size: 1.35rem; color: #333333; line-height: 1.4; white-space: pre-wrap; }
     .gb-delete-btn { background: none; border: none; color: #ab9494; cursor: pointer; font-family: 'GangwonSaeeum', sans-serif; font-size: 1.15rem; }  
+
+/* 🌟 모든 주요 대제목 스타일 완전 통일 (인천교육자람체, 크기 2.2rem) */
+    .gallery-title,
+    .account-main-title,
+    .location-title,
+    .guestbook-title {
+      font-family: '인천교육자람', sans-serif !important;
+      font-size: 2.2rem !important;
+      color: #ab9494 !important;
+      letter-spacing: 2px !important;
+      font-weight: normal !important;
+      text-align: center !important;
+      
+      /* 위아래 여백도 일정하게 통일 (필요에 따라 조절 가능) */
+      margin-top: 40px !important;
+      margin-bottom: 25px !important;
+      display: block !important;
+    }
   </style>
 </head>
 
