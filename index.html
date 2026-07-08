@@ -126,14 +126,19 @@
     .note-author { font-size: 1.3rem; color: #585454; }
 
     /* 🦋 나비 구역 */
-    .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px 24px 20px 0px; }
+    .butterfly-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px 24px 20px 24px; }
     .butterfly-top { display: flex; justify-content: center; align-items: center; gap: 4px; margin-bottom: 10px; height: 45px; }
     .butterfly-left, .butterfly-right { width: 48px; height: 44px; object-fit: contain; }
     .butterfly-right { transform: rotate(-15deg); }
-    .greeting-text { font-family: 'GangwonSaeeum', sans-serif; font-size: 1.4rem; line-height: 1.4; color: #585454; word-break: keep-all; text-align: center; max-width: 320px; margin: 20px auto; }
-
+.greeting-text { 
+      font-family: 'GangwonSaeeum', sans-serif; 
+      font-size: 1.4rem; 
+      line-height: 1.6; 
+      color: #585454; 
+      word-break: keep-all; 
+      
     /* 👥 부모님 정보 섹션 */
-    .family-section { padding: 0px 24px 20px 10px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
+    .family-section { padding: 0px 24px 20px 24px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .family-relations { max-width: 320px; margin: 0 auto 35px auto; font-size: 1.6rem; line-height: 2.2; color: #585454; }
     .relation-row { display: flex; justify-content: center; align-items: center; gap: 10px; }
     .relation-row .parents { width: 140px; text-align: right; }
@@ -198,7 +203,7 @@
     .dday-label { font-size: 1.3rem; color: #ab9494; }
 
 /* 💝 계좌번호 안내 섹션 */
-    .account-section { padding: 30px 24px 30px 24px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
+    .account-section { padding: 10px 24px 10px 24px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     
     /* 대제목 스타일 (기존 스타일 그대로 유지) */
     .account-main-title {
@@ -252,7 +257,7 @@
     .bride-acc .arrow-icon { width: 14px; height: 14px; fill: #d27d95; transition: transform 0.3s ease; }
     
     .accordion-wrapper.active .arrow-icon { transform: rotate(180deg); }
-    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background-color: #f7f1eb; }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background-color: #f9f3f5; }
     .accordion-wrapper.active .accordion-content { max-height: 500px; }
     
     /* 내부 계좌 열렸을 때 레이아웃 */
@@ -277,7 +282,7 @@
     }
     
     /* 📸 갤러리 섹션 */
-    .gallery-section { padding: 0px 20px 20px 30px; background-color: #fdfafa; text-align: center; }
+    .gallery-section { padding: 0px 20px 20px 20px; background-color: #fdfafa; text-align: center; }
     .gallery-title { font-family: '인천교육자람', sans-serif; font-size: 2.2rem; color: #ab9494; margin-bottom: 25px; }
     .gallery-container { display: flex; gap: 12px; width: 100%; max-width: 380px; margin: 0 auto; }
     .gallery-col { display: flex; flex-direction: column; gap: 12px; width: 50%; }
@@ -483,7 +488,7 @@
       </div>
     </div>
 
-<div class="account-section" style="padding: 30px 24px 30px 24px; background-color: #fdfafa; text-align: center;">
+<div class="account-section" style="padding: 20px 24px 30px 20px; background-color: #fdfafa; text-align: center;">
       <div class="account-main-title">마음 전하실 곳</div>
       
 <div style="font-family: 'GangwonSaeeum', sans-serif !important; font-size: 1.4rem !important; color: #585454 !important; font-weight: normal !important; line-height: 1.8 !important; word-break: keep-all; margin-bottom: 25px;">
