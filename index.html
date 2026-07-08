@@ -198,26 +198,62 @@
     .dday-circle { width: 62px; height: 62px; background-color: #ffeaea; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #7F7878; font-size: 1.9rem; font-weight: bold; box-shadow: 0 4px 8px rgba(240, 177, 177, 0.25); }
     .dday-label { font-size: 1.3rem; color: #ab9494; }
 
-    /* 💝 계좌번호 안내 섹션 */
+/* 💝 계좌번호 안내 섹션 */
     .account-section { padding: 30px 24px 30px 24px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     .account-main-title { font-size: 1.95rem; color: #ab9494; margin-bottom: 35px; font-family: '인천교육자람', sans-serif; font-weight: normal; }
     .account-intro-text, .account-sub-text { font-size: 1.3rem; color: #585454; line-height: 1.8; margin-bottom: 25px; word-break: keep-all; }
-    .accordion-wrapper { max-width: 240px; margin: 0 auto 14px auto; background-color: #ffeaea; border: 1px solid #dcdcdc; border-radius: 8px; overflow: hidden; text-align: center; }
+    
+    /* 🌟 [수정] 신랑측, 신부측 버튼 전체 틀을 테두리 없는 스타일로 변경 및 방명록 버튼과 똑같은 그림자 부여 */
+    .accordion-wrapper { 
+      max-width: 240px; 
+      margin: 0 auto 14px auto; 
+      background-color: #ffeaea; 
+      border: none; /* 테두리 제거 */
+      border-radius: 8px; 
+      overflow: hidden; 
+      text-align: center; 
+      box-shadow: 0 4px 10px rgba(234, 175, 161, 0.2); /* 방명록 버튼과 동일한 그림자 효과 */
+    }
+    
     .accordion-header { padding: 8px 16px; display: flex; justify-content: center; align-items: center; cursor: pointer; gap: 10px; }
-    .accordion-header span { font-size: 1.5rem; font-weight: 500; }
-    .arrow-icon { width: 14px; height: 14px; fill: #888888; transition: transform 0.3s ease; }
-    .groom-acc .accordion-header span { color: #213c77; }
-    .bride-acc .accordion-header span { color: #d27d95; }
+    
+    /* 🌟 [수정] 글자 크기를 1.5rem, 두께를 bold(굵게)로 통일하되, 각각 고유의 색상은 유지 */
+    .accordion-header span { 
+      font-size: 1.5rem; 
+      font-weight: bold; 
+    }
+    
+    /* 🌟 [유지] 신랑측은 기존 푸른색, 신부측은 기존 분홍색 글씨 유지 */
+    .groom-acc .accordion-header span { color: #213c77 !important; }
+    .bride-acc .accordion-header span { color: #d27d95 !important; }
+    
+    /* 화살표 색상도 각 버튼 글씨 색상과 어울리게 각각 지정 */
+    .groom-acc .arrow-icon { width: 14px; height: 14px; fill: #213c77; transition: transform 0.3s ease; }
+    .bride-acc .arrow-icon { width: 14px; height: 14px; fill: #d27d95; transition: transform 0.3s ease; }
+    
     .accordion-wrapper.active .arrow-icon { transform: rotate(180deg); }
     .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background-color: #ffeaea; }
     .accordion-wrapper.active .accordion-content { max-height: 500px; }
-    .account-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-top: 1px solid #eeeeee; }
-    .account-info-box { display: flex; flex-direction: column; gap: 2px; }
-    .account-owner { font-size: 1.45rem; font-weight: bold; }
-    .groom-acc .account-owner { color: #213c77; }
-    .bride-acc .account-owner { color: #d27d95; }
+    
+    /* 열렸을 때 내부 구분선 스타일 */
+    .account-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-top: 1px dashed rgba(127, 120, 120, 0.2); }
+    .account-info-box { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+    
+    /* 내부 계좌주 및 정보 스타일 */
+    .account-owner { font-size: 1.45rem; font-weight: bold; color: #585454; }
     .account-number-detail, .account-bank { font-size: 1.35rem; color: #585454; }
-    .copy-btn { padding: 4px 14px; background-color: #ffffff; border: 1px solid #cccccc; color: #585454; font-size: 1.25rem; border-radius: 4px; cursor: pointer; }
+    
+    /* 🌟 [수정] 누르면 나오는 내부 [복사] 버튼 크기 축소 및 강원새음체 설정 */
+    .copy-btn { 
+      padding: 3px 10px; 
+      background-color: #ffffff; 
+      border: 1px solid #e8e5dd; 
+      color: #7F7878; 
+      font-size: 1.2rem; 
+      border-radius: 4px; 
+      cursor: pointer; 
+      font-family: 'GangwonSaeeum', sans-serif; /* 강원새음체 적용 */
+    }
     
     /* 📸 갤러리 섹션 */
     .gallery-section { padding: 20px 20px 20px 20px; background-color: #fdfafa; text-align: center; }
@@ -429,16 +465,18 @@
         </div>
       </div>
 
-      <div class="accordion-wrapper bride-acc">
-        <div class="accordion-header" onclick="toggleAccordion(this)"><span>신부측</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
-        <div class="accordion-content">
-          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 김양지</span><span class="account-number-detail">987654321</span><span class="account-bank">농협 김양지</span></div><button class="copy-btn" onclick="copyAccountNumber('302-38892852-61')">복사</button></div>
-          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 아버지</span><span class="account-number-detail">987654321-01</span><span class="account-bank">국민 김승묵</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321-01')">복사</button></div>
-          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 어머니</span><span class="account-number-detail">987654321-02</span><span class="account-bank">국민 안희숙</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321-02')">복사</button></div>
+<div class="location-section">
+      <div class="location-title">LOCATION</div>
+      <div class="location-info" style="margin-bottom: 0;">
+        <strong style="font-size: 1.7rem; color: #585454; display: block; margin-bottom: 6px;">
+          상주 마리앙스 <span style="font-size: 1.7rem; font-weight: bold; margin-left: 6px;">마리앙스 홀</span>
+        </strong>
+        
+        <div style="display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="font-size: 1.4rem; color: #585454;">경북 상주시 삼백로 343</span>
+          <button class="addr-copy-btn" onclick="copyAddressText('경북 상주시 삼백로 343')" style="margin-top: 0; padding: 4px 12px; font-size: 1.25rem; height: auto;">주소 복사하기</button>
         </div>
       </div>
-    </div>
-
     <div class="location-section">
       <div class="location-title">LOCATION</div>
       <div class="location-info" style="margin-bottom: 0;">
