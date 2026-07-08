@@ -204,7 +204,14 @@
     .dday-label { font-size: 1.3rem; color: #ab9494; }
 
 /* 💝 계좌번호 안내 섹션 */
-    .account-section { padding: 10px 24px 10px 24px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
+.account-section { 
+  /* 💡 기존 패딩 설정 뒤에 아래쪽 마진을 0으로 강제(!important) 지정합니다 */
+  padding: 30px 24px 0px 24px !important; 
+  margin-bottom: 0px !important; 
+  background-color: #fdfafa; 
+  text-align: center;
+  font-family: 'GangwonSaeeum', sans-serif; 
+}
     
     /* 대제목 스타일 (기존 스타일 그대로 유지) */
     .account-main-title {
@@ -291,11 +298,33 @@
     .left-col .item-tall, .right-col .item-tall { height: 230px; }
     .left-col .item-short, .right-col .item-short { height: 120px; }
 
-    /* 📍 오시는 길 */
-    .location-section { padding: 10px 24px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
-    .location-title { font-size: 2.2rem; color: #ab9494; margin-bottom: 10px; letter-spacing: 2px; font-family: '인천교육자람', sans-serif; }
-    .location-info { font-size: 1.45rem; color: #585454; line-height: 1.6; margin-bottom: 25px; }
-    
+/* 📍 오시는 길 */
+.location-section { 
+  /* 💡 위쪽 패딩을 0으로 만들고, 마이너스 마진(-15px)을 주어 신부측 박스와 강제로 붙입니다 */
+  padding: 0px 24px 10px 24px !important; 
+  margin-top: 10px !important; 
+  background-color: #fdfafa; 
+  text-align: center; 
+  font-family: 'GangwonSaeeum', sans-serif; 
+}
+
+.location-title { 
+  font-size: 2.2rem !important; 
+  color: #ab9494 !important; 
+  /* 💡 로케이션 제목 자체의 위쪽 여백도 최소화(0)합니다 */
+  margin-top: 0px !important; 
+  margin-bottom: 10px !important; 
+  letter-spacing: 2px !important; 
+  font-family: '인천교육자람', sans-serif !important; 
+  font-weight: bold !important; /* 앞서 요청하신 글자 진하게 속성도 포함 */
+}
+
+.location-info { 
+  font-size: 1.45rem; 
+  color: #585454; 
+  line-height: 1.6; 
+  margin-bottom: 25px; 
+}
     /* 🌟 [폰트 수정] 주소복사 버튼 글씨체를 강원새음체로 설정하여 예쁘게 정돈 */
     .addr-copy-btn {
       display: inline-block;
@@ -530,8 +559,8 @@ font-weight: bold !important;
 <div class="location-section">
       <div class="location-title">LOCATION</div>
       <div class="location-info" style="margin-bottom: 0;">
-        <strong style="font-size: 1.7rem; color: #585454; display: block; margin-bottom: 6px;">
-          상주 마리앙스 <span style="font-size: 1.5rem; font-weight: bold; margin-left: 6px;">마리앙스 홀</span>
+        <strong style="font-size: 1.7rem; color: #585454; display: block; margin-bottom: 10px;">
+          상주 마리앙스 <span style="font-size: 1.7rem; font-weight: bold; margin-left: 6px;">마리앙스 홀</span>
         </strong>
         
         <div style="display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap;">
