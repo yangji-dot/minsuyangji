@@ -200,7 +200,7 @@
 /* 💝 계좌번호 안내 섹션 */
     .account-section { padding: 30px 24px 30px 24px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     
-    /* 🌟 주요 대제목 스타일 완전 통일 (인천교육자람체, 크기 2.2rem) */
+    /* 대제목 스타일 (인천교육자람체, 크기 2.2rem) */
     .account-main-title {
       font-family: '인천교육자람', sans-serif !important;
       font-size: 2.2rem !important;
@@ -213,23 +213,29 @@
       display: block !important;
     }
     
-    /* 🌟 본문 스타일을 '두 사람이 하나되어'와 동일하게 맞춤 (강원새음체, 크기 1.4rem) */
-    .account-intro-text, 
-    .account-sub-text,
-    .account-section p { 
+    /* 🌟 [수정완료] 마음 전하실 곳 본문의 모든 글씨(p, span, div, 일반 텍스트)를 '두 사람이 하나되어' 스타일로 일괄 통일 */
+    .account-section,
+    .account-section p,
+    .account-section span,
+    .account-section div:not(.accordion-wrapper):not(.accordion-header):not(.accordion-content):not(.account-row):not(.account-info-box):not(.account-owner) { 
       font-family: 'GangwonSaeeum', sans-serif !important; 
-      font-size: 1.4rem !important; 
-      color: #585454 !important; 
-      line-height: 1.6 !important; 
+      font-size: 1.4rem !important; /* '두 사람이 하나되어'와 동일한 크기 */
+      color: #585454 !important; /* 동일한 먹색 */
+      line-height: 1.8 !important; 
       word-break: keep-all !important;
       text-align: center !important;
-      margin-bottom: 25px !important;
+    }
+
+    /* 🌟 버튼 내부의 계좌 정보 글씨들이 작아지지 않도록 방어하는 코드 */
+    .account-number-detail, .account-bank { 
+      font-size: 1.35rem !important; 
+      color: #585454 !important; 
     }
 
     /* 🌟 신랑측, 신부측 버튼 전체 틀 (방명록 스타일 세트) */
     .accordion-wrapper { 
       max-width: 240px; 
-      margin: 0 auto 14px auto; 
+      margin: 20px auto 14px auto; /* 본문 문구와 버튼 사이 여백 확보 */
       background-color: #ffeaea; 
       border: none; 
       border-radius: 8px; 
@@ -239,13 +245,13 @@
     }
     
     .accordion-header { padding: 8px 16px; display: flex; justify-content: center; align-items: center; cursor: pointer; gap: 10px; }
-    .accordion-header span { font-size: 1.5rem; font-weight: bold; }
+    .accordion-header span { font-size: 1.5rem !important; font-weight: bold !important; }
     
-    /* 🌟 신랑측 대제목 버튼 - 기존 푸른색 복구 */
+    /* 신랑측 대제목 버튼 - 기존 푸른색 */
     .groom-acc .accordion-header span { color: #213c77 !important; }
     .groom-acc .arrow-icon { width: 14px; height: 14px; fill: #213c77; transition: transform 0.3s ease; }
     
-    /* 🌟 신부측 대제목 버튼 - 기존 분홍색 복구 및 노출 정상화 */
+    /* 신부측 대제목 버튼 - 기존 분홍색 */
     .bride-acc .accordion-header span { color: #d27d95 !important; }
     .bride-acc .arrow-icon { width: 14px; height: 14px; fill: #d27d95; transition: transform 0.3s ease; }
     
@@ -257,22 +263,20 @@
     .account-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-top: 1px dashed rgba(127, 120, 120, 0.2); }
     .account-info-box { display: flex; flex-direction: column; gap: 2px; text-align: left; }
     
-    /* 🌟 내부 이름(신랑 조민수 / 신부측 혼주 등) 색상 기존 그대로 유지 */
-    .groom-acc .account-owner { font-size: 1.45rem; font-weight: bold; color: #213c77 !important; }
-    .bride-acc .account-owner { font-size: 1.45rem; font-weight: bold; color: #d27d95 !important; }
+    /* 내부 이름(신랑 조민수 / 신부측 혼주 등) 색상 유지 */
+    .groom-acc .account-owner { font-size: 1.45rem !important; font-weight: bold !important; color: #213c77 !important; }
+    .bride-acc .account-owner { font-size: 1.45rem !important; font-weight: bold !important; color: #d27d95 !important; }
     
-    .account-number-detail, .account-bank { font-size: 1.35rem; color: #585454; }
-    
-    /* 🌟 내부 [복사] 버튼 (크기 축소 + 강원새음체) */
+    /* 내부 [복사] 버튼 (크기 축소 + 강원새음체) */
     .copy-btn { 
       padding: 3px 10px; 
       background-color: #ffffff; 
       border: 1px solid #e8e5dd; 
       color: #7F7878; 
-      font-size: 1.2rem; 
+      font-size: 1.2rem !important; 
       border-radius: 4px; 
       cursor: pointer; 
-      font-family: 'GangwonSaeeum', sans-serif; 
+      font-family: 'GangwonSaeeum', sans-serif !important; 
     }
     
     /* 📸 갤러리 섹션 */
