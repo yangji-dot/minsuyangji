@@ -200,7 +200,7 @@
 /* 💝 계좌번호 안내 섹션 */
     .account-section { padding: 30px 24px 30px 24px; background-color: #fdfafa; text-align: center; font-family: 'GangwonSaeeum', sans-serif; }
     
-    /* 대제목 스타일 (인천교육자람체, 크기 2.2rem) */
+    /* 대제목 스타일 (기존 스타일 그대로 유지) */
     .account-main-title {
       font-family: '인천교육자람', sans-serif !important;
       font-size: 2.2rem !important;
@@ -213,29 +213,25 @@
       display: block !important;
     }
     
-    /* 🌟 [수정완료] 마음 전하실 곳 본문의 모든 글씨(p, span, div, 일반 텍스트)를 '두 사람이 하나되어' 스타일로 일괄 통일 */
-    .account-section,
-    .account-section p,
-    .account-section span,
-    .account-section div:not(.accordion-wrapper):not(.accordion-header):not(.accordion-content):not(.account-row):not(.account-info-box):not(.account-owner) { 
+    /* 🌟 [정확히 수정] "멀리서도~" 구절이 있는 본문 텍스트만 콕 집어서 '두 사람이 하나되어'와 똑같이 변경 */
+    .account-intro-text, 
+    .account-sub-text,
+    .account-section > p,
+    .account-section > span { 
       font-family: 'GangwonSaeeum', sans-serif !important; 
       font-size: 1.4rem !important; /* '두 사람이 하나되어'와 동일한 크기 */
       color: #585454 !important; /* 동일한 먹색 */
       line-height: 1.8 !important; 
       word-break: keep-all !important;
       text-align: center !important;
+      margin-bottom: 25px !important;
+      display: block !important;
     }
 
-    /* 🌟 버튼 내부의 계좌 정보 글씨들이 작아지지 않도록 방어하는 코드 */
-    .account-number-detail, .account-bank { 
-      font-size: 1.35rem !important; 
-      color: #585454 !important; 
-    }
-
-    /* 🌟 신랑측, 신부측 버튼 전체 틀 (방명록 스타일 세트) */
+    /* 신랑측, 신부측 버튼 전체 틀 (방명록 스타일 세트) */
     .accordion-wrapper { 
       max-width: 240px; 
-      margin: 20px auto 14px auto; /* 본문 문구와 버튼 사이 여백 확보 */
+      margin: 20px auto 14px auto; 
       background-color: #ffeaea; 
       border: none; 
       border-radius: 8px; 
@@ -263,9 +259,10 @@
     .account-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-top: 1px dashed rgba(127, 120, 120, 0.2); }
     .account-info-box { display: flex; flex-direction: column; gap: 2px; text-align: left; }
     
-    /* 내부 이름(신랑 조민수 / 신부측 혼주 등) 색상 유지 */
+    /* 내부 이름 및 계좌 정보 색상 유지 */
     .groom-acc .account-owner { font-size: 1.45rem !important; font-weight: bold !important; color: #213c77 !important; }
     .bride-acc .account-owner { font-size: 1.45rem !important; font-weight: bold !important; color: #d27d95 !important; }
+    .account-number-detail, .account-bank { font-size: 1.35rem !important; color: #585454 !important; }
     
     /* 내부 [복사] 버튼 (크기 축소 + 강원새음체) */
     .copy-btn { 
@@ -486,26 +483,43 @@
       </div>
     </div>
 
-   <div class="account-section">
+<div class="account-section" style="padding: 30px 24px 30px 24px; background-color: #fdfafa; text-align: center;">
       <div class="account-main-title">마음 전하실 곳</div>
-      <div class="account-intro-text">
+      
+      <div style="font-family: 'GangwonSaeeum', sans-serif !important; font-size: 1.4rem !important; color: #585454 !important; line-height: 1.8 !important; word-break: keep-all; margin-bottom: 25px;">
         멀리서도 축하의 마음을<br>
         전하고 싶으신 분들을 위해<br>
         계좌번호를 안내해드립니다.
       </div>
-      <div class="account-sub-text">
+      <div style="font-family: 'GangwonSaeeum', sans-serif !important; font-size: 1.4rem !important; color: #585454 !important; line-height: 1.8 !important; word-break: keep-all; margin-bottom: 25px;">
         소중한 축하를 보내주셔서 감사드리며,<br>
         따뜻한 마음에 깊이 감사드립니다.
       </div>
  
       <div class="accordion-wrapper groom-acc">
-        <div class="accordion-header" onclick="toggleAccordion(this)"><span>신랑측</span><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>신랑측</span>
+          <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
         <div class="accordion-content">
           <div class="account-row"><div class="account-info-box"><span class="account-owner">신랑 조민수</span><span class="account-number-detail">123456789</span><span class="account-bank">농협 조민수</span></div><button class="copy-btn" onclick="copyAccountNumber('123456789')">복사</button></div>
           <div class="account-row"><div class="account-info-box"><span class="account-owner">신랑 아버지</span><span class="account-number-detail">123456789</span><span class="account-bank">농협 조병도</span></div><button class="copy-btn" onclick="copyAccountNumber('123456789')">복사</button></div>
           <div class="account-row"><div class="account-info-box"><span class="account-owner">신랑 어머니</span><span class="account-number-detail">123456789-02</span><span class="account-bank">농협 김애경</span></div><button class="copy-btn" onclick="copyAccountNumber('123456789-02')">복사</button></div>
         </div>
       </div>
+
+      <div class="accordion-wrapper bride-acc">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>신부측</span>
+          <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
+        <div class="accordion-content">
+          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 김양지</span><span class="account-number-detail">987654321</span><span class="account-bank">국민 김양지</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321')">복사</button></div>
+          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 아버지</span><span class="account-number-detail">987654321</span><span class="account-bank">국민 신부아버님</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321')">복사</button></div>
+          <div class="account-row"><div class="account-info-box"><span class="account-owner">신부 어머니</span><span class="account-number-detail">987654321-02</span><span class="account-bank">국민 신부어머님</span></div><button class="copy-btn" onclick="copyAccountNumber('987654321-02')">복사</button></div>
+        </div>
+      </div>
+    </div>
 
 <div class="location-section">
       <div class="location-title">LOCATION</div>
